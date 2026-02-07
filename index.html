@@ -39,11 +39,17 @@
             position: fixed; inset: 0; 
             background: radial-gradient(circle at top right, #1e293b 0%, #0f172a 100%);
             z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px;
+            transition: opacity 0.3s ease;
         }
         .login-card {
             background: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border); border-radius: 24px; padding: 25px; width: 85%; max-width: 300px;
             text-align: center; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: loginSlideUp 0.4s ease-out;
+        }
+        @keyframes loginSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .login-card h2 { margin-bottom: 5px; font-weight: 800; color: #fff; }
         .login-card p { color: var(--accent-blue); font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 30px; }
@@ -647,7 +653,7 @@
                 <label>Password</label>
                 <input type="password" id="login-pass" placeholder="••••••••">
             </div>
-            <button class="login-btn" onclick="checkAuth()">System Only</button>
+            <button class="login-btn" onclick="checkAuth()">System Login</button>
             <div id="login-error" style="color: #ef4444; font-size: 0.7rem; margin-top: 15px; display: none; font-weight: 700;">Invalid Credentials</div>
         </div>
     </div>
@@ -658,13 +664,10 @@
         <p id="brand-slogan">ENTERPRISE RESOURCE PLANNING</p>
     </header>
 
-    <div id="active-view-indicator">Home</div>
+    <div id="active-view-indicator">Dashboard</div>
 
     <div id="main-menu" class="view-container active">
         <div class="bento-grid">
-            <a onclick="openView('main-menu')" class="nav-card"><div class="icon-bg" style="background:#38bdf8"></div><i class="fas fa-house" style="color:#38bdf8"></i><span>Home</span></a>
-            <a href="#" class="nav-card"><div class="icon-bg" style="background:#f87171"></div><i class="fas fa-user-tie" style="color:#f87171"></i><span>Management</span></a>
-            <a onclick="openView('documents-menu')" class="nav-card"><div class="icon-bg" style="background:#a78bfa"></div><i class="fas fa-file-shield" style="color:#a78bfa"></i><span>Documents</span></a>
             <a onclick="openView('clients-view')" class="nav-card"><div class="icon-bg" style="background:#4ade80"></div><i class="fas fa-handshake" style="color:#4ade80"></i><span>Clients</span></a>
             <a onclick="openView('supplier-view')" class="nav-card"><div class="icon-bg" style="background:#2dd4bf"></div><i class="fas fa-truck-ramp-box" style="color:#2dd4bf"></i><span>Supplier</span></a>
             <a onclick="openView('products-menu')" class="nav-card"><div class="icon-bg" style="background:#fbbf24"></div><i class="fas fa-microchip" style="color:#fbbf24"></i><span>Products</span></a>
@@ -672,7 +675,6 @@
             <a onclick="openView('commercial-menu')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-briefcase" style="color:#c084fc"></i><span>Commercial</span></a>
             <a onclick="openView('accounts-menu')" class="nav-card"><div class="icon-bg" style="background:#34d399"></div><i class="fas fa-vault" style="color:#34d399"></i><span>Accounts</span></a>
             <a onclick="openView('workorder-menu')" class="nav-card"><div class="icon-bg" style="background:#f97316"></div><i class="fas fa-screwdriver-wrench" style="color:#f97316"></i><span>Work Order</span></a>
-            <a onclick="openView('projects-menu')" class="nav-card"><div class="icon-bg" style="background:#818cf8"></div><i class="fas fa-diagram-project" style="color:#818cf8"></i><span>Projects</span></a>
             <a onclick="openView('settings-view')" class="nav-card"><div class="icon-bg" style="background:#fb923c"></div><i class="fas fa-gears" style="color:#fb923c"></i><span>Settings</span></a>
         </div>
     </div>
@@ -764,333 +766,6 @@
         </div>
     </div>
 
-    <div id="documents-menu" class="view-container">
-        <div class="nav-header">
-            <div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div>
-            <div class="add-folder-btn" onclick="openView('documents-category-management')"><i class="fas fa-folder-plus"></i> Manage Folders</div>
-        </div>
-        <div class="bento-grid" id="documents-menu-folder-grid"></div>
-    </div>
-
-    <div id="documents-category-management" class="view-container">
-        <div class="nav-header">
-            <div class="back-btn" onclick="openView('documents-menu')"><i class="fas fa-arrow-left"></i> Back</div>
-            <div class="add-folder-btn" onclick="openTabCategoryModal('documents')"><i class="fas fa-plus"></i> New Folder</div>
-        </div>
-        
-        <div class="tab-management-header">
-            <h3 class="tab-management-title">
-                <i class="fas fa-file-shield"></i> Documents Folders
-            </h3>
-        </div>
-        
-        <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin: 10px 0 20px 0;">
-            Manage all document folders from here
-        </p>
-        
-        <div class="category-management">
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" class="quick-search" placeholder="Search document folders..." onkeyup="filterTabCategories(this.value, 'documents')">
-            </div>
-            
-            <div class="category-list" id="documents-categories-list"></div>
-        </div>
-    </div>
-
-    <div id="projects-menu" class="view-container">
-        <div class="nav-header">
-            <div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div>
-            <div class="add-folder-btn" onclick="openView('projects-category-management')"><i class="fas fa-folder-plus"></i> Manage Folders</div>
-        </div>
-        <div class="bento-grid" id="projects-menu-folder-grid"></div>
-    </div>
-
-    <div id="projects-category-management" class="view-container">
-        <div class="nav-header">
-            <div class="back-btn" onclick="openView('projects-menu')"><i class="fas fa-arrow-left"></i> Back</div>
-            <div class="add-folder-btn" onclick="openTabCategoryModal('projects')"><i class="fas fa-plus"></i> New Folder</div>
-        </div>
-        
-        <div class="tab-management-header">
-            <h3 class="tab-management-title">
-                <i class="fas fa-diagram-project"></i> Projects Folders
-            </h3>
-        </div>
-        
-        <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin: 10px 0 20px 0;">
-            Manage all project folders from here
-        </p>
-        
-        <div class="category-management">
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" class="quick-search" placeholder="Search project folders..." onkeyup="filterTabCategories(this.value, 'projects')">
-            </div>
-            
-            <div class="category-list" id="projects-categories-list"></div>
-        </div>
-    </div>
-
-    <div id="documents-folder-files-view" class="view-container">
-        <div class="nav-header">
-            <div class="back-btn" id="documents-folder-back-btn"><i class="fas fa-arrow-left"></i> Back</div>
-            <div class="add-folder-btn" onclick="triggerFileUpload('documents')"><i class="fas fa-upload"></i> Upload File</div>
-        </div>
-        
-        <h3 id="documents-folder-title" style="text-align:center; color: var(--accent-blue); margin-top: 0; display: flex; align-items: center; justify-content: center; gap: 10px;">
-            <i class="fas fa-folder"></i> Folder
-        </h3>
-        
-        <div class="file-upload-container" id="documents-file-upload-container">
-            <div class="file-upload-area" onclick="triggerFileUpload('documents')">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <p>Click to upload or drag & drop files here</p>
-                <p style="font-size: 0.7rem; margin-top: 5px;">Supports: JPG, PNG, PDF, Excel, Word, Text, XML, HSE files</p>
-                <input type="file" id="documents-file-input" multiple onchange="handleFileSelection(this.files, 'documents')">
-            </div>
-            
-            <div class="file-upload-form" id="documents-file-upload-form">
-                <div class="form-group">
-                    <label>File Name</label>
-                    <input type="text" id="documents-file-name" placeholder="Enter file name (optional)">
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea id="documents-file-description" rows="2" placeholder="File description (optional)"></textarea>
-                </div>
-                <div class="modal-actions">
-                    <button class="btn-cancel" onclick="cancelFileUpload('documents')">Cancel</button>
-                    <button class="btn-create" onclick="uploadFile('documents')">Upload File</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="search-container">
-            <i class="fas fa-search"></i>
-            <input type="text" class="quick-search" placeholder="Search files..." onkeyup="filterFiles(this.value, 'documents')">
-        </div>
-        
-        <div class="files-grid" id="documents-files-grid"></div>
-    </div>
-
-    <div id="projects-folder-files-view" class="view-container">
-        <div class="nav-header">
-            <div class="back-btn" id="projects-folder-back-btn"><i class="fas fa-arrow-left"></i> Back</div>
-            <div class="add-folder-btn" onclick="triggerFileUpload('projects')"><i class="fas fa-upload"></i> Upload File</div>
-        </div>
-        
-        <h3 id="projects-folder-title" style="text-align:center; color: var(--accent-blue); margin-top: 0; display: flex; align-items: center; justify-content: center; gap: 10px;">
-            <i class="fas fa-folder"></i> Folder
-        </h3>
-        
-        <div class="file-upload-container" id="projects-file-upload-container">
-            <div class="file-upload-area" onclick="triggerFileUpload('projects')">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <p>Click to upload or drag & drop files here</p>
-                <p style="font-size: 0.7rem; margin-top: 5px;">Supports: JPG, PNG, PDF, Excel, Word, Text, XML, HSE files</p>
-                <input type="file" id="projects-file-input" multiple onchange="handleFileSelection(this.files, 'projects')">
-            </div>
-            
-            <div class="file-upload-form" id="projects-file-upload-form">
-                <div class="form-group">
-                    <label>File Name</label>
-                    <input type="text" id="projects-file-name" placeholder="Enter file name (optional)">
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea id="projects-file-description" rows="2" placeholder="File description (optional)"></textarea>
-                </div>
-                <div class="modal-actions">
-                    <button class="btn-cancel" onclick="cancelFileUpload('projects')">Cancel</button>
-                    <button class="btn-create" onclick="uploadFile('projects')">Upload File</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="search-container">
-            <i class="fas fa-search"></i>
-            <input type="text" class="quick-search" placeholder="Search files..." onkeyup="filterFiles(this.value, 'projects')">
-        </div>
-        
-        <div class="files-grid" id="projects-files-grid"></div>
-    </div>
-
-    <div id="workorder-menu" class="view-container">
-        <div class="nav-header">
-            <div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div>
-            <div class="add-folder-btn" onclick="openView('workorder-category-management')"><i class="fas fa-folder-plus"></i> Manage Folders</div>
-        </div>
-        <div class="bento-grid" id="workorder-menu-folder-grid"></div>
-    </div>
-
-    <div id="workorder-category-management" class="view-container">
-        <div class="nav-header">
-            <div class="back-btn" onclick="openView('workorder-menu')"><i class="fas fa-arrow-left"></i> Back</div>
-            <div class="add-folder-btn" onclick="openTabCategoryModal('workorder')"><i class="fas fa-plus"></i> New Folder</div>
-        </div>
-        
-        <div class="tab-management-header">
-            <h3 class="tab-management-title">
-                <i class="fas fa-screwdriver-wrench"></i> Work Order Folders
-            </h3>
-        </div>
-        
-        <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin: 10px 0 20px 0;">
-            Manage all work order folders from here
-        </p>
-        
-        <div class="category-management">
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" class="quick-search" placeholder="Search work order folders..." onkeyup="filterTabCategories(this.value, 'workorder')">
-            </div>
-            
-            <div class="category-list" id="workorder-categories-list"></div>
-        </div>
-    </div>
-
-    <div id="workorder-folder-files-view" class="view-container">
-        <div class="nav-header">
-            <div class="back-btn" id="workorder-folder-back-btn"><i class="fas fa-arrow-left"></i> Back</div>
-            <div class="add-folder-btn" onclick="triggerFileUpload('workorder')"><i class="fas fa-upload"></i> Upload File</div>
-        </div>
-        
-        <h3 id="workorder-folder-title" style="text-align:center; color: var(--accent-blue); margin-top: 0; display: flex; align-items: center; justify-content: center; gap: 10px;">
-            <i class="fas fa-folder"></i> Folder
-        </h3>
-        
-        <div class="file-upload-container" id="workorder-file-upload-container">
-            <div class="file-upload-area" onclick="triggerFileUpload('workorder')">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <p>Click to upload or drag & drop files here</p>
-                <p style="font-size: 0.7rem; margin-top: 5px;">Supports: JPG, PNG, PDF, Excel, Word, Text, XML, HSE files</p>
-                <input type="file" id="workorder-file-input" multiple onchange="handleFileSelection(this.files, 'workorder')">
-            </div>
-            
-            <div class="file-upload-form" id="workorder-file-upload-form">
-                <div class="form-group">
-                    <label>File Name</label>
-                    <input type="text" id="workorder-file-name" placeholder="Enter file name (optional)">
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea id="workorder-file-description" rows="2" placeholder="File description (optional)"></textarea>
-                </div>
-                <div class="modal-actions">
-                    <button class="btn-cancel" onclick="cancelFileUpload('workorder')">Cancel</button>
-                    <button class="btn-create" onclick="uploadFile('workorder')">Upload File</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="search-container">
-            <i class="fas fa-search"></i>
-            <input type="text" class="quick-search" placeholder="Search files..." onkeyup="filterFiles(this.value, 'workorder')">
-        </div>
-        
-        <div class="files-grid" id="workorder-files-grid"></div>
-    </div>
-
-    <div id="folder-workorder-summary" class="view-container">
-        <div class="nav-header">
-            <div class="back-btn" onclick="openView('workorder-menu')"><i class="fas fa-arrow-left"></i> Back</div>
-            <div class="add-folder-btn" onclick="openWorkOrderModal()"><i class="fas fa-plus"></i> Add Order</div>
-        </div>
-        <h3 style="text-align:center; color:#f59e0b; margin-top: 0;">Work Order Summary</h3>
-        
-        <div class="summary-cards">
-            <div class="summary-card order">
-                <div class="label">Total Orders</div>
-                <div class="value" id="total-orders">0</div>
-            </div>
-            <div class="summary-card value-card">
-                <div class="label">Total Value</div>
-                <div class="value" id="total-order-value">৳ 0</div>
-            </div>
-            <div class="summary-card cost">
-                <div class="label">Total Cost</div>
-                <div class="value" id="total-order-cost">৳ 0</div>
-            </div>
-            <div class="summary-card profit">
-                <div class="label">Total Profit</div>
-                <div class="value" id="total-order-profit">৳ 0</div>
-            </div>
-        </div>
-        
-        <div class="search-container">
-            <i class="fas fa-search"></i>
-            <input type="text" class="quick-search" placeholder="Search work orders..." onkeyup="quickFilterTable('workorder-table-body', this.value)">
-        </div>
-
-        <div class="q-table-container">
-            <table class="accounts-table workorder">
-                <thead>
-                    <tr>
-                        <th>SL</th>
-                        <th>Date</th>
-                        <th>Client</th>
-                        <th>Order ID</th>
-                        <th>Type</th>
-                        <th>Value</th>
-                        <th>Cost</th>
-                        <th>Profit</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="workorder-table-body"></tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="5" style="text-align: right; font-weight: 800;">Grand Total Profit:</td>
-                        <td id="workorder-total-value" style="color: #8b5cf6; font-weight: 800;">৳ 0</td>
-                        <td id="workorder-total-cost" style="color: #ef4444; font-weight: 800;">৳ 0</td>
-                        <td id="workorder-grand-profit" style="color: #10b981; font-weight: 800;">৳ 0</td>
-                        <td></td>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-    </div>
-
-    <div id="file-preview-modal" class="modal-overlay file-preview-modal">
-        <div class="modal-content file-preview-content">
-            <h3 id="file-preview-title">File Preview</h3>
-            <div class="file-preview-container" id="file-preview-container"></div>
-            <div class="modal-actions">
-                <button class="btn-cancel" onclick="closeModal('file-preview-modal')">Close</button>
-                <button class="btn-download" onclick="downloadPreviewedFile()"><i class="fas fa-download"></i> Download</button>
-                <button class="btn-delete" onclick="deletePreviewedFile()"><i class="fas fa-trash"></i> Delete</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="commercial-menu" class="view-container">
-        <div class="bento-grid">
-            <div class="nav-header"><div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div></div>
-            <a onclick="openView('folder-quotation')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-file-lines" style="color:#c084fc"></i><span>Quotation</span></a>
-            <a onclick="openView('folder-invoice')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-file-invoice" style="color:#c084fc"></i><span>Invoice</span></a>
-            <a onclick="openView('folder-challan')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-truck-fast" style="color:#c084fc"></i><span>Delivery Challan</span></a>
-            <a onclick="openView('folder-po')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-cart-shopping" style="color:#c084fc"></i><span>Purchase Order</span></a>
-            <a onclick="openView('folder-receipt')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-receipt" style="color:#c084fc"></i><span>Money Receipt</span></a>
-            <a onclick="openView('folder-letter')" class="nav-card"><div class="icon-bg" style="background:#a855f7"></div><i class="fas fa-envelope" style="color:#a855f7"></i><span>Letter</span></a>
-        </div>
-    </div>
-
-    <div id="folder-letter" class="view-container">
-        <div class="bento-grid" id="grid-letter">
-            <div class="nav-header">
-                <div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div>
-                <div class="add-folder-btn" onclick="openLetterModal()"><i class="fas fa-plus"></i> New Letter</div>
-            </div>
-        </div>
-    </div>
-
-    <div id="folder-quotation" class="view-container"><div class="bento-grid" id="grid-quotation"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openDocModal('QUOTATION')"><i class="fas fa-plus"></i> New</div></div></div></div>
-    <div id="folder-invoice" class="view-container"><div class="bento-grid" id="grid-invoice"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openDocModal('INVOICE')"><i class="fas fa-plus"></i> New</div></div></div></div>
-    <div id="folder-challan" class="view-container"><div class="bento-grid" id="grid-challan"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openDocModal('CHALLAN')"><i class="fas fa-plus"></i> New</div></div></div></div>
-    <div id="folder-po" class="view-container"><div class="bento-grid" id="grid-po"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openDocModal('PO')"><i class="fas fa-plus"></i> New</div></div></div></div>
-    <div id="folder-receipt" class="view-container"><div class="bento-grid" id="grid-receipt"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openMR()"><i class="fas fa-plus"></i> New</div></div></div></div>
-
     <div id="clients-view" class="view-container">
         <div class="nav-header">
             <div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div>
@@ -1144,6 +819,33 @@
             </table>
         </div>
     </div>
+
+    <div id="commercial-menu" class="view-container">
+        <div class="bento-grid">
+            <div class="nav-header"><div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div></div>
+            <a onclick="openView('folder-quotation')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-file-lines" style="color:#c084fc"></i><span>Quotation</span></a>
+            <a onclick="openView('folder-invoice')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-file-invoice" style="color:#c084fc"></i><span>Invoice</span></a>
+            <a onclick="openView('folder-challan')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-truck-fast" style="color:#c084fc"></i><span>Delivery Challan</span></a>
+            <a onclick="openView('folder-po')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-cart-shopping" style="color:#c084fc"></i><span>Purchase Order</span></a>
+            <a onclick="openView('folder-receipt')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-receipt" style="color:#c084fc"></i><span>Money Receipt</span></a>
+            <a onclick="openView('folder-letter')" class="nav-card"><div class="icon-bg" style="background:#a855f7"></div><i class="fas fa-envelope" style="color:#a855f7"></i><span>Letter</span></a>
+        </div>
+    </div>
+
+    <div id="folder-letter" class="view-container">
+        <div class="bento-grid" id="grid-letter">
+            <div class="nav-header">
+                <div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div>
+                <div class="add-folder-btn" onclick="openLetterModal()"><i class="fas fa-plus"></i> New Letter</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="folder-quotation" class="view-container"><div class="bento-grid" id="grid-quotation"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openDocModal('QUOTATION')"><i class="fas fa-plus"></i> New</div></div></div></div>
+    <div id="folder-invoice" class="view-container"><div class="bento-grid" id="grid-invoice"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openDocModal('INVOICE')"><i class="fas fa-plus"></i> New</div></div></div></div>
+    <div id="folder-challan" class="view-container"><div class="bento-grid" id="grid-challan"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openDocModal('CHALLAN')"><i class="fas fa-plus"></i> New</div></div></div></div>
+    <div id="folder-po" class="view-container"><div class="bento-grid" id="grid-po"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openDocModal('PO')"><i class="fas fa-plus"></i> New</div></div></div></div>
+    <div id="folder-receipt" class="view-container"><div class="bento-grid" id="grid-receipt"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openMR()"><i class="fas fa-plus"></i> New</div></div></div></div>
 
     <div id="accounts-menu" class="view-container">
         <div class="bento-grid">
@@ -1295,6 +997,154 @@
         </div>
     </div>
 
+    <div id="workorder-menu" class="view-container">
+        <div class="nav-header">
+            <div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div>
+            <div class="add-folder-btn" onclick="openView('workorder-category-management')"><i class="fas fa-folder-plus"></i> Manage Folders</div>
+        </div>
+        <div class="bento-grid" id="workorder-menu-folder-grid"></div>
+    </div>
+
+    <div id="workorder-category-management" class="view-container">
+        <div class="nav-header">
+            <div class="back-btn" onclick="openView('workorder-menu')"><i class="fas fa-arrow-left"></i> Back</div>
+            <div class="add-folder-btn" onclick="openTabCategoryModal('workorder')"><i class="fas fa-plus"></i> New Folder</div>
+        </div>
+        
+        <div class="tab-management-header">
+            <h3 class="tab-management-title">
+                <i class="fas fa-screwdriver-wrench"></i> Work Order Folders
+            </h3>
+        </div>
+        
+        <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin: 10px 0 20px 0;">
+            Manage all work order folders from here
+        </p>
+        
+        <div class="category-management">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" class="quick-search" placeholder="Search work order folders..." onkeyup="filterTabCategories(this.value, 'workorder')">
+            </div>
+            
+            <div class="category-list" id="workorder-categories-list"></div>
+        </div>
+    </div>
+
+    <div id="workorder-folder-files-view" class="view-container">
+        <div class="nav-header">
+            <div class="back-btn" id="workorder-folder-back-btn"><i class="fas fa-arrow-left"></i> Back</div>
+            <div class="add-folder-btn" onclick="triggerFileUpload('workorder')"><i class="fas fa-upload"></i> Upload File</div>
+        </div>
+        
+        <h3 id="workorder-folder-title" style="text-align:center; color: var(--accent-blue); margin-top: 0; display: flex; align-items: center; justify-content: center; gap: 10px;">
+            <i class="fas fa-folder"></i> Folder
+        </h3>
+        
+        <div class="file-upload-container" id="workorder-file-upload-container">
+            <div class="file-upload-area" onclick="triggerFileUpload('workorder')">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Click to upload or drag & drop files here</p>
+                <p style="font-size: 0.7rem; margin-top: 5px;">Supports: JPG, PNG, PDF, Excel, Word, Text, XML, HSE files</p>
+                <input type="file" id="workorder-file-input" multiple onchange="handleFileSelection(this.files, 'workorder')">
+            </div>
+            
+            <div class="file-upload-form" id="workorder-file-upload-form">
+                <div class="form-group">
+                    <label>File Name</label>
+                    <input type="text" id="workorder-file-name" placeholder="Enter file name (optional)">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="workorder-file-description" rows="2" placeholder="File description (optional)"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-cancel" onclick="cancelFileUpload('workorder')">Cancel</button>
+                    <button class="btn-create" onclick="uploadFile('workorder')">Upload File</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" class="quick-search" placeholder="Search files..." onkeyup="filterFiles(this.value, 'workorder')">
+        </div>
+        
+        <div class="files-grid" id="workorder-files-grid"></div>
+    </div>
+
+    <div id="folder-workorder-summary" class="view-container">
+        <div class="nav-header">
+            <div class="back-btn" onclick="openView('workorder-menu')"><i class="fas fa-arrow-left"></i> Back</div>
+            <div class="add-folder-btn" onclick="openWorkOrderModal()"><i class="fas fa-plus"></i> Add Order</div>
+        </div>
+        <h3 style="text-align:center; color:#f59e0b; margin-top: 0;">Work Order Summary</h3>
+        
+        <div class="summary-cards">
+            <div class="summary-card order">
+                <div class="label">Total Orders</div>
+                <div class="value" id="total-orders">0</div>
+            </div>
+            <div class="summary-card value-card">
+                <div class="label">Total Value</div>
+                <div class="value" id="total-order-value">৳ 0</div>
+            </div>
+            <div class="summary-card cost">
+                <div class="label">Total Cost</div>
+                <div class="value" id="total-order-cost">৳ 0</div>
+            </div>
+            <div class="summary-card profit">
+                <div class="label">Total Profit</div>
+                <div class="value" id="total-order-profit">৳ 0</div>
+            </div>
+        </div>
+        
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" class="quick-search" placeholder="Search work orders..." onkeyup="quickFilterTable('workorder-table-body', this.value)">
+        </div>
+
+        <div class="q-table-container">
+            <table class="accounts-table workorder">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Date</th>
+                        <th>Client</th>
+                        <th>Order ID</th>
+                        <th>Type</th>
+                        <th>Value</th>
+                        <th>Cost</th>
+                        <th>Profit</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="workorder-table-body"></tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" style="text-align: right; font-weight: 800;">Grand Total Profit:</td>
+                        <td id="workorder-total-value" style="color: #8b5cf6; font-weight: 800;">৳ 0</td>
+                        <td id="workorder-total-cost" style="color: #ef4444; font-weight: 800;">৳ 0</td>
+                        <td id="workorder-grand-profit" style="color: #10b981; font-weight: 800;">৳ 0</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div id="file-preview-modal" class="modal-overlay file-preview-modal">
+        <div class="modal-content file-preview-content">
+            <h3 id="file-preview-title">File Preview</h3>
+            <div class="file-preview-container" id="file-preview-container"></div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal('file-preview-modal')">Close</button>
+                <button class="btn-download" onclick="downloadPreviewedFile()"><i class="fas fa-download"></i> Download</button>
+                <button class="btn-delete" onclick="deletePreviewedFile()"><i class="fas fa-trash"></i> Delete</button>
+            </div>
+        </div>
+    </div>
+
     <div id="settings-view" class="view-container">
         <div class="nav-header" style="margin-bottom: 20px;">
             <div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div>
@@ -1378,41 +1228,6 @@
                     <div class="img-preview-container">
                         <img id="prev-gen-sig" class="img-preview">
                         <button class="delete-img-btn" onclick="deleteImage('data-gen-sig', 'prev-gen-sig')">×</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="settings-section">
-            <div class="settings-header" onclick="toggleSection(this)">
-                <h4><i class="fas fa-user-shield"></i> Executive Management</h4>
-                <i class="fas fa-chevron-down chevron"></i>
-            </div>
-            <div class="settings-content">
-                <div class="form-group"><label>Chairman's Name</label><input type="text" id="set-chair-name"></div>
-                <div class="form-group"><label>Chairman's Message</label><textarea id="set-chair-msg"></textarea></div>
-                <div class="form-group"><label>Chairman's Signature</label><input type="file" accept="image/*" onchange="encodeImg(this, 'prev-chair-sig', 'data-chair-sig')">
-                    <div class="img-preview-container">
-                        <img id="prev-chair-sig" class="img-preview">
-                        <button class="delete-img-btn" onclick="deleteImage('data-chair-sig', 'prev-chair-sig')">×</button>
-                    </div>
-                </div>
-                <hr style="border:0; border-top:1px solid var(--glass-border); margin:15px 0;">
-                <div class="form-group"><label>MD's Name</label><input type="text" id="set-md-name"></div>
-                <div class="form-group"><label>MD's Message</label><textarea id="set-md-msg"></textarea></div>
-                <div class="form-group"><label>MD's Signature</label><input type="file" accept="image/*" onchange="encodeImg(this, 'prev-md-sig', 'data-md-sig')">
-                    <div class="img-preview-container">
-                        <img id="prev-md-sig" class="img-preview">
-                        <button class="delete-img-btn" onclick="deleteImage('data-md-sig', 'prev-md-sig')">×</button>
-                    </div>
-                </div>
-                <hr style="border:0; border-top:1px solid var(--glass-border); margin:15px 0;">
-                <div class="form-group"><label>Director's Name</label><input type="text" id="set-dir-name"></div>
-                <div class="form-group"><label>Director's Message</label><textarea id="set-dir-msg"></textarea></div>
-                <div class="form-group"><label>Director's Signature</label><input type="file" accept="image/*" onchange="encodeImg(this, 'prev-dir-sig', 'data-dir-sig')">
-                    <div class="img-preview-container">
-                        <img id="prev-dir-sig" class="img-preview">
-                        <button class="delete-img-btn" onclick="deleteImage('data-dir-sig', 'prev-dir-sig')">×</button>
                     </div>
                 </div>
             </div>
@@ -1716,8 +1531,8 @@
             <h3 id="doc-title">Document</h3>
             
             <div class="form-group autocomplete-container">
-                <label>Client</label>
-                <input type="text" id="doc-client" placeholder="Type client name..." onkeyup="showClientSuggestions(this)">
+                <label>Client/Supplier</label>
+                <input type="text" id="doc-client" placeholder="Type client or supplier name..." onkeyup="showSupplierSuggestions(this)">
                 <div id="client-suggestions" class="autocomplete-suggestions"></div>
             </div>
             
@@ -1807,146 +1622,173 @@
     </div>
 
     <div id="pdf-template">
-        <div id="pdf-inner-content" style="position: relative; min-height: 10.5in; font-family: Arial, sans-serif; color: #333; background: #fff; box-sizing: border-box; overflow: hidden; page-break-inside: avoid; padding-right: 15px;">
+        <!-- FIXED: Red square boxes are now in the fixed footer wrapper -->
+        <div id="pdf-inner-content" style="position: relative; min-height: 10.5in; font-family: Arial, sans-serif; color: #333; background: #fff; box-sizing: border-box; overflow: hidden; page-break-inside: avoid; padding-right: 15px; padding-bottom: 60px;">
             
-            <div id="pdf-top-left-box" style="position: absolute; top: 0; left: 20px; width: 40px; height: 40px; background: #0000FF; z-index: 10; transform: rotate(90deg);"></div>
-            <div id="pdf-top-left-box-2" style="position: absolute; top: 20px; left: 0; width: 40px; height: 40px; background: #0000FF; z-index: 11; transform: rotate(90deg);"></div>
+            <!-- FIXED FOOTER STRUCTURE -->
+            <div id="pdf-content-wrapper" style="position: relative; min-height: calc(100% - 70px);">
+                
+                <div id="pdf-top-left-box" style="position: absolute; top: 0; left: 20px; width: 40px; height: 40px; background: #0000FF; z-index: 10; transform: rotate(90deg);"></div>
+                <div id="pdf-top-left-box-2" style="position: absolute; top: 20px; left: 0; width: 40px; height: 40px; background: #0000FF; z-index: 11; transform: rotate(90deg);"></div>
 
-            <div id="pdf-footer-bottom-box" style="position: absolute; bottom: 0; right: 20px; width: 40px; height: 40px; background: #FF0000; z-index: 10;"></div>
-            <div id="pdf-footer-bottom-box-2" style="position: absolute; bottom: 20px; right: 0; width: 40px; height: 40px; background: #FF0000; z-index: 11;"></div>
-
-            <div id="pdf-logo-container" style="position: absolute; top:0px; right: 0px; text-align: right; display: none;">
-                <img id="pdf-comp-logo" style="max-height: 90px; max-width: 120px;">
-            </div>
-
-            <div style="text-align: center; border-bottom: 2px solid #FF0000; padding-bottom: 8px;">
-                <h1 id="pdf-comp-name" style="margin: 0; font-size: 36px; text-transform: uppercase; color: #FF0000;">FAITH ENGINEERING</h1>
-                <p id="pdf-comp-addr-line" style="margin: 3px 0 2px 0; font-size: 14px; color: #0000FF; font-weight: 500;"></p>
-                <p id="pdf-comp-contact-line" style="margin: 0; font-size: 14px; color: #0000FF; font-style: normal;"></p>
-            </div>
-
-            <div style="text-align: center; margin-top: 20px;">
-                <h2 id="pdf-type-label" style="margin: 0; color: #0000FF; text-transform: uppercase; font-weight: 900; letter-spacing: 2px; display: inline-block; padding-bottom: 2px; font-size: 14px;">QUOTATION</h2>
-            </div>
-
-            <div id="pdf-letter-header" style="display: none; text-align: center; margin-top: 20px;">
-                <h2 id="pdf-letter-title" style="margin: 0; color: #a855f7; text-transform: uppercase; font-weight: 900; letter-spacing: 1px; font-size: 16px;"></h2>
-            </div>
-
-            <div id="pdf-client-section" style="display: flex; justify-content: space-between; margin-top: 20px; align-items: flex-start; width: 98%;">
-                <div style="width: 55%;">
-                    <p style="margin: 0; font-size: 12px; font-weight: bold; color: #555;">To,</p>
-                    <p id="pdf-client-name" style="margin: 5px 0 2px 0; font-weight: bold; font-size: 12px; color: #000;"></p>
-                    <p id="pdf-client-addr" style="margin: 0; font-size: 12px; line-height: 1.3; color: #444;"></p>
+                <div id="pdf-logo-container" style="position: absolute; top:0px; right: 0px; text-align: right; display: none;">
+                    <img id="pdf-comp-logo" style="max-height: 90px; max-width: 120px;">
                 </div>
-                <div style="width: 43%; display: flex; flex-direction: column; align-items: flex-end;">
-                    <table style="font-size: 12px; border-collapse: collapse; min-width: 180px;">
+
+                <div style="text-align: center; border-bottom: 2px solid #FF0000; padding-bottom: 8px;">
+                    <h1 id="pdf-comp-name" style="margin: 0; font-size: 36px; text-transform: uppercase; color: #FF0000;">FAITH ENGINEERING</h1>
+                    <p id="pdf-comp-addr-line" style="margin: 3px 0 2px 0; font-size: 14px; color: #0000FF; font-weight: 500;"></p>
+                    <p id="pdf-comp-contact-line" style="margin: 0; font-size: 14px; color: #0000FF; font-style: normal;"></p>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <h2 id="pdf-type-label" style="margin: 0; color: #0000FF; text-transform: uppercase; font-weight: 900; letter-spacing: 2px; display: inline-block; padding-bottom: 2px; font-size: 14px;">QUOTATION</h2>
+                </div>
+
+                <div id="pdf-letter-header" style="display: none; text-align: center; margin-top: 20px;">
+                    <h2 id="pdf-letter-title" style="margin: 0; color: #a855f7; text-transform: uppercase; font-weight: 900; letter-spacing: 1px; font-size: 16px;"></h2>
+                </div>
+
+                <!-- UPDATED: Letter document date info in top right -->
+                <div id="pdf-letter-date-container" style="display: none; text-align: right; margin-top: 15px; margin-right: 20px;">
+                    <table style="font-size: 12px; border-collapse: collapse; margin-left: auto; min-width: 180px;">
                         <tr>
-                            <td style="font-weight: bold; padding: 2px 10px 2px 0; text-align: left; width: 40%;">No.</td>
-                            <td id="pdf-id" style="padding: 2px 0; text-align: left;"></td>
+                            <td style="font-weight: bold; padding: 2px 10px 2px 0; text-align: left; width: 40%;">Date:</td>
+                            <td id="pdf-letter-date" style="padding: 2px 0; text-align: left;"></td>
                         </tr>
                         <tr>
-                            <td style="font-weight: bold; padding: 2px 10px 2px 0; text-align: left;">Date:</td>
-                            <td id="pdf-date" style="padding: 2px 0; text-align: left;"></td>
-                        </tr>
-                        <tr id="pdf-order-row" style="display:none;">
-                            <td id="pdf-ref-label" style="font-weight: bold; padding: 2px 10px 2px 0; text-align: left;">Order No:</td>
-                            <td id="pdf-order-id" style="padding: 2px 0; text-align: left;"></td>
-                        </tr>
-                        <tr id="pdf-gate-row" style="display:none;">
-                            <td style="font-weight: bold; padding: 2px 10px 2px 0; text-align: left;">Gate Pass:</td>
-                            <td id="pdf-gate-id" style="padding: 2px 0; text-align: left;"></td>
+                            <td style="font-weight: bold; padding: 2px 10px 2px 0; text-align: left;">Ref No:</td>
+                            <td id="pdf-letter-id" style="padding: 2px 0; text-align: left;"></td>
                         </tr>
                     </table>
                 </div>
-            </div>
 
-            <div id="pdf-subject-container" style="margin-top: 15px; font-size: 12px; display: none; border-top: 1px dashed #eee; padding-top: 10px; width: 98%;">
-                <strong>Subject:</strong> <span id="pdf-subject-text" style="font-weight: bold; font-size: 12px;"></span>
-            </div>
-
-            <div id="pdf-letter-content" style="display: none; margin-top: 25px; width: 98%;">
-                <div id="pdf-letter-text" style="font-size: 12px; line-height: 1.6; text-align: justify; margin-bottom: 20px;"></div>
-            </div>
-
-            <div id="pdf-mr-container" style="display:none; margin-top: 25px; width: 98%;">
-                <div style="border: 2px solid #0000FF; padding: 20px; border-radius: 5px; margin-bottom: 20px; width: 100%; box-sizing: border-box;">
-                    <div style="margin-bottom: 20px;">
-                        <div style="font-size: 11px; margin-bottom: 10px;">
-                            <strong>Received From:</strong> <span id="pdf-mr-client-name" style="font-weight: 700;"></span>
-                        </div>
-                        <div style="font-size: 11px;">
-                            <strong>Address:</strong> <span id="pdf-mr-client-addr"></span>
-                        </div>
+                <!-- UPDATED: Standard document info section -->
+                <div id="pdf-client-section" style="display: flex; justify-content: space-between; margin-top: 20px; align-items: flex-start; width: 98%;">
+                    <div style="width: 55%;">
+                        <p style="margin: 0; font-size: 12px; font-weight: bold; color: #555;">To,</p>
+                        <p id="pdf-client-name" style="margin: 5px 0 2px 0; font-weight: bold; font-size: 12px; color: #000;"></p>
+                        <p id="pdf-client-addr" style="margin: 0; font-size: 12px; line-height: 1.3; color: #444;"></p>
                     </div>
-                    
-                    <div style="text-align: center; margin-bottom: 20px; font-size: 11px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                            <div><strong>Receipt No:</strong> <span id="pdf-mr-id" style="color: #FF0000; font-weight: 700;"></span></div>
-                            <div><strong>Date:</strong> <span id="pdf-mr-date"></span></div>
-                        </div>
-                        <div style="margin-bottom: 15px;">
-                            <strong>Payment Mode:</strong> <span id="pdf-mr-mode"></span>
-                        </div>
-                        <div id="pdf-mr-extra" style="font-size: 10px; margin-bottom: 15px;"></div>
-                    </div>
-                    
-                    <div style="text-align: center; margin: 20px 0; padding: 20px; background: rgba(255, 0, 0, 0.05); border: 1px solid #FF0000; border-radius: 5px;">
-                        <p style="margin: 0 0 10px 0; font-size: 12px; font-weight: 700; color: #0000FF; text-transform: uppercase;">Amount Received</p>
-                        <p style="margin: 0; font-size: 28px; font-weight: 900; color: #FF0000; letter-spacing: 1px;"><span id="pdf-mr-curr">৳</span> <span id="pdf-mr-amount"></span></p>
-                        <div style="height: 2px; width: 200px; background: linear-gradient(90deg, #FF0000, #0000FF); margin: 15px auto; border-radius: 2px;"></div>
-                        <p style="margin: 15px 0 0 0; font-size: 11px; font-weight: 600; color: #555;">In Words:</p>
-                        <p id="pdf-mr-words-text" style="margin: 8px 0; font-size: 11px; font-weight: 600; color: #000; line-height: 1.3;"></p>
-                    </div>
-                    
-                    <div style="margin-top: 25px; border-top: 1px solid #888; padding-top: 15px; font-size: 11px; color: #555; text-align: center;">
-                        <p style="margin: 5px 0;">Thank you for your payment</p>
-                        <p style="margin: 5px 0; font-size: 10px; font-style: italic;">This is a computer generated receipt</p>
+                    <div style="width: 43%; display: flex; flex-direction: column; align-items: flex-end;">
+                        <table style="font-size: 12px; border-collapse: collapse; min-width: 180px;">
+                            <tr>
+                                <td style="font-weight: bold; padding: 2px 10px 2px 0; text-align: left; width: 40%;">No.</td>
+                                <td id="pdf-id" style="padding: 2px 0; text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold; padding: 2px 10px 2px 0; text-align: left;">Date:</td>
+                                <td id="pdf-date" style="padding: 2px 0; text-align: left;"></td>
+                            </tr>
+                            <tr id="pdf-order-row" style="display:none;">
+                                <td id="pdf-ref-label" style="font-weight: bold; padding: 2px 10px 2px 0; text-align: left;">Order No:</td>
+                                <td id="pdf-order-id" style="padding: 2px 0; text-align: left;"></td>
+                            </tr>
+                            <tr id="pdf-gate-row" style="display:none;">
+                                <td style="font-weight: bold; padding: 2px 10px 2px 0; text-align: left;">Gate Pass:</td>
+                                <td id="pdf-gate-id" style="padding: 2px 0; text-align: left;"></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-            </div>
 
-            <div id="pdf-standard-table">
-                <table style="width: 98%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd; box-sizing: border-box;">
-                    <thead id="pdf-table-head-container" style="font-size: 11px;"></thead>
-                    <tbody id="pdf-table-body" style="font-size: 10px;"></tbody>
-                    <tfoot id="pdf-table-foot-container" style="font-size: 11px;"></tfoot>
-                </table>
-            </div>
+                <div id="pdf-subject-container" style="margin-top: 15px; font-size: 12px; display: none; border-top: 1px dashed #eee; padding-top: 10px; width: 98%;">
+                    <strong>Subject:</strong> <span id="pdf-subject-text" style="font-weight: bold; font-size: 12px;"></span>
+                </div>
 
-            <div id="pdf-words-container" style="margin-top: 20px; font-size: 11px; width: 98%;">
-                <strong>Amount in words:</strong> <span id="pdf-grand-words" style="font-style: normal;"></span>
-            </div>
+                <div id="pdf-letter-content" style="display: none; margin-top: 25px; width: 98%;">
+                    <div id="pdf-letter-text" style="font-size: 12px; line-height: 1.6; text-align: justify; margin-bottom: 20px;"></div>
+                </div>
 
-            <div id="pdf-terms-section" style="margin-top: 15px; font-size: 11px; width: 98%;">
-                <strong>Terms & Conditions:</strong>
-                <div id="pdf-terms" style="white-space: pre-wrap; margin-top: 5px; line-height: 1.4; color: #555; font-size: 11px;"></div>
+                <div id="pdf-mr-container" style="display:none; margin-top: 25px; width: 98%;">
+                    <div style="border: 2px solid #0000FF; padding: 20px; border-radius: 5px; margin-bottom: 20px; width: 100%; box-sizing: border-box;">
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-size: 11px; margin-bottom: 10px;">
+                                <strong>Received From:</strong> <span id="pdf-mr-client-name" style="font-weight: 700;"></span>
+                            </div>
+                            <div style="font-size: 11px;">
+                                <strong>Address:</strong> <span id="pdf-mr-client-addr"></span>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-bottom: 20px; font-size: 11px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <div><strong>Receipt No:</strong> <span id="pdf-mr-id" style="color: #FF0000; font-weight: 700;"></span></div>
+                                <div><strong>Date:</strong> <span id="pdf-mr-date"></span></div>
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <strong>Payment Mode:</strong> <span id="pdf-mr-mode"></span>
+                            </div>
+                            <div id="pdf-mr-extra" style="font-size: 10px; margin-bottom: 15px;"></div>
+                        </div>
+                        
+                        <div style="text-align: center; margin: 20px 0; padding: 20px; background: rgba(255, 0, 0, 0.05); border: 1px solid #FF0000; border-radius: 5px;">
+                            <p style="margin: 0 0 10px 0; font-size: 12px; font-weight: 700; color: #0000FF; text-transform: uppercase;">Amount Received</p>
+                            <p style="margin: 0; font-size: 28px; font-weight: 900; color: #FF0000; letter-spacing: 1px;"><span id="pdf-mr-curr">৳</span> <span id="pdf-mr-amount"></span></p>
+                            <div style="height: 2px; width: 200px; background: linear-gradient(90deg, #FF0000, #0000FF); margin: 15px auto; border-radius: 2px;"></div>
+                            <p style="margin: 15px 0 0 0; font-size: 11px; font-weight: 600; color: #555;">In Words:</p>
+                            <p id="pdf-mr-words-text" style="margin: 8px 0; font-size: 11px; font-weight: 600; color: #000; line-height: 1.3;"></p>
+                        </div>
+                        
+                        <div style="margin-top: 25px; border-top: 1px solid #888; padding-top: 15px; font-size: 11px; color: #555; text-align: center;">
+                            <p style="margin: 5px 0;">Thank you for your payment</p>
+                            <p style="margin: 5px 0; font-size: 10px; font-style: italic;">This is a computer generated receipt</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pdf-standard-table">
+                    <table style="width: 98%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd; box-sizing: border-box;">
+                        <thead id="pdf-table-head-container" style="font-size: 11px;"></thead>
+                        <tbody id="pdf-table-body" style="font-size: 10px;"></tbody>
+                        <tfoot id="pdf-table-foot-container" style="font-size: 11px;"></tfoot>
+                    </table>
+                </div>
+
+                <div id="pdf-words-container" style="margin-top: 20px; font-size: 11px; width: 98%;">
+                    <strong>Amount in words:</strong> <span id="pdf-grand-words" style="font-style: normal;"></span>
+                </div>
+
+                <!-- UPDATED: Reduced margin for terms section -->
+                <div id="pdf-terms-section" style="margin-top: 10px; font-size: 11px; width: 98%;">
+                    <strong>Terms & Conditions:</strong>
+                    <div id="pdf-terms" style="white-space: pre-wrap; margin-top: 5px; line-height: 1.4; color: #555; font-size: 11px;"></div>
+                </div>
+                
+                <div id="pdf-seal-container" style="margin-top: 10px; text-align: center; display: none;">
+                    <img id="pdf-seal" style="max-height: 85px; max-width: 85px;">
+                </div>
+                
+                <!-- UPDATED: Reduced margin for signature section -->
+                <div style="margin-top: 15px; display: flex; justify-content: space-between; align-items: flex-end; font-size: 11px; width: 98%;">
+                    <div id="pdf-receiver-section" style="text-align: center; visibility: hidden;">
+                        <div style="height: 50px; display: flex; align-items: center; justify-content: center;"></div>
+                        <div style="border-top: 1px solid #999; width: 140px; padding-top: 5px; font-size: 11px;">Receiver Signature</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="min-height: 45px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 5px;">
+                            <img id="pdf-auth-sig" style="max-height: 45px; max-width: 120px; display:none;">
+                        </div>
+                        <div style="border-top: 1px solid #999; width: 160px; margin: 0 auto; padding-top: 5px;">
+                            <div style="text-align: center; font-size: 11px; white-space: nowrap;">
+                                <p style="margin:0; font-weight:bold; line-height: 1.3;">For <span id="pdf-for-comp">FAITH ENGINEERING</span></p>
+                                <p id="pdf-sig-name" style="margin:0; font-weight: bold; line-height: 1.3; color: #000;"></p>
+                                <p id="pdf-sig-desig" style="margin:0; line-height: 1.3; color: #555; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div id="pdf-seal-container" style="margin-top: 20px; text-align: center; display: none;">
-                <img id="pdf-seal" style="max-height: 85px; max-width: 85px;">
-            </div>
-            
-            <div style="margin-top: 40px; display: flex; justify-content: space-between; align-items: flex-end; font-size: 11px; width: 98%;">
-                <div id="pdf-receiver-section" style="text-align: center; visibility: hidden;">
-                    <div style="height: 50px; display: flex; align-items: center; justify-content: center;"></div>
-                    <div style="border-top: 1px solid #999; width: 140px; padding-top: 5px; font-size: 11px;">Receiver Signature</div>
+            <!-- FIXED FOOTER - Always at bottom, won't be pushed by content -->
+            <!-- FIXED: Red square boxes moved to footer wrapper -->
+            <div id="pdf-footer-wrapper" style="position: absolute; bottom: 0; left: 0; right: 0; height: 60px; padding-right: 15px;">
+                <div id="pdf-footer-bottom-box" style="position: absolute; bottom: 10px; right: 20px; width: 40px; height: 40px; background: #FF0000; z-index: 10;"></div>
+                <div id="pdf-footer-bottom-box-2" style="position: absolute; bottom: 30px; right: 0; width: 40px; height: 40px; background: #FF0000; z-index: 11;"></div>
+                
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; text-align: center;">
+                    <div style="font-size: 12px; color: #0000FF; font-weight: bold; text-transform: uppercase; border-top: 2px solid #00FF00; padding-top: 10px; width: 70%; margin: 0 auto;" id="pdf-footer-slogan"></div>
                 </div>
-                <div style="text-align: center;">
-                    <div style="min-height: 45px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 5px;">
-                        <img id="pdf-auth-sig" style="max-height: 45px; display:none;">
-                    </div>
-                    <div style="border-top: 1px solid #999; width: 160px; margin: 0 auto; padding-top: 5px;">
-                        <div style="text-align: center;">
-                            <p style="margin:0; font-weight:bold; font-size:11px; line-height: 1.3;">For <span id="pdf-for-comp">FAITH ENGINEERING</span></p>
-                            <p id="pdf-sig-name" style="margin:0; font-size:11px; line-height: 1.3;"></p>
-                            <p id="pdf-sig-desig" style="margin:0; font-size:11px; line-height: 1.3; color: #555;"></p>
-                        </div>
-                    </div>
-                </div>
-
-            <div id="pdf-footer-wrapper" style="position: absolute; bottom: 0; left: 0; right: 0; text-align: center; padding-right: 15px;">
-                <div style="font-size: 12px; color: #0000FF; font-weight: bold; text-transform: uppercase; border-top: 2px solid #00FF00; padding-top: 10px; width: 70%; margin: 0 auto;" id="pdf-footer-slogan"></div>
             </div>
         </div>
     </div>
@@ -1954,33 +1796,42 @@
     <script>
         // ==================== AUTHENTICATION FUNCTIONS ====================
         function checkAuth() {
-    const id = document.getElementById('login-id').value;
-    const pass = document.getElementById('login-pass').value;
-    const error = document.getElementById('login-error');
+            const id = document.getElementById('login-id').value;
+            const pass = document.getElementById('login-pass').value;
+            const error = document.getElementById('login-error');
 
-    if (id === 'jakaria' && pass === '106984') {
-        // CHANGE THIS line from sessionStorage to localStorage
-        localStorage.setItem('fe_auth', 'true'); 
-        document.getElementById('login-overlay').style.display = 'none';
-        error.style.display = 'none';
-    } else {
-        error.style.display = 'block';
-    }
-}
+            if (id === 'jakaria' && pass === '106984') {
+                localStorage.setItem('fe_auth', 'true');
+                // Smooth transition
+                document.getElementById('login-overlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('login-overlay').style.display = 'none';
+                    error.style.display = 'none';
+                }, 300);
+            } else {
+                error.style.display = 'block';
+            }
+        }
 
         function logout() {
-    // CHANGE THIS line from sessionStorage to localStorage
-    localStorage.removeItem('fe_auth');
-    location.reload();
-}
+            // Smooth logout transition
+            document.getElementById('login-overlay').style.display = 'flex';
+            document.getElementById('login-overlay').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('login-overlay').style.opacity = '1';
+                localStorage.removeItem('fe_auth');
+                document.getElementById('login-id').value = '';
+                document.getElementById('login-pass').value = '';
+                document.getElementById('login-error').style.display = 'none';
+            }, 300);
+        }
 
         // Run on load
-(function initAuth() {
-    // CHANGE THIS line from sessionStorage to localStorage
-    if (localStorage.getItem('fe_auth') === 'true') {
-        document.getElementById('login-overlay').style.display = 'none';
-    }
-})();
+        (function initAuth() {
+            if (localStorage.getItem('fe_auth') === 'true') {
+                document.getElementById('login-overlay').style.display = 'none';
+            }
+        })();
 
         // ==================== FIREBASE CONFIGURATION ====================
         const firebaseConfig = {
@@ -2230,19 +2081,13 @@
 
         const MASTER_LIST_FOLDER_ID = 'master-list-products';
 
-        // UPDATED VIEW NAME MAP WITH CORRECTED TITLES
+        // UPDATED VIEW NAME MAP
         const viewNameMap = {
-            'main-menu': 'Home',
+            'main-menu': 'Dashboard',
             'inventory-view': 'Stock Inventory',
             'products-menu': 'Products Catalog',
             'category-management-view': 'Category Management',
             'folder-content-view': 'Browse Folder',
-            'documents-menu': 'Documents Storage',
-            'documents-category-management': 'Documents Folder Management',
-            'documents-folder-files-view': 'Documents Folder',
-            'projects-menu': 'Projects Management',
-            'projects-category-management': 'Projects Folder Management',
-            'projects-folder-files-view': 'Projects Folder',
             'clients-view': 'Client Database',
             'supplier-view': 'Supplier Records',
             'settings-view': 'System Settings',
@@ -2286,13 +2131,7 @@
                 'supplier-view': renderSuppliers,
                 'inventory-view': renderInventory,
                 'products-menu': () => renderFolders('products-menu'),
-                'documents-menu': () => renderTabFolders('documents-menu'),
-                'projects-menu': () => renderTabFolders('projects-menu'),
-                'workorder-menu': () => renderTabFolders('workorder-menu'),
                 'category-management-view': renderCategories,
-                'documents-category-management': () => renderTabCategories('documents'),
-                'projects-category-management': () => renderTabCategories('projects'),
-                'workorder-category-management': () => renderTabCategories('workorder'),
                 'folder-content-view': () => {
                     if(currentActiveFolderId === MASTER_LIST_FOLDER_ID) renderMasterProducts();
                     else renderFolderProducts();
@@ -2301,16 +2140,15 @@
                 'folder-expense': renderExpense,
                 'folder-transactions': renderTransactions,
                 'folder-workorder-summary': renderWorkOrders,
-                'documents-folder-files-view': () => renderFolderFiles('documents'),
-                'projects-folder-files-view': () => renderFolderFiles('projects'),
+                'workorder-menu': () => renderTabFolders('workorder-menu'),
+                'workorder-category-management': () => renderTabCategories('workorder'),
                 'workorder-folder-files-view': () => renderFolderFiles('workorder'),
                 'folder-letter': renderLetterFolder,
-                // FIX: Add commercial folder renderers
                 'folder-quotation': () => renderCommercialFolder('QUOTATION'),
                 'folder-invoice': () => renderCommercialFolder('INVOICE'),
                 'folder-challan': () => renderCommercialFolder('CHALLAN'),
                 'folder-po': () => renderCommercialFolder('PO'),
-                'folder-receipt': () => renderCommercialFolder('RECEIPT')
+                'folder-receipt': () => renderCommercialFolder('RECEIPT'),
             };
 
             if (loaders[id]) loaders[id]();
@@ -2460,12 +2298,12 @@
             await Storage.save(`faith_${tabName}_categories`, data); 
         }
         
-        async function getFolderFiles(folderId, context = 'documents') { 
+        async function getFolderFiles(folderId, context = 'workorder') { 
             const files = await Storage.get(`faith_${context}_files_${folderId}`);
             return files || []; 
         }
         
-        async function saveFolderFiles(folderId, files, context = 'documents') { 
+        async function saveFolderFiles(folderId, files, context = 'workorder') { 
             await Storage.save(`faith_${context}_files_${folderId}`, files); 
         }
 
@@ -2545,22 +2383,22 @@
             if (card) card.remove();
         }
 
-        // ==================== FILE MANAGEMENT - UPDATED ====================
-        function triggerFileUpload(context = 'documents') {
+        // ==================== FILE MANAGEMENT ====================
+        function triggerFileUpload(context = 'workorder') {
             const fileInput = document.getElementById(`${context}-file-input`);
             if (fileInput) {
                 fileInput.click();
             }
         }
 
-        function handleFileSelection(files, context = 'documents') {
+        function handleFileSelection(files, context = 'workorder') {
             if (files.length > 0) {
                 selectedFiles = Array.from(files);
                 showFileUploadForm(context);
             }
         }
 
-        function showFileUploadForm(context = 'documents') {
+        function showFileUploadForm(context = 'workorder') {
             const form = document.getElementById(`${context}-file-upload-form`);
             const fileNameInput = document.getElementById(`${context}-file-name`);
             
@@ -2575,7 +2413,7 @@
             }
         }
 
-        function cancelFileUpload(context = 'documents') {
+        function cancelFileUpload(context = 'workorder') {
             const form = document.getElementById(`${context}-file-upload-form`);
             const fileInput = document.getElementById(`${context}-file-input`);
             
@@ -2584,7 +2422,7 @@
             selectedFiles = [];
         }
 
-        async function uploadFile(context = 'documents') {
+        async function uploadFile(context = 'workorder') {
             if (selectedFiles.length === 0) {
                 alert('Please select files to upload');
                 return;
@@ -2666,7 +2504,7 @@
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
 
-        async function renderFolderFiles(context = 'documents') {
+        async function renderFolderFiles(context = 'workorder') {
             const grid = document.getElementById(`${context}-files-grid`);
             const folderId = currentFileFolderContext?.folderId;
             
@@ -2757,7 +2595,7 @@
             return colors[fileType] || '#fbbf24';
         }
 
-        function filterFiles(query, context = 'documents') {
+        function filterFiles(query, context = 'workorder') {
             const files = document.querySelectorAll(`#${context}-files-grid .file-card`);
             const term = query.toLowerCase();
             
@@ -2976,7 +2814,7 @@
             }
         }
 
-        function openFolderFilesView(folder, context = 'documents') {
+        function openFolderFilesView(folder, context = 'workorder') {
             currentFileFolderContext = {
                 folderId: folder.id,
                 folderName: folder.name,
@@ -2984,16 +2822,6 @@
             };
             
             const viewMap = {
-                'documents': {
-                    viewId: 'documents-folder-files-view',
-                    backBtnId: 'documents-folder-back-btn',
-                    titleId: 'documents-folder-title'
-                },
-                'projects': {
-                    viewId: 'projects-folder-files-view',
-                    backBtnId: 'projects-folder-back-btn',
-                    titleId: 'projects-folder-title'
-                },
                 'workorder': {
                     viewId: 'workorder-folder-files-view',
                     backBtnId: 'workorder-folder-back-btn',
@@ -3005,9 +2833,7 @@
             if (!config) return;
             
             document.getElementById(config.backBtnId).onclick = () => {
-                if (context === 'documents') openView('documents-menu');
-                else if (context === 'projects') openView('projects-menu');
-                else if (context === 'workorder') openView('workorder-menu');
+                openView('workorder-menu');
             };
             
             document.getElementById(config.titleId).innerHTML = `<i class="fas fa-folder" style="color:${folder.color}"></i> ${folder.name}`;
@@ -3321,7 +3147,7 @@
             }
         }
 
-        // ==================== PRODUCTS MANAGEMENT - FIXED DUPLICATES ====================
+        // ==================== PRODUCTS MANAGEMENT ====================
         async function renderFolders(parentId) {
             const grid = document.getElementById(parentId + '-folder-grid');
             if(!grid) return;
@@ -3436,7 +3262,7 @@
 
         async function renderFolderProducts() {
             const body = document.getElementById('folder-products-table-body');
-            // FIX 1: Explicitly clear the table before starting the loop
+            // Explicitly clear the table before starting the loop
             body.innerHTML = '';
             
             if (currentActiveFolderId === MASTER_LIST_FOLDER_ID) {
@@ -3452,7 +3278,7 @@
                 return;
             }
             
-            // FIX 2: Create a fresh HTML string and inject once to prevent browser redraw loops
+            // Create a fresh HTML string and inject once to prevent browser redraw loops
             let htmlContent = '';
             data.forEach((p, idx) => {
                 htmlContent += `<tr>
@@ -3719,19 +3545,21 @@
             document.getElementById('set-m-bottom').value = s.mBottom || '0.5';
             document.getElementById('set-m-left').value = s.mLeft || '0.5';
             document.getElementById('set-m-right').value = s.mRight || '0.5';
-            
+
             const showLogo = await Storage.get('showLogoPDF') === 'true';
             const showSeal = await Storage.get('showSealPDF') === 'true';
             document.getElementById('toggle-logo').checked = showLogo;
             document.getElementById('toggle-seal').checked = showSeal;
             
-            const imageKeys = ['logo', 'seal', 'auth-sig', 'gen-sig', 'chair-sig', 'md-sig', 'dir-sig'];
+            const imageKeys = ['logo', 'seal', 'auth-sig', 'gen-sig'];
             for (const key of imageKeys) {
                 const data = localStorage.getItem('data-' + key);
                 if(data) {
                     const prev = document.getElementById('prev-' + key);
-                    prev.src = data; 
-                    prev.style.display = 'block';
+                    if (prev) {
+                        prev.src = data; 
+                        prev.style.display = 'block';
+                    }
                 }
             }
         }
@@ -3756,6 +3584,7 @@
                 mLeft: document.getElementById('set-m-left').value,
                 mRight: document.getElementById('set-m-right').value
             };
+
             await Storage.save('faith_settings', settings);
             
             await Storage.save('showLogoPDF', document.getElementById('toggle-logo').checked);
@@ -4219,6 +4048,55 @@
             suggestionsDiv.style.display = hasMatches ? "block" : "none";
         }
 
+        async function showSupplierSuggestions(inputElement) {
+            const filter = inputElement.value.toUpperCase();
+            const suggestionsDiv = document.getElementById('client-suggestions');
+            suggestionsDiv.innerHTML = "";
+            
+            if (filter.length === 0) {
+                suggestionsDiv.style.display = "none";
+                return;
+            }
+            
+            const clients = await getClients();
+            const suppliers = await getSuppliers();
+            let hasMatches = false;
+            
+            // Add clients to suggestions
+            clients.forEach(client => {
+                if (client.name.toUpperCase().includes(filter)) {
+                    const item = document.createElement("div");
+                    item.className = "autocomplete-suggestion";
+                    item.innerHTML = `<strong>${client.name}</strong> (Client)<small>${client.person ? ' - ' + client.person : ''}${client.phone ? ' - ' + client.phone : ''}</small>`;
+                    item.onclick = function() {
+                        inputElement.value = client.name;
+                        suggestionsDiv.style.display = "none";
+                        document.getElementById('doc-address').value = client.address || '';
+                    };
+                    suggestionsDiv.appendChild(item);
+                    hasMatches = true;
+                }
+            });
+            
+            // Add suppliers to suggestions
+            suppliers.forEach(supplier => {
+                if (supplier.org.toUpperCase().includes(filter)) {
+                    const item = document.createElement("div");
+                    item.className = "autocomplete-suggestion";
+                    item.innerHTML = `<strong>${supplier.org}</strong> (Supplier)<small>${supplier.person ? ' - ' + supplier.person : ''}${supplier.phone ? ' - ' + supplier.phone : ''}</small>`;
+                    item.onclick = function() {
+                        inputElement.value = supplier.org;
+                        suggestionsDiv.style.display = "none";
+                        document.getElementById('doc-address').value = supplier.address || '';
+                    };
+                    suggestionsDiv.appendChild(item);
+                    hasMatches = true;
+                }
+            });
+            
+            suggestionsDiv.style.display = hasMatches ? "block" : "none";
+        }
+
         async function showProductSuggestions(inputElement) {
             const filter = inputElement.value.toUpperCase();
             const suggestionsDiv = document.getElementById('product-suggestions');
@@ -4280,7 +4158,7 @@
             }
         });
 
-        // ==================== COMMERCIAL DOCUMENT FUNCTIONS - FIXED ====================
+        // ==================== COMMERCIAL DOCUMENT FUNCTIONS ====================
         async function renderCommercialFolder(type) {
             const gridMap = {
                 'QUOTATION': 'grid-quotation',
@@ -4335,7 +4213,7 @@
             
             // First check if it's a letter
             const letters = await getLetterDocuments();
-            const letter = letters.find(l => l.id === docId);
+            const letter = letters.find(l => l.id === selectedDocId);
             if (letter) {
                 document.getElementById('convert-options').style.display = 'none';
                 document.getElementById('action-modal').style.display = 'flex';
@@ -4497,6 +4375,17 @@
             return result.charAt(0).toUpperCase() + result.slice(1) + ' Only';
         }
 
+        async function getTermsForDocument(docType) {
+            const s = await Storage.get('faith_settings') || {};
+            switch(docType) {
+                case 'QUOTATION': return s.termsQ || '';
+                case 'INVOICE': return s.termsInv || '';
+                case 'CHALLAN': return s.termsCh || '';
+                case 'PO': return s.termsPo || '';
+                default: return '';
+            }
+        }
+
         async function triggerDownload(mode = 'download') {
             // Check if it's a letter document first
             const letters = await getLetterDocuments();
@@ -4553,6 +4442,7 @@
             document.getElementById('pdf-letter-content').style.display = 'none';
             document.getElementById('pdf-letter-title').innerText = '';
             document.getElementById('pdf-letter-text').innerHTML = '';
+            document.getElementById('pdf-letter-date-container').style.display = 'none';
             
             document.getElementById('pdf-type-label').style.display = 'block';
             document.getElementById('pdf-standard-table').style.display = 'block';
@@ -4565,6 +4455,7 @@
             const mLeft = parseFloat(s.mLeft) || 0.5;
             const mRight = parseFloat(s.mRight) || 0.5;
             innerContent.style.minHeight = (11.69 - (mTop + mBottom)) + "in";
+            innerContent.style.paddingBottom = "60px"; // Space for fixed footer
             document.getElementById('pdf-comp-name').innerText = s.compName || "FAITH ENGINEERING";
             document.getElementById('pdf-for-comp').innerText = s.compName || "FAITH ENGINEERING";
             document.getElementById('pdf-comp-addr-line').innerText = s.compAddr || ""; 
@@ -4610,6 +4501,10 @@
             
             if(doc.type === 'RECEIPT') {
                 document.getElementById('pdf-client-section').style.display = 'none';
+                document.getElementById('pdf-mr-container').style.display = 'block';
+                document.getElementById('pdf-standard-table').style.display = 'none';
+                document.getElementById('pdf-words-container').style.display = 'none'; 
+                
                 document.getElementById('pdf-mr-client-name').innerText = doc.client;
                 const clients = await getClients();
                 const client = clients.find(c => c.name === doc.client);
@@ -4617,9 +4512,12 @@
             } else {
                 document.getElementById('pdf-client-section').style.display = 'flex';
                 document.getElementById('pdf-client-name').innerText = doc.client;
+                // Check if it's a supplier (for PO)
                 const clients = await getClients();
+                const suppliers = await getSuppliers();
                 const client = clients.find(c => c.name === doc.client);
-                document.getElementById('pdf-client-addr').innerText = client ? client.address : '';
+                const supplier = suppliers.find(s => s.org === doc.client);
+                document.getElementById('pdf-client-addr').innerText = client ? client.address : (supplier ? supplier.address : '');
             }
             
             const orderRow = document.getElementById('pdf-order-row');
@@ -4708,10 +4606,35 @@
                     tfoot.innerHTML = footHtml;
                 }
             }
-            const auth = localStorage.getItem('data-auth-sig');
-            if(auth) { document.getElementById('pdf-auth-sig').src = auth; document.getElementById('pdf-auth-sig').style.display = 'block'; }
-            document.getElementById('pdf-sig-name').innerText = s.sigName || "";
-            document.getElementById('pdf-sig-desig').innerText = s.sigDesig || "";
+            
+            // Get terms from settings based on document type
+            const terms = await getTermsForDocument(doc.type);
+            document.getElementById('pdf-terms').innerText = terms || "No terms and conditions set. Please update in Settings.";
+            
+            // FIXED: Check all possible signature storage keys
+            const authSigKeys = ['data-auth-sig', 'data-gen-sig'];
+            let authSigFound = false;
+            
+            for (const key of authSigKeys) {
+                const auth = localStorage.getItem(key);
+                if(auth && !authSigFound) { 
+                    document.getElementById('pdf-auth-sig').src = auth; 
+                    document.getElementById('pdf-auth-sig').style.display = 'block'; 
+                    authSigFound = true;
+                }
+            }
+            
+            // If no signature found, hide the element
+            if (!authSigFound) {
+                document.getElementById('pdf-auth-sig').style.display = 'none';
+            }
+            
+            // FIXED: Display signature name and designation on separate lines with no line break
+            const sigName = s.sigName || "";
+            const sigDesig = s.sigDesig || "";
+            document.getElementById('pdf-sig-name').innerText = sigName;
+            document.getElementById('pdf-sig-desig').innerText = sigDesig;
+            
             const opt = { margin: [mTop, mLeft, mBottom, mRight], filename: `${doc.id}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true }, jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' } };
             
             if(mode === 'download') {
@@ -4749,12 +4672,15 @@
             document.getElementById('pdf-mr-container').style.display = 'none';
             document.getElementById('pdf-subject-container').style.display = 'none';
             document.getElementById('pdf-client-section').style.display = 'none';
+            document.getElementById('pdf-letter-date-container').style.display = 'block';
             
             // Set letter-specific content
             document.getElementById('pdf-letter-title').innerText = doc.title;
             document.getElementById('pdf-letter-text').innerHTML = doc.text.replace(/\n/g, '<br>');
+            document.getElementById('pdf-letter-date').innerText = formatDate(doc.date);
+            document.getElementById('pdf-letter-id').innerText = doc.id;
             
-            // Get settings from Storage (not localStorage directly)
+            // Get settings from Storage
             Storage.get('faith_settings').then(s => {
                 const settings = s || {};
                 const mTop = parseFloat(settings.mTop) || 0.5;
@@ -4762,6 +4688,7 @@
                 const mLeft = parseFloat(settings.mLeft) || 0.5;
                 const mRight = parseFloat(settings.mRight) || 0.5;
                 innerContent.style.minHeight = (11.69 - (mTop + mBottom)) + "in";
+                innerContent.style.paddingBottom = "60px"; // Space for fixed footer
                 
                 // Set company info from settings
                 document.getElementById('pdf-comp-name').innerText = settings.compName || "FAITH ENGINEERING";
@@ -4800,15 +4727,29 @@
                     }
                 });
                 
-                // Set signature
-                const auth = localStorage.getItem('data-auth-sig');
-                if(auth) { 
-                    document.getElementById('pdf-auth-sig').src = auth; 
-                    document.getElementById('pdf-auth-sig').style.display = 'block'; 
+                // FIXED: Check all possible signature storage keys
+                const authSigKeys = ['data-auth-sig', 'data-gen-sig'];
+                let authSigFound = false;
+                
+                for (const key of authSigKeys) {
+                    const auth = localStorage.getItem(key);
+                    if(auth && !authSigFound) { 
+                        document.getElementById('pdf-auth-sig').src = auth; 
+                        document.getElementById('pdf-auth-sig').style.display = 'block'; 
+                        authSigFound = true;
+                    }
                 }
                 
-                document.getElementById('pdf-sig-name').innerText = settings.sigName || "";
-                document.getElementById('pdf-sig-desig').innerText = settings.sigDesig || "";
+                // If no signature found, hide the element
+                if (!authSigFound) {
+                    document.getElementById('pdf-auth-sig').style.display = 'none';
+                }
+                
+                // FIXED: Display signature name and designation on separate lines with no line break
+                const sigName = settings.sigName || "";
+                const sigDesig = settings.sigDesig || "";
+                document.getElementById('pdf-sig-name').innerText = sigName;
+                document.getElementById('pdf-sig-desig').innerText = sigDesig;
             });
             
             return element;
@@ -4874,7 +4815,7 @@
             document.getElementById('doc-paid').value = existingDoc ? (existingDoc.paid || 0) : 0;
             let prefix = ''; let tableHead = '';
             
-            // UPDATED: Set proper modal titles
+            // Set proper modal titles
             if(type === 'QUOTATION') { 
                 document.getElementById('doc-title').innerText = 'Quotation';
                 prefix = 'FE-Q-'; 
@@ -5031,168 +4972,176 @@
                 ait: ait,
                 paid: document.getElementById('doc-paid')?.value || 0,
                 orderId: document.getElementById('extra-order')?.value || '',
-                reference: document.getElementById('extra-ref')?.value || '',
-                gatePass: document.getElementById('extra-gate')?.value || '', 
-                subject: document.getElementById('extra-sub')?.value || ''
-            };
-            await updateOrSave(docData);
-            closeModal('doc-modal');
-        }
+                reference: document.getElementById('extra-ref')?.value || '',
+                gatePass: document.getElementById('extra-gate')?.value || '', 
+                subject: document.getElementById('extra-sub')?.value || ''
+            };
+            await updateOrSave(docData);
+            closeModal('doc-modal');
+        }
 
-        async function saveMoneyReceipt() {
-            const id = document.getElementById('mr-id').value;
-            const docData = {
-                type: 'RECEIPT', 
-                id, 
-                date: document.getElementById('mr-date').value,
-                client: document.getElementById('mr-client').value, 
-                amount: document.getElementById('mr-amount').value,
-                words: document.getElementById('mr-words').value,
-                mode: document.getElementById('mr-mode').value, 
-                chqNo: document.getElementById('mr-chq-no').value,
-                bank: document.getElementById('mr-bank').value, 
-                grid: 'grid-receipt'
-            };
-            await updateOrSave(docData);
-            closeModal('mr-modal');
-        }
+        async function saveMoneyReceipt() {
+            const id = document.getElementById('mr-id').value;
+            const docData = {
+                type: 'RECEIPT', 
+                id, 
+                date: document.getElementById('mr-date').value,
+                client: document.getElementById('mr-client').value, 
+                amount: document.getElementById('mr-amount').value,
+                words: document.getElementById('mr-words').value,
+                mode: document.getElementById('mr-mode').value, 
+                chqNo: document.getElementById('mr-chq-no').value,
+                bank: document.getElementById('mr-bank').value, 
+                grid: 'grid-receipt'
+            };
+            await updateOrSave(docData);
+            closeModal('mr-modal');
+        }
 
-        async function updateOrSave(newDoc) {
-            let docs = await getDocs();
-            const index = docs.findIndex(d => d.id === newDoc.id);
-            if(index > -1) docs[index] = newDoc;
-            else {
-                docs.push(newDoc);
-                await Storage.save(`last_id_${newDoc.type}`, newDoc.id.split('-').pop());
-                renderCard(newDoc.grid, newDoc.id, (newDoc.type === 'RECEIPT' ? '#34d399' : '#c084fc'), (newDoc.type === 'RECEIPT' ? 'fa-receipt' : 'fa-file-contract'));
-            }
-            await saveDocs(docs);
-        }
+        async function updateOrSave(newDoc) {
+            let docs = await getDocs();
+            const index = docs.findIndex(d => d.id === newDoc.id);
+            if(index > -1) docs[index] = newDoc;
+            else {
+                docs.push(newDoc);
+                await Storage.save(`last_id_${newDoc.type}`, newDoc.id.split('-').pop());
+                renderCard(newDoc.grid, newDoc.id, (newDoc.type === 'RECEIPT' ? '#34d399' : '#c084fc'), (newDoc.type === 'RECEIPT' ? 'fa-receipt' : 'fa-file-contract'));
+            }
+            await saveDocs(docs);
+        }
 
-        function openItemModal() {
-            document.getElementById('item-modal').style.display = 'flex';
-            document.getElementById('item-remarks-field').style.display = (currentDocType === 'CHALLAN') ? 'block' : 'none';
-            document.getElementById('item-price-field').style.display = (currentDocType === 'CHALLAN') ? 'none' : 'block';
-            document.getElementById('item-select').value = '';
-            document.getElementById('item-desc').value = '';
-            document.getElementById('item-qty').value = '';
-            document.getElementById('item-unit').value = '';
-            document.getElementById('item-price').value = '';
-            document.getElementById('item-remarks').value = '';
-        }
+        function openItemModal() {
+            document.getElementById('item-modal').style.display = 'flex';
+            document.getElementById('item-remarks-field').style.display = (currentDocType === 'CHALLAN') ? 'block' : 'none';
+            document.getElementById('item-price-field').style.display = (currentDocType === 'CHALLAN') ? 'none' : 'block';
+            document.getElementById('item-select').value = '';
+            document.getElementById('item-desc').value = '';
+            document.getElementById('item-qty').value = '';
+            document.getElementById('item-unit').value = '';
+            document.getElementById('item-price').value = '';
+            document.getElementById('item-remarks').value = '';
+        }
 
-        function addItemToList() {
-            const item = {
-                name: document.getElementById('item-select').value, 
-                desc: document.getElementById('item-desc').value,
-                qty: parseFloat(document.getElementById('item-qty').value) || 0, 
-                unit: document.getElementById('item-unit').value,
-                price: parseFloat(document.getElementById('item-price').value) || 0, 
-                remarks: document.getElementById('item-remarks').value
-            };
-            item.total = item.qty * item.price;
-            docItems.push(item);
-            renderDocTable();
-            closeModal('item-modal');
-        }
+        function addItemToList() {
+            const item = {
+                name: document.getElementById('item-select').value, 
+                desc: document.getElementById('item-desc').value,
+                qty: parseFloat(document.getElementById('item-qty').value) || 0, 
+                unit: document.getElementById('item-unit').value,
+                price: parseFloat(document.getElementById('item-price').value) || 0, 
+                remarks: document.getElementById('item-remarks').value
+            };
+            item.total = item.qty * item.price;
+            docItems.push(item);
+            renderDocTable();
+            closeModal('item-modal');
+        }
 
-        async function getClientAddrFromStorage(name) {
-            const clients = await getClients();
-            const c = clients.find(client => client.name === name);
-            return c ? c.address : "";
-        }
+        async function getClientAddrFromStorage(name) {
+            // Check both clients and suppliers
+            const clients = await getClients();
+            const suppliers = await getSuppliers();
+            
+            const client = clients.find(c => c.name === name);
+            if (client) return client.address;
+            
+            const supplier = suppliers.find(s => s.org === name);
+            if (supplier) return supplier.address;
+            
+            return "";
+        }
 
-        function toggleChequeFields() { 
-            document.getElementById('cheque-details').style.display = (document.getElementById('mr-mode').value === 'Cheque' ? 'block' : 'none'); 
-        }
+        function toggleChequeFields() { 
+            document.getElementById('cheque-details').style.display = (document.getElementById('mr-mode').value === 'Cheque' ? 'block' : 'none'); 
+        }
 
-        // ==================== INITIALIZATION ====================
-        async function syncAllData() {
-            const s = await Storage.get('faith_settings') || {};
-            if(s.compName) document.getElementById('brand-header').innerText = s.compName;
-            if(s.compSlogan) document.getElementById('brand-slogan').innerText = s.compSlogan;
-            
-            const activeView = document.querySelector('.view-container.active')?.id;
-            if(activeView) loadViewData(activeView);
+        // ==================== INITIALIZATION ====================
+        async function syncAllData() {
+            const s = await Storage.get('faith_settings') || {};
+            if(s.compName) document.getElementById('brand-header').innerText = s.compName;
+            if(s.compSlogan) document.getElementById('brand-slogan').innerText = s.compSlogan;
+            
+            const activeView = document.querySelector('.view-container.active')?.id;
+            if(activeView) loadViewData(activeView);
 
-            const gridIds = ['grid-quotation', 'grid-invoice', 'grid-challan', 'grid-po', 'grid-receipt', 'grid-letter'];
-            
-            for (const gid of gridIds) {
-                const grid = document.getElementById(gid);
-                if(grid) {
-                    const header = grid.querySelector('.nav-header');
-                    grid.innerHTML = '';
-                    if(header) grid.appendChild(header);
-                    
-                    if(gid === 'grid-letter') {
-                        const letters = await getLetterDocuments();
-                        letters.forEach(d => {
-                            renderCard(gid, d.id, '#a855f7', 'fa-envelope');
-                        });
-                    } else {
-                        const docs = await getDocs();
-                        docs.filter(d => d.grid === gid).forEach(d => {
-                            let icon = d.type === 'RECEIPT' ? 'fa-receipt' : 'fa-file-contract';
-                            let col = d.type === 'RECEIPT' ? '#34d399' : '#c084fc';
-                            renderCard(gid, d.id, col, icon);
-                        });
-                    }
-                }
-            }
-        }
+            const gridIds = ['grid-quotation', 'grid-invoice', 'grid-challan', 'grid-po', 'grid-receipt', 'grid-letter'];
+            
+            for (const gid of gridIds) {
+                const grid = document.getElementById(gid);
+                if(grid) {
+                    const header = grid.querySelector('.nav-header');
+                    grid.innerHTML = '';
+                    if(header) grid.appendChild(header);
+                    
+                    if(gid === 'grid-letter') {
+                        const letters = await getLetterDocuments();
+                        letters.forEach(d => {
+                            renderCard(gid, d.id, '#a855f7', 'fa-envelope');
+                        });
+                    } else {
+                        const docs = await getDocs();
+                        docs.filter(d => d.grid === gid).forEach(d => {
+                            let icon = d.type === 'RECEIPT' ? 'fa-receipt' : 'fa-file-contract';
+                            let col = d.type === 'RECEIPT' ? '#34d399' : '#c084fc';
+                            renderCard(gid, d.id, col, icon);
+                        });
+                    }
+                }
+            }
+        }
 
-        window.onload = async () => {
-            await syncAllData();
-            
-            // Listen for real-time updates from Firebase
-            Storage.listen('faith_commercial_docs', (docs) => {
-                if (docs) {
-                    syncAllData();
-                }
-            });
-            
-            Storage.listen('faith_letter_docs', (docs) => {
-                if (docs) {
-                    syncAllData();
-                }
-            });
-            
-            Storage.listen('faith_clients', (clients) => {
-                if (clients) {
-                    renderClients();
-                }
-            });
-            
-            Storage.listen('faith_suppliers', (suppliers) => {
-                if (suppliers) {
-                    renderSuppliers();
-                }
-            });
-            
-            Storage.listen('faith_income_records', (records) => {
-                if (records) {
-                    renderIncome();
-                    renderTransactions();
-                }
-            });
-            
-            Storage.listen('faith_expense_records', (records) => {
-                if (records) {
-                    renderExpense();
-                    renderTransactions();
-                }
-            });
-            
-            Storage.listen('faith_work_orders', (orders) => {
-                if (orders) {
-                    renderWorkOrders();
-                }
-            });
-            
-            window.addEventListener('storage', (e) => {
-                syncAllData();
-            });
-        };
-    </script>
+        window.onload = async () => {
+            await syncAllData();
+            
+            // Listen for real-time updates from Firebase
+            Storage.listen('faith_commercial_docs', (docs) => {
+                if (docs) {
+                    syncAllData();
+                }
+            });
+            
+            Storage.listen('faith_letter_docs', (docs) => {
+                if (docs) {
+                    syncAllData();
+                }
+            });
+            
+            Storage.listen('faith_clients', (clients) => {
+                if (clients) {
+                    renderClients();
+                }
+            });
+            
+            Storage.listen('faith_suppliers', (suppliers) => {
+                if (suppliers) {
+                    renderSuppliers();
+                }
+            });
+            
+            Storage.listen('faith_income_records', (records) => {
+                if (records) {
+                    renderIncome();
+                    renderTransactions();
+                }
+            });
+            
+            Storage.listen('faith_expense_records', (records) => {
+                if (records) {
+                    renderExpense();
+                    renderTransactions();
+                }
+            });
+            
+            Storage.listen('faith_work_orders', (orders) => {
+                if (orders) {
+                    renderWorkOrders();
+                }
+            });
+            
+            window.addEventListener('storage', (e) => {
+                syncAllData();
+            });
+        };
+    </script>
 </body>
 </html>
