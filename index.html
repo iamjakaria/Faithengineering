@@ -1,3 +1,4 @@
+/* Lang: HTML */
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,45 +20,23 @@
             --success: #4ade80;
         }
         body {
-            margin: 0; 
-            padding: 0; 
-            height: 100vh;
+            margin: 0; padding: 0; height: 100vh;
             background: radial-gradient(circle at 50% 0%, #1e293b 0%, #020617 100%);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: #f8fafc; 
-            overflow: hidden;
-            display: flex; 
-            flex-direction: column;
+            color: #f8fafc; overflow: hidden;
+            display: flex; flex-direction: column;
         }
         #loginOverlay {
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #020617;
-            z-index: 2000; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
+            z-index: 2000; display: flex; align-items: center; justify-content: center;
             transition: opacity 0.3s ease;
         }
-        .login-container { 
-            width: 90%; 
-            max-width: 380px; 
-            position: relative; 
-        }
+        .login-container { width: 90%; max-width: 380px; position: relative; }
         .login-glow {
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%);
-            width: 250px; 
-            height: 250px; 
-            background: var(--primary);
-            filter: blur(80px); 
-            opacity: 0.15; 
-            z-index: -1;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 250px; height: 250px; background: var(--primary);
+            filter: blur(80px); opacity: 0.15; z-index: -1;
         }
         .login-card {
             background: rgba(15, 23, 42, 0.8);
@@ -70,663 +49,150 @@
             animation: slideUp 0.5s ease;
         }
         .login-card i.main-lock {
-            font-size: 3rem; 
-            color: var(--primary); 
-            margin-bottom: 20px;
+            font-size: 3rem; color: var(--primary); margin-bottom: 20px;
             text-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
         }
-        .login-card h2 { 
-            margin: 0 0 10px 0; 
-            font-size: 1.5rem; 
-            letter-spacing: 2px; 
-            font-weight: 800; 
-            text-transform: uppercase; 
-        }
-        .login-card p { 
-            color: var(--text-muted); 
-            font-size: 0.85rem; 
-            margin-bottom: 30px; 
-        }
-        .input-group { 
-            position: relative; 
-            margin-bottom: 15px; 
-        }
-        .input-group i { 
-            position: absolute; 
-            left: 15px; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            color: var(--text-muted); 
-            font-size: 0.9rem; 
-        }
+        .login-card h2 { margin: 0 0 10px 0; font-size: 1.5rem; letter-spacing: 2px; font-weight: 800; text-transform: uppercase; }
+        .login-card p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 30px; }
+        .input-group { position: relative; margin-bottom: 15px; }
+        .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem; }
         .login-input {
-            width: 100%; 
-            padding: 14px; 
-            padding-left: 45px;
+            width: 100%; padding: 14px; padding-left: 45px;
             background: rgba(2, 6, 23, 0.5);
             border: 1px solid var(--glass-border);
-            border-radius: 12px; 
-            color: white;
-            font-size: 1rem; 
-            transition: all 0.3s ease;
-            box-sizing: border-box; 
-            outline: none;
+            border-radius: 12px; color: white;
+            font-size: 1rem; transition: all 0.3s ease;
+            box-sizing: border-box; outline: none;
         }
-        .login-input:focus { 
-            border-color: var(--primary); 
-            background: rgba(2, 6, 23, 0.8); 
-        }
+        .login-input:focus { border-color: var(--primary); background: rgba(2, 6, 23, 0.8); }
         .login-btn {
-            width: 100%; 
-            padding: 14px; 
-            margin-top: 10px;
+            width: 100%; padding: 14px; margin-top: 10px;
             background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            border: none; 
-            border-radius: 12px; 
-            font-weight: 800;
-            cursor: pointer; 
-            color: #000; 
-            text-transform: uppercase;
-            letter-spacing: 1px; 
-            transition: transform 0.2s;
+            border: none; border-radius: 12px; font-weight: 800;
+            cursor: pointer; color: #000; text-transform: uppercase;
+            letter-spacing: 1px; transition: transform 0.2s;
         }
-        .login-btn:hover { 
-            transform: scale(1.02); 
-        }
+        .login-btn:hover { transform: scale(1.02); }
         #loginError {
-            color: var(--danger); 
-            font-size: 0.8rem; 
-            margin-top: 15px;
-            background: rgba(239, 68, 68, 0.1); 
-            padding: 8px;
-            border-radius: 8px; 
-            display: none;
+            color: var(--danger); font-size: 0.8rem; margin-top: 15px;
+            background: rgba(239, 68, 68, 0.1); padding: 8px;
+            border-radius: 8px; display: none;
         }
         .app-bar {
             padding: 25px 15px 15px;
             background: rgba(15, 23, 42, 0.4);
             backdrop-filter: blur(15px);
-            z-index: 100; 
-            position: relative;
+            z-index: 100; position: relative;
         }
         .logout-btn {
-            position: absolute; 
-            right: 20px; 
-            top: 25px;
-            width: 40px; 
-            height: 40px; 
-            border-radius: 12px;
+            position: absolute; right: 20px; top: 25px;
+            width: 40px; height: 40px; border-radius: 12px;
             background: rgba(239, 68, 68, 0.1);
             border: 1px solid rgba(239, 68, 68, 0.2);
-            color: var(--danger); 
-            display: flex;
-            align-items: center; 
-            justify-content: center;
-            cursor: pointer; 
-            transition: all 0.2s;
+            color: var(--danger); display: flex;
+            align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.2s;
         }
-        .logout-btn:hover { 
-            background: rgba(239, 68, 68, 0.2); 
-        }
-        .header-top { 
-            display: flex; 
-            justify-content: center; 
-            margin-bottom: 15px; 
-        }
+        .logout-btn:hover { background: rgba(239, 68, 68, 0.2); }
+        .header-top { display: flex; justify-content: center; margin-bottom: 15px; }
         .app-bar h1 {
-            font-size: 1.5rem; 
-            margin: 0; 
-            font-weight: 900; 
-            letter-spacing: 4px;
-            text-transform: uppercase; 
-            background: linear-gradient(135deg, #ffffff 0%, #fbbf24 100%);
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem; margin: 0; font-weight: 900; letter-spacing: 4px;
+            text-transform: uppercase; background: linear-gradient(135deg, #ffffff 0%, #fbbf24 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .status-strip { 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            gap: 25px; 
-        }
-        .status-item { 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            font-size: 0.7rem; 
-            font-weight: 500; 
-            color: var(--text-muted); 
-        }
-        .status-item i { 
-            font-size: 0.85rem; 
-            color: var(--primary); 
-        }
-        .content-area { 
-            flex: 1; 
-            position: relative; 
-            overflow: hidden; 
-        }
-        #mainMenu { 
-            padding: 15px; 
-            box-sizing: border-box; 
-            overflow-y: auto; 
-            height: 100%; 
-        }
-        .view { 
-            display: none; 
-            width: 100%; 
-            height: 100%; 
-            animation: slideUp 0.3s ease-out; 
-        }
-        .view.active { 
-            display: block; 
-        }
-        .nav-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 12px; 
-        }
+        .status-strip { display: flex; justify-content: center; align-items: center; gap: 25px; }
+        .status-item { display: flex; align-items: center; gap: 8px; font-size: 0.7rem; font-weight: 500; color: var(--text-muted); }
+        .status-item i { font-size: 0.85rem; color: var(--primary); }
+        .content-area { flex: 1; position: relative; overflow: hidden; }
+        #mainMenu { padding: 15px; box-sizing: border-box; overflow-y: auto; height: 100%; }
+        .view { display: none; width: 100%; height: 100%; animation: slideUp 0.3s ease-out; }
+        .view.active { display: block; }
+        .nav-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
         .nav-card {
-            background: var(--card-bg); 
-            border: 1px solid var(--glass-border);
-            border-radius: 15px; 
-            height: 80px; 
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            justify-content: center; 
-            transition: all 0.2s ease;
-            backdrop-filter: blur(5px); 
-            position: relative; 
-            cursor: pointer;
+            background: var(--card-bg); border: 1px solid var(--glass-border);
+            border-radius: 15px; height: 80px; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; transition: all 0.2s ease;
+            backdrop-filter: blur(5px); position: relative; cursor: pointer;
         }
-        .nav-card:active { 
-            transform: scale(0.95); 
-        }
-        .nav-card i { 
-            font-size: 1.5rem; 
-            margin-bottom: 8px; 
-        }
-        .nav-card span { 
-            font-size: 0.6rem; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            color: #cbd5e1; 
-            text-align: center; 
-        }
-        .icon-bg { 
-            position: absolute; 
-            width: 40px; 
-            height: 40px; 
-            border-radius: 50%; 
-            filter: blur(20px); 
-            z-index: -1; 
-            opacity: 0.2; 
-        }
-        #detailView { 
-            background: var(--bg-dark); 
-            display: none; 
-            flex-direction: column; 
-            box-sizing: border-box; 
-        }
-        #detailView.active { 
-            display: flex; 
-        }
-        .top-nav { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            padding: 20px; 
-            border-bottom: 1px solid var(--glass-border); 
-            background: rgba(15,23,42,0.8); 
-            position: sticky; 
-            top: 0; 
-            z-index: 10; 
-        }
-        .back-circle { 
-            width: 40px; 
-            height: 40px; 
-            border-radius: 50%; 
-            background: var(--card-bg); 
-            border: 1px solid var(--glass-border); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            cursor: pointer; 
-        }
-        .module-body { 
-            flex: 1; 
-            padding: 15px; 
-            overflow-y: auto; 
-            scroll-behavior: smooth; 
-        }
-        .file-controls { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 20px; 
-            background: rgba(255,255,255,0.03); 
-            padding: 15px; 
-            border-radius: 15px; 
-            border: 1px solid var(--glass-border); 
-        }
-        .file-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
-            gap: 15px; 
-        }
-        .file-card { 
-            background: var(--card-bg); 
-            border: 1px solid var(--glass-border); 
-            border-radius: 12px; 
-            overflow: hidden; 
-            position: relative; 
-            transition: 0.3s; 
-        }
-        .file-card:hover { 
-            border-color: var(--primary); 
-            transform: translateY(-3px); 
-        }
-        .file-preview { 
-            height: 100px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            background: #0f172a; 
-            overflow: hidden; 
-        }
-        .file-preview img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; 
-            background: #fff; 
-        }
-        .file-preview i { 
-            font-size: 2.5rem; 
-            color: var(--text-muted); 
-        }
-        .file-info { 
-            padding: 10px; 
-        }
-        .file-name { 
-            font-size: 0.7rem; 
-            font-weight: 600; 
-            white-space: nowrap; 
-            overflow: hidden; 
-            text-overflow: ellipsis; 
-            margin-bottom: 8px; 
-            color: #e2e8f0; 
-        }
-        .file-actions { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 5px; 
-        }
-        .file-btn { 
-            padding: 6px; 
-            border-radius: 6px; 
-            border: none; 
-            cursor: pointer; 
-            font-size: 0.75rem; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            transition: 0.2s; 
-        }
-        .btn-download { 
-            background: var(--success); 
-            color: #000; 
-        }
-        .btn-print { 
-            background: var(--accent); 
-            color: #000; 
-        }
-        .btn-convert { 
-            background: rgba(168, 85, 247, 0.2); 
-            color: #a855f7; 
-        }
-        .btn-convert:hover { 
-            background: rgba(168, 85, 247, 0.3); 
-        }
-        .btn-delete { 
-            background: rgba(239, 68, 68, 0.2); 
-            color: var(--danger); 
-            grid-column: span 3; 
-            margin-top: 5px;
-        }
-        .btn-edit { 
-            background: rgba(251, 191, 36, 0.2); 
-            color: var(--primary); 
-        }
-        .data-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 15px; 
-        }
-        .add-btn { 
-            background: var(--success); 
-            color: #000; 
-            border: none; 
-            padding: 10px 18px; 
-            border-radius: 10px; 
-            font-weight: 800; 
-            font-size: 0.75rem; 
-            text-transform: uppercase; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-        }
-        .add-btn:hover { 
-            background: #22c55e; 
-        }
-        .table-container { 
-            background: rgba(30, 41, 59, 0.4); 
-            border-radius: 15px; 
-            border: 1px solid var(--glass-border); 
-            overflow-x: auto; 
-            margin-bottom: 60px; 
-        }
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            font-size: 0.8rem; 
-            min-width: 600px; 
-        }
-        th { 
-            background: rgba(255,255,255,0.05); 
-            text-align: left; 
-            padding: 15px; 
-            color: var(--primary); 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-        }
-        th.center, td.center { 
-            text-align: center; 
-        }
-        td { 
-            padding: 12px 15px; 
-            border-bottom: 1px solid var(--glass-border); 
-            color: #e2e8f0; 
-        }
+        .nav-card:active { transform: scale(0.95); }
+        .nav-card i { font-size: 1.5rem; margin-bottom: 8px; }
+        .nav-card span { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; color: #cbd5e1; text-align: center; }
+        .icon-bg { position: absolute; width: 40px; height: 40px; border-radius: 50%; filter: blur(20px); z-index: -1; opacity: 0.2; }
+        #detailView { background: var(--bg-dark); display: none; flex-direction: column; box-sizing: border-box; }
+        #detailView.active { display: flex; }
+        .top-nav { display: flex; align-items: center; gap: 15px; padding: 20px; border-bottom: 1px solid var(--glass-border); background: rgba(15,23,42,0.8); position: sticky; top: 0; z-index: 10; }
+        .back-circle { width: 40px; height: 40px; border-radius: 50%; background: var(--card-bg); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .module-body { flex: 1; padding: 15px; overflow-y: auto; scroll-behavior: smooth; }
+        .file-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 15px; border: 1px solid var(--glass-border); }
+        .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
+        .file-card { background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 12px; overflow: hidden; position: relative; transition: 0.3s; }
+        .file-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+        .file-preview { height: 100px; display: flex; align-items: center; justify-content: center; background: #0f172a; overflow: hidden; }
+        .file-preview img { width: 100%; height: 100%; object-fit: contain; background: #fff; }
+        .file-preview i { font-size: 2.5rem; color: var(--text-muted); }
+        .file-info { padding: 10px; }
+        .file-name { font-size: 0.7rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 8px; color: #e2e8f0; }
+        .file-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+        .file-btn { padding: 6px; border-radius: 6px; border: none; cursor: pointer; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .btn-download { background: var(--success); color: #000; }
+        .btn-print { background: var(--accent); color: #000; }
+        .btn-convert { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
+        .btn-convert:hover { background: rgba(168, 85, 247, 0.3); }
+        .btn-delete { background: rgba(239, 68, 68, 0.2); color: var(--danger); grid-column: span 3; margin-top: 5px;}
+        .btn-edit { background: rgba(251, 191, 36, 0.2); color: var(--primary); }
+        .data-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .add-btn { background: var(--success); color: #000; border: none; padding: 10px 18px; border-radius: 10px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .add-btn:hover { background: #22c55e; }
+        .table-container { background: rgba(30, 41, 59, 0.4); border-radius: 15px; border: 1px solid var(--glass-border); overflow-x: auto; margin-bottom: 60px; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 600px; }
+        th { background: rgba(255,255,255,0.05); text-align: left; padding: 15px; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
+        th.center, td.center { text-align: center; }
+        td { padding: 12px 15px; border-bottom: 1px solid var(--glass-border); color: #e2e8f0; }
         .total-row-fixed {
-            position: sticky; 
-            bottom: 0; 
-            background: #0f172a; 
-            border-top: 2px solid var(--primary);
-            color: var(--primary); 
-            font-weight: 900; 
-            font-size: 1rem; 
-            z-index: 5;
+            position: sticky; bottom: 0; background: #0f172a; border-top: 2px solid var(--primary);
+            color: var(--primary); font-weight: 900; font-size: 1rem; z-index: 5;
         }
-        .action-btns { 
-            display: flex; 
-            gap: 15px; 
-            justify-content: center; 
-        }
-        .edit-btn { 
-            color: var(--accent); 
-            cursor: pointer; 
-            font-size: 1rem; 
-        }
-        .del-btn { 
-            color: var(--danger); 
-            cursor: pointer; 
-            font-size: 1rem; 
-        }
-        .modal-overlay { 
-            position: fixed; 
-            top:0; 
-            left:0; 
-            width:100%; 
-            height:100%; 
-            background: rgba(0,0,0,0.8); 
-            z-index: 3000; 
-            display: none; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .modal-content { 
-            background: #1e293b; 
-            width: 95%; 
-            max-width: 650px; 
-            border-radius: 20px; 
-            border: 1px solid var(--primary); 
-            padding: 25px; 
-            animation: slideUp 0.3s; 
-            max-height: 90vh; 
-            overflow-y: auto; 
-        }
-        .modal-title { 
-            font-weight: 800; 
-            color: var(--primary); 
-            text-transform: uppercase; 
-            margin-bottom: 20px; 
-            border-bottom: 1px solid var(--glass-border); 
-            padding-bottom: 10px; 
-        }
-        .form-group { 
-            margin-bottom: 15px; 
-        }
-        .form-group label { 
-            display: block; 
-            font-size: 0.7rem; 
-            color: var(--text-muted); 
-            margin-bottom: 5px; 
-            text-transform: uppercase; 
-        }
-        .form-input { 
-            width: 100%; 
-            background: rgba(0,0,0,0.3); 
-            border: 1px solid var(--glass-border); 
-            padding: 10px; 
-            border-radius: 8px; 
-            color: white; 
-            box-sizing: border-box; 
-        }
-        .modal-actions { 
-            display: flex; 
-            gap: 10px; 
-            margin-top: 20px; 
-        }
-        .save-btn { 
-            flex: 1; 
-            background: var(--primary); 
-            color: #000; 
-            border: none; 
-            padding: 12px; 
-            border-radius: 8px; 
-            font-weight: 800; 
-            cursor: pointer; 
-        }
-        .cancel-btn { 
-            flex: 1; 
-            background: rgba(255,255,255,0.1); 
-            color: white; 
-            border: none; 
-            padding: 12px; 
-            border-radius: 8px; 
-            cursor: pointer; 
-        }
-        .quote-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 15px; 
-            margin-bottom: 20px; 
-        }
-        .q-item-table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 15px; 
-            font-size: 0.75rem; 
-        }
-        .q-item-table th { 
-            padding: 8px; 
-            background: rgba(255,255,255,0.05); 
-        }
-        .q-item-table td { 
-            padding: 5px; 
-            border: 1px solid var(--glass-border); 
-        }
-        .q-item-table input { 
-            width: 100%; 
-            background: transparent; 
-            border: none; 
-            color: white; 
-            outline: none; 
-            padding: 5px; 
-            font-size: 0.75rem; 
-        }
-        .q-total-row { 
-            background: rgba(56, 189, 248, 0.1); 
-            font-weight: 800; 
-            color: var(--accent); 
-        }
-        .search-results { 
-            position: absolute; 
-            background: #1e293b; 
-            border: 1px solid var(--primary); 
-            width: 100%; 
-            max-height: 150px; 
-            overflow-y: auto; 
-            z-index: 100; 
-            border-radius: 0 0 8px 8px; 
-        }
-        .search-item { 
-            padding: 10px; 
-            cursor: pointer; 
-            border-bottom: 1px solid var(--glass-border); 
-            font-size: 0.8rem; 
-        }
-        .search-item:hover { 
-            background: var(--primary); 
-            color: #000; 
-        }
-        .payment-options { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 10px; 
-            margin-bottom: 15px; 
-        }
-        .payment-option { 
-            padding: 10px; 
-            border: 1px solid var(--glass-border); 
-            border-radius: 8px; 
-            text-align: center; 
-            cursor: pointer; 
-            transition: all 0.3s; 
-        }
-        .payment-option.selected { 
-            border-color: var(--primary); 
-            background: rgba(251, 191, 36, 0.1); 
-        }
-        .payment-option i { 
-            font-size: 1.2rem; 
-            margin-bottom: 5px; 
-            display: block; 
-            color: var(--text-muted); 
-        }
-        .payment-option.selected i { 
-            color: var(--primary); 
-        }
-        .payment-option span { 
-            font-size: 0.7rem; 
-            font-weight: 600; 
-            text-transform: uppercase; 
-        }
-        .payment-details { 
-            background: rgba(0,0,0,0.2); 
-            padding: 15px; 
-            border-radius: 10px; 
-            margin-top: 15px; 
-            border: 1px solid var(--glass-border); 
-            display: none; 
-        }
-        .payment-details.active { 
-            display: block; 
-        }
-        .home-section, .mgmt-section, .settings-section { 
-            margin-bottom: 30px; 
-            animation: slideUp 0.5s ease; 
-        }
-        .home-card, .mgmt-card, .settings-card { 
-            background: rgba(30, 41, 59, 0.4); 
-            border: 1px solid var(--glass-border); 
-            padding: 20px; 
-            border-radius: 20px; 
-            margin-bottom: 20px; 
-        }
-        .home-title, .mgmt-title, .settings-title { 
-            color: var(--primary); 
-            font-size: 1.1rem; 
-            font-weight: 800; 
-            margin-bottom: 15px; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            border-left: 4px solid var(--primary); 
-            padding-left: 12px; 
-        }
-        .home-text, .mgmt-text { 
-            font-size: 0.9rem; 
-            line-height: 1.6; 
-            color: #e2e8f0; 
-            text-align: justify; 
-            margin-bottom: 15px; 
-        }
-        .home-highlight { 
-            display: inline-block; 
-            background: rgba(251, 191, 36, 0.15); 
-            color: var(--primary); 
-            padding: 2px 8px; 
-            border-radius: 4px; 
-            font-weight: 600; 
-        }
-        .md-profile-container { 
-            text-align: center; 
-            margin-bottom: 25px; 
-        }
-        .md-photo-frame { 
-            width: 140px; 
-            height: 140px; 
-            border-radius: 25px; 
-            margin: 0 auto 15px; 
-            overflow: hidden; 
-            background: #0f172a; 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            border: 2px solid var(--primary); 
-        }
-        .md-photo-frame img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-        }
-        .md-photo-placeholder { 
-            font-size: 3rem; 
-            color: #1e293b; 
-        }
-        .md-info-block { 
-            text-align: center; 
-            margin-bottom: 15px; 
-            padding-bottom: 10px; 
-        }
-        .md-name { 
-            font-weight: 800; 
-            color: white; 
-            font-size: 1.15rem; 
-            margin: 0; 
-            text-transform: uppercase; 
-        }
-        .md-titles { 
-            font-size: 0.7rem; 
-            color: var(--accent); 
-            font-weight: 600; 
-            margin: 6px 0; 
-            line-height: 1.4; 
-        }
+        .action-btns { display: flex; gap: 15px; justify-content: center; }
+        .edit-btn { color: var(--accent); cursor: pointer; font-size: 1rem; }
+        .del-btn { color: var(--danger); cursor: pointer; font-size: 1rem; }
+        .modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 3000; display: none; align-items: center; justify-content: center; }
+        .modal-content { background: #1e293b; width: 95%; max-width: 650px; border-radius: 20px; border: 1px solid var(--primary); padding: 25px; animation: slideUp 0.3s; max-height: 90vh; overflow-y: auto; }
+        .modal-title { font-weight: 800; color: var(--primary); text-transform: uppercase; margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; }
+        .form-input { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); padding: 10px; border-radius: 8px; color: white; box-sizing: border-box; }
+        .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+        .save-btn { flex: 1; background: var(--primary); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 800; cursor: pointer; }
+        .cancel-btn { flex: 1; background: rgba(255,255,255,0.1); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; }
+        .quote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .q-item-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.75rem; }
+        .q-item-table th { padding: 8px; background: rgba(255,255,255,0.05); }
+        .q-item-table td { padding: 5px; border: 1px solid var(--glass-border); }
+        .q-item-table input { width: 100%; background: transparent; border: none; color: white; outline: none; padding: 5px; font-size: 0.75rem; }
+        .q-total-row { background: rgba(56, 189, 248, 0.1); font-weight: 800; color: var(--accent); }
+        .search-results { position: absolute; background: #1e293b; border: 1px solid var(--primary); width: 100%; max-height: 150px; overflow-y: auto; z-index: 100; border-radius: 0 0 8px 8px; }
+        .search-item { padding: 10px; cursor: pointer; border-bottom: 1px solid var(--glass-border); font-size: 0.8rem; }
+        .search-item:hover { background: var(--primary); color: #000; }
+        .payment-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
+        .payment-option { padding: 10px; border: 1px solid var(--glass-border); border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.3s; }
+        .payment-option.selected { border-color: var(--primary); background: rgba(251, 191, 36, 0.1); }
+        .payment-option i { font-size: 1.2rem; margin-bottom: 5px; display: block; color: var(--text-muted); }
+        .payment-option.selected i { color: var(--primary); }
+        .payment-option span { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
+        .payment-details { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; margin-top: 15px; border: 1px solid var(--glass-border); display: none; }
+        .payment-details.active { display: block; }
+        .home-section, .mgmt-section, .settings-section { margin-bottom: 30px; animation: slideUp 0.5s ease; }
+        .home-card, .mgmt-card, .settings-card { background: rgba(30, 41, 59, 0.4); border: 1px solid var(--glass-border); padding: 20px; border-radius: 20px; margin-bottom: 20px; }
+        .home-title, .mgmt-title, .settings-title { color: var(--primary); font-size: 1.1rem; font-weight: 800; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; border-left: 4px solid var(--primary); padding-left: 12px; }
+        .home-text, .mgmt-text { font-size: 0.9rem; line-height: 1.6; color: #e2e8f0; text-align: justify; margin-bottom: 15px; }
+        .home-highlight { display: inline-block; background: rgba(251, 191, 36, 0.15); color: var(--primary); padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+        .md-profile-container { text-align: center; margin-bottom: 25px; }
+        .md-photo-frame { width: 140px; height: 140px; border-radius: 25px; margin: 0 auto 15px; overflow: hidden; background: #0f172a; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; border: 2px solid var(--primary); }
+        .md-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+        .md-photo-placeholder { font-size: 3rem; color: #1e293b; }
+        .md-info-block { text-align: center; margin-bottom: 15px; padding-bottom: 10px; }
+        .md-name { font-weight: 800; color: white; font-size: 1.15rem; margin: 0; text-transform: uppercase; }
+        .md-titles { font-size: 0.7rem; color: var(--accent); font-weight: 600; margin: 6px 0; line-height: 1.4; }
         .mgmt-msg-box {
             text-align: justify;
             background: rgba(255, 255, 255, 0.03);
@@ -738,49 +204,14 @@
             line-height: 1.8;
             color: #f1f5f9;
         }
-        .vvm-container { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 15px; 
-        }
-        .vvm-item { 
-            padding: 20px; 
-            border-radius: 18px; 
-            position: relative; 
-            overflow: hidden; 
-            border: 1px solid rgba(255,255,255,0.05); 
-        }
-        .vvm-vision { 
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(2, 6, 23, 0.8) 100%); 
-            border-left: 5px solid var(--accent); 
-        }
-        .vvm-mission { 
-            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(2, 6, 23, 0.8) 100%); 
-            border-left: 5px solid var(--primary); 
-        }
-        .vvm-goals { 
-            background: linear-gradient(135deg, rgba(167, 139, 250, 0.1) 0%, rgba(2, 6, 23, 0.8) 100%); 
-            border-left: 5px solid #a78bfa; 
-        }
-        .vvm-values { 
-            background: linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(2, 6, 23, 0.8) 100%); 
-            border-left: 5px solid var(--success); 
-        }
-        .vvm-item i { 
-            font-size: 2rem; 
-            position: absolute; 
-            right: 20px; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            opacity: 0.1; 
-        }
-        .vvm-item h4 { 
-            margin: 0 0 8px 0; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-weight: 800; 
-            font-size: 0.9rem; 
-        }
+        .vvm-container { display: flex; flex-direction: column; gap: 15px; }
+        .vvm-item { padding: 20px; border-radius: 18px; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+        .vvm-vision { background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(2, 6, 23, 0.8) 100%); border-left: 5px solid var(--accent); }
+        .vvm-mission { background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(2, 6, 23, 0.8) 100%); border-left: 5px solid var(--primary); }
+        .vvm-goals { background: linear-gradient(135deg, rgba(167, 139, 250, 0.1) 0%, rgba(2, 6, 23, 0.8) 100%); border-left: 5px solid #a78bfa; }
+        .vvm-values { background: linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(2, 6, 23, 0.8) 100%); border-left: 5px solid var(--success); }
+        .vvm-item i { font-size: 2rem; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); opacity: 0.1; }
+        .vvm-item h4 { margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; font-size: 0.9rem; }
         
         .process-container {
             display: flex;
@@ -826,9 +257,7 @@
             border-color: var(--accent);
             color: var(--accent);
         }
-        .step-content { 
-            flex: 1; 
-        }
+        .step-content { flex: 1; }
         .step-title {
             margin: 0;
             font-weight: 800;
@@ -865,205 +294,35 @@
             opacity: 0.3;
         }
         
-        .settings-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
-            gap: 15px; 
-            margin-top: 10px; 
-        }
-        .upload-zone { 
-            border: 2px dashed var(--glass-border); 
-            border-radius: 15px; 
-            padding: 15px; 
-            text-align: center; 
-            cursor: pointer; 
-            transition: all 0.3s; 
-            background: rgba(0,0,0,0.2); 
-        }
-        .upload-zone:hover { 
-            border-color: var(--primary); 
-            background: rgba(251, 191, 36, 0.05); 
-        }
-        .upload-zone i { 
-            font-size: 1.5rem; 
-            color: var(--text-muted); 
-            margin-bottom: 8px; 
-            display: block; 
-        }
-        .upload-label { 
-            font-size: 0.65rem; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            color: var(--text-muted); 
-        }
-        .upload-preview { 
-            width: 100%; 
-            height: 60px; 
-            border-radius: 8px; 
-            margin-top: 10px; 
-            object-fit: contain; 
-            display: none; 
-            border: 1px solid var(--primary); 
-            background: #fff; 
-        }
-        .config-form { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 12px; 
-        }
-        .config-row { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 5px; 
-        }
-        .config-row label { 
-            font-size: 0.7rem; 
-            font-weight: 700; 
-            color: var(--accent); 
-            text-transform: uppercase; 
-        }
-        .config-input { 
-            background: rgba(0,0,0,0.3); 
-            border: 1px solid var(--glass-border); 
-            padding: 10px; 
-            border-radius: 8px; 
-            color: white; 
-            font-size: 0.85rem; 
-        }
-        .config-area { 
-            background: rgba(0,0,0,0.3); 
-            border: 1px solid var(--glass-border); 
-            padding: 10px; 
-            border-radius: 8px; 
-            color: white; 
-            font-size: 0.8rem; 
-            min-height: 60px; 
-            resize: vertical; 
-        }
-        .save-all-btn { 
-            background: var(--success); 
-            color: #000; 
-            border: none; 
-            padding: 12px; 
-            border-radius: 10px; 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            cursor: pointer; 
-            margin-top: 10px; 
-            width: 100%; 
-        }
-        .save-all-btn:hover { 
-            background: #22c55e; 
-        }
+        .settings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 10px; }
+        .upload-zone { border: 2px dashed var(--glass-border); border-radius: 15px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s; background: rgba(0,0,0,0.2); }
+        .upload-zone:hover { border-color: var(--primary); background: rgba(251, 191, 36, 0.05); }
+        .upload-zone i { font-size: 1.5rem; color: var(--text-muted); margin-bottom: 8px; display: block; }
+        .upload-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); }
+        .upload-preview { width: 100%; height: 60px; border-radius: 8px; margin-top: 10px; object-fit: contain; display: none; border: 1px solid var(--primary); background: #fff; }
+        .config-form { display: flex; flex-direction: column; gap: 12px; }
+        .config-row { display: flex; flex-direction: column; gap: 5px; }
+        .config-row label { font-size: 0.7rem; font-weight: 700; color: var(--accent); text-transform: uppercase; }
+        .config-input { background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); padding: 10px; border-radius: 8px; color: white; font-size: 0.85rem; }
+        .config-area { background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); padding: 10px; border-radius: 8px; color: white; font-size: 0.8rem; min-height: 60px; resize: vertical; }
+        .save-all-btn { background: var(--success); color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: 800; text-transform: uppercase; cursor: pointer; margin-top: 10px; width: 100%; }
+        .save-all-btn:hover { background: #22c55e; }
         
-        .exp-badge-container { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            margin: 30px 0; 
-            padding: 30px; 
-            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.15) 0%, transparent 70%); 
-            border-radius: 30px; 
-            position: relative; 
-            border: 1px solid rgba(56, 189, 248, 0.1); 
-        }
-        .exp-badge-main { 
-            text-align: center; 
-            position: relative; 
-        }
-        .exp-number { 
-            font-size: 3.5rem; 
-            font-weight: 900; 
-            color: var(--accent); 
-            line-height: 1; 
-            display: block; 
-            text-shadow: 0 0 20px rgba(56, 189, 248, 0.5); 
-        }
-        .exp-label { 
-            font-size: 0.75rem; 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            letter-spacing: 3px; 
-            color: white; 
-            margin-top: 5px; 
-        }
-        .exp-ring { 
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            width: 120px; 
-            height: 120px; 
-            border: 2px dashed rgba(56, 189, 248, 0.3); 
-            border-radius: 50%; 
-            animation: rotate 10s linear infinite; 
-        }
+        .exp-badge-container { display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 30px 0; padding: 30px; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.15) 0%, transparent 70%); border-radius: 30px; position: relative; border: 1px solid rgba(56, 189, 248, 0.1); }
+        .exp-badge-main { text-align: center; position: relative; }
+        .exp-number { font-size: 3.5rem; font-weight: 900; color: var(--accent); line-height: 1; display: block; text-shadow: 0 0 20px rgba(56, 189, 248, 0.5); }
+        .exp-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: white; margin-top: 5px; }
+        .exp-ring { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; border: 2px dashed rgba(56, 189, 248, 0.3); border-radius: 50%; animation: rotate 10s linear infinite; }
         
-        .contact-pill { 
-            background: rgba(255,255,255,0.05); 
-            border: 1px solid var(--glass-border); 
-            padding: 12px; 
-            border-radius: 12px; 
-            margin-bottom: 10px; 
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
-            font-size: 0.85rem; 
-            text-decoration: none; 
-            color: inherit; 
-        }
-        .contact-pill i { 
-            color: var(--primary); 
-            width: 20px; 
-            text-align: center; 
-        }
-        .category-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
-            gap: 10px; 
-            margin-top: 10px; 
-        }
-        .category-card { 
-            background: var(--card-bg); 
-            border: 1px solid var(--glass-border); 
-            border-radius: 12px; 
-            padding: 15px; 
-            text-align: center; 
-        }
-        .category-card i { 
-            font-size: 1.2rem; 
-            color: var(--primary); 
-            margin-bottom: 8px; 
-        }
-        .category-card span { 
-            font-size: 0.7rem; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            color: #cbd5e1; 
-        }
-        .category-actions { 
-            margin-top: 8px; 
-            display: flex; 
-            justify-content: center; 
-            gap: 8px; 
-        }
-        .category-btn { 
-            background: rgba(255,255,255,0.1); 
-            border: none; 
-            border-radius: 6px; 
-            padding: 4px 8px; 
-            color: white; 
-            font-size: 0.6rem; 
-            cursor: pointer; 
-        }
-        .add-category-form { 
-            background: rgba(0,0,0,0.3); 
-            padding: 15px; 
-            border-radius: 12px; 
-            margin-top: 15px; 
-            border: 1px solid var(--glass-border); 
-        }
+        .contact-pill { background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); padding: 12px; border-radius: 12px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; font-size: 0.85rem; text-decoration: none; color: inherit; }
+        .contact-pill i { color: var(--primary); width: 20px; text-align: center; }
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 10px; }
+        .category-card { background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 12px; padding: 15px; text-align: center; }
+        .category-card i { font-size: 1.2rem; color: var(--primary); margin-bottom: 8px; }
+        .category-card span { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #cbd5e1; }
+        .category-actions { margin-top: 8px; display: flex; justify-content: center; gap: 8px; }
+        .category-btn { background: rgba(255,255,255,0.1); border: none; border-radius: 6px; padding: 4px 8px; color: white; font-size: 0.6rem; cursor: pointer; }
+        .add-category-form { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-top: 15px; border: 1px solid var(--glass-border); }
         .search-container {
             position: relative;
             margin-bottom: 15px;
@@ -1094,76 +353,20 @@
         .file-type-icon {
             font-size: 2.5rem;
         }
-        .pdf-icon { 
-            color: #ef4444; 
-        }
-        .excel-icon { 
-            color: #4ade80; 
-        }
-        .word-icon { 
-            color: #2b579a; 
-        }
-        .image-icon { 
-            color: #3b82f6; 
-        }
-        .text-icon { 
-            color: #94a3b8; 
-        }
-        .xml-icon { 
-            color: #f59e0b; 
-        }
-        .note-icon { 
-            color: #c084fc; 
-        }
-        .switch-container { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            background: rgba(0,0,0,0.2); 
-            padding: 10px 15px; 
-            border-radius: 10px; 
-            border: 1px solid var(--glass-border); 
-            margin-bottom: 10px; 
-        }
-        .switch { 
-            position: relative; 
-            display: inline-block; 
-            width: 44px; 
-            height: 22px; 
-        }
-        .switch input { 
-            opacity: 0; 
-            width: 0; 
-            height: 0; 
-        }
-        .slider { 
-            position: absolute; 
-            cursor: pointer; 
-            top: 0; 
-            left: 0; 
-            right: 0; 
-            bottom: 0; 
-            background-color: #334155; 
-            transition: .4s; 
-            border-radius: 34px; 
-        }
-        .slider:before { 
-            position: absolute; 
-            content: ""; 
-            height: 16px; 
-            width: 16px; 
-            left: 3px; 
-            bottom: 3px; 
-            background-color: white; 
-            transition: .4s; 
-            border-radius: 50%; 
-        }
-        input:checked + .slider { 
-            background-color: var(--success); 
-        }
-        input:checked + .slider:before { 
-            transform: translateX(22px); 
-        }
+        .pdf-icon { color: #ef4444; }
+        .excel-icon { color: #4ade80; }
+        .word-icon { color: #2b579a; }
+        .image-icon { color: #3b82f6; }
+        .text-icon { color: #94a3b8; }
+        .xml-icon { color: #f59e0b; }
+        .note-icon { color: #c084fc; }
+        .switch-container { display: flex; align-items: center; gap: 15px; background: rgba(0,0,0,0.2); padding: 10px 15px; border-radius: 10px; border: 1px solid var(--glass-border); margin-bottom: 10px; }
+        .switch { position: relative; display: inline-block; width: 44px; height: 22px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #334155; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--success); }
+        input:checked + .slider:before { transform: translateX(22px); }
         
         .sfpe-container {
             display: flex;
@@ -1179,65 +382,63 @@
             animation: float 4s ease-in-out infinite;
         }
         .sfpe-logo-ring {
-            width: 80px; 
-            height: 80px;
+            width: 80px; height: 80px;
             background: #fff;
             border-radius: 50%;
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            font-weight: 900; 
-            color: #000; 
-            font-size: 1.4rem;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; color: #000; font-size: 1.4rem;
             box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
             z-index: 2;
         }
         .sfpe-pulse {
             position: absolute;
-            width: 80px; 
-            height: 80px;
+            width: 80px; height: 80px;
             border: 2px solid var(--primary);
             border-radius: 50%;
             animation: pulse 2s linear infinite;
             z-index: 1;
         }
-        @keyframes float { 
-            0%, 100% { 
-                transform: translateY(0); 
-            } 
-            50% { 
-                transform: translateY(-10px); 
-            } 
+        
+        /* Lazy loading styles */
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        @keyframes pulse { 
-            0% { 
-                transform: scale(1); 
-                opacity: 0.8; 
-            } 
-            100% { 
-                transform: scale(1.6); 
-                opacity: 0; 
-            } 
+        .lazy-load.loaded {
+            opacity: 1;
+        }
+        .skeleton {
+            background: linear-gradient(90deg, rgba(30, 41, 59, 0.4) 25%, rgba(30, 41, 59, 0.6) 50%, rgba(30, 41, 59, 0.4) 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+        .file-card.skeleton .file-preview {
+            background: #0f172a;
+        }
+        .file-card.skeleton .file-name {
+            height: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        .file-card.skeleton .file-actions {
+            visibility: hidden;
+        }
+        .table-row.skeleton td {
+            height: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
         }
         
-        @keyframes slideUp { 
-            from { 
-                opacity: 0; 
-                transform: translateY(15px); 
-            } 
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            } 
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
-        @keyframes rotate { 
-            from { 
-                transform: translate(-50%, -50%) rotate(0deg); 
-            } 
-            to { 
-                transform: translate(-50%, -50%) rotate(360deg); 
-            } 
-        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.6); opacity: 0; } }
+        
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes rotate { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -1310,6 +511,7 @@
         </div>
     </main>
     <script>
+        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBV_Ph0Xx1f8C7vNbv-q5mErDhDkxncnkE",
             authDomain: "faithengineering-7f75b.firebaseapp.com",
@@ -1320,15 +522,18 @@
             appId: "1:333974275134:web:3eedb2a82ab7aca8f93d6f",
             measurementId: "G-98RSMZ9H22"
         };
-        
+        // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
         
+        // Firebase Storage class with lazy loading support
         class FirebaseStorage {
             constructor() {
                 this.db = database;
                 this.userId = 'default_user';
                 this.rootPath = 'faithengineering';
+                this.cache = new Map(); // Simple cache for lazy loading
+                this.pendingRequests = new Map(); // Track pending requests
             }
             
             getPath(key) {
@@ -1340,34 +545,60 @@
                     const path = this.getPath(key);
                     await this.db.ref(path).set(value);
                     console.log('Data saved to Firebase:', key, value);
+                    this.cache.set(key, value); // Update cache
                     return true;
                 } catch (error) {
                     console.error('Firebase save error:', error);
                     localStorage.setItem(`fe_${key}`, JSON.stringify(value));
+                    this.cache.set(key, value); // Update cache
                     return false;
                 }
             }
             
-            async get(key) {
-                try {
-                    const path = this.getPath(key);
-                    const snapshot = await this.db.ref(path).once('value');
-                    return snapshot.val();
-                } catch (error) {
-                    console.error('Firebase get error:', error);
-                    const localData = localStorage.getItem(`fe_${key}`);
-                    return localData ? JSON.parse(localData) : null;
+            async get(key, useCache = true) {
+                // Return from cache if available and requested
+                if (useCache && this.cache.has(key)) {
+                    return this.cache.get(key);
                 }
+                
+                // Check if request is already pending
+                if (this.pendingRequests.has(key)) {
+                    return this.pendingRequests.get(key);
+                }
+                
+                // Create new promise for this request
+                const requestPromise = new Promise(async (resolve) => {
+                    try {
+                        const path = this.getPath(key);
+                        const snapshot = await this.db.ref(path).once('value');
+                        const value = snapshot.val();
+                        this.cache.set(key, value); // Cache the result
+                        resolve(value);
+                    } catch (error) {
+                        console.error('Firebase get error:', error);
+                        const localData = localStorage.getItem(`fe_${key}`);
+                        const value = localData ? JSON.parse(localData) : null;
+                        this.cache.set(key, value); // Cache the result
+                        resolve(value);
+                    } finally {
+                        this.pendingRequests.delete(key); // Remove from pending
+                    }
+                });
+                
+                this.pendingRequests.set(key, requestPromise);
+                return requestPromise;
             }
             
             async remove(key) {
                 try {
                     const path = this.getPath(key);
                     await this.db.ref(path).remove();
+                    this.cache.delete(key); // Remove from cache
                     return true;
                 } catch (error) {
                     console.error('Firebase remove error:', error);
                     localStorage.removeItem(`fe_${key}`);
+                    this.cache.delete(key); // Remove from cache
                     return false;
                 }
             }
@@ -1375,7 +606,9 @@
             listen(key, callback) {
                 const path = this.getPath(key);
                 this.db.ref(path).on('value', (snapshot) => {
-                    callback(snapshot.val());
+                    const value = snapshot.val();
+                    this.cache.set(key, value); // Update cache
+                    callback(value);
                 });
             }
             
@@ -1389,6 +622,14 @@
                     const path = this.getPath(key);
                     const newRef = this.db.ref(path).push();
                     await newRef.set(value);
+                    
+                    // Update cache if it exists
+                    if (this.cache.has(key)) {
+                        const cached = this.cache.get(key) || [];
+                        cached.push(value);
+                        this.cache.set(key, cached);
+                    }
+                    
                     return newRef.key;
                 } catch (error) {
                     console.error('Firebase push error:', error);
@@ -1428,10 +669,22 @@
                     return false;
                 }
             }
+            
+            // Clear cache for a specific key
+            clearCache(key) {
+                this.cache.delete(key);
+            }
+            
+            // Clear all cache
+            clearAllCache() {
+                this.cache.clear();
+            }
         }
         
+        // Create global Storage instance
         const Storage = new FirebaseStorage();
         
+        // Initialize default data if not exists
         async function initializeDefaultData() {
             const defaultData = {
                 'clients': [],
@@ -1486,13 +739,15 @@
                 defaultData[`${mod}_uploaded`] = [];
             });
             
+            // Initialize document categories
             if (!defaultData['doc_categories']) {
                 defaultData['doc_categories'] = [];
             }
             
+            // Check and initialize each key
             for (const [key, defaultValue] of Object.entries(defaultData)) {
                 try {
-                    const existing = await Storage.get(key);
+                    const existing = await Storage.get(key, false); // Don't use cache for initialization
                     if (existing === null || existing === undefined) {
                         await Storage.save(key, defaultValue);
                         console.log(`Initialized ${key} with default data`);
@@ -1502,12 +757,13 @@
                 }
             }
             
-            const draftIdData = await Storage.get('draft_transaction_ids');
+            // Initialize transaction IDs
+            const draftIdData = await Storage.get('draft_transaction_ids', false);
             if (!draftIdData) {
                 await Storage.save('draft_transaction_ids', {});
             }
             
-            const lastIdData = await Storage.get('last_transaction_ids');
+            const lastIdData = await Storage.get('last_transaction_ids', false);
             if (!lastIdData) {
                 await Storage.save('last_transaction_ids', {
                     quotation: 10079,
@@ -1520,6 +776,7 @@
             }
         }
         
+        // Call initialization
         initializeDefaultData().catch(console.error);
         
         let currentModule = '';
@@ -1533,6 +790,101 @@
         let currentDraftId = '';
         let selectedPaymentMode = 'cash';
         let currentLetterEditIndex = -1;
+        let lazyLoadObserver = null;
+        
+        // Initialize Intersection Observer for lazy loading
+        function initLazyLoadObserver() {
+            if (lazyLoadObserver) return;
+            
+            lazyLoadObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        
+                        if (element.classList.contains('lazy-file')) {
+                            loadFilePreview(element);
+                        } else if (element.classList.contains('lazy-image')) {
+                            loadImage(element);
+                        } else if (element.classList.contains('lazy-table-row')) {
+                            loadTableRow(element);
+                        }
+                        
+                        lazyLoadObserver.unobserve(element);
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '100px',
+                threshold: 0.1
+            });
+        }
+        
+        function loadFilePreview(element) {
+            const fileData = element.dataset.fileData;
+            const isImage = element.dataset.isImage === 'true';
+            
+            if (isImage && fileData) {
+                const img = document.createElement('img');
+                img.src = fileData;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'contain';
+                img.onload = () => {
+                    element.innerHTML = '';
+                    element.appendChild(img);
+                    element.classList.add('loaded');
+                };
+                img.onerror = () => {
+                    element.innerHTML = '<i class="fas fa-file file-type-icon note-icon"></i>';
+                    element.classList.add('loaded');
+                };
+            } else {
+                const fileType = element.dataset.fileType || 'note';
+                element.innerHTML = `<i class="fas fa-file-${fileType} file-type-icon ${fileType}-icon"></i>`;
+                element.classList.add('loaded');
+            }
+        }
+        
+        function loadImage(element) {
+            const src = element.dataset.src;
+            if (src) {
+                element.src = src;
+                element.onload = () => element.classList.add('loaded');
+                element.onerror = () => element.classList.add('loaded');
+            }
+        }
+        
+        function loadTableRow(element) {
+            element.classList.remove('skeleton');
+            element.classList.add('loaded');
+        }
+        
+        // Debounce function for performance
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+        
+        // Throttle function for performance
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            };
+        }
         
         function formatDate(dateStr) {
             if (!dateStr) return '-';
@@ -1596,14 +948,17 @@
             const pass = document.getElementById('loginPass').value;
             const loginOverlay = document.getElementById('loginOverlay');
             
+            // Smooth transition for login
             loginOverlay.style.transition = 'opacity 0.5s ease';
             loginOverlay.style.opacity = '0';
             
             setTimeout(() => {
                 if (id === '7' && pass === '7') {
                     loginOverlay.style.display = 'none';
+                    // Persist session locally
                     localStorage.setItem('fe_session', JSON.stringify({ active: true, timestamp: Date.now() }));
                     document.getElementById('loginError').style.display = 'none';
+                    // Reset opacity for next logout
                     loginOverlay.style.opacity = '1';
                 } else {
                     loginOverlay.style.opacity = '1';
@@ -1615,18 +970,22 @@
         function logout() {
             const loginOverlay = document.getElementById('loginOverlay');
             
+            // Show overlay with smooth transition
             loginOverlay.style.display = 'flex';
             setTimeout(() => {
                 loginOverlay.style.transition = 'opacity 0.5s ease';
                 loginOverlay.style.opacity = '1';
             }, 10);
             
+            // Clear session
             localStorage.removeItem('fe_session');
             
+            // Reset form fields
             document.getElementById('loginId').value = '';
             document.getElementById('loginPass').value = '';
             document.getElementById('loginError').style.display = 'none';
             
+            // Go to home
             goHome();
         }
         
@@ -1710,14 +1069,14 @@
             } else if (!isBack && currentModule !== '' && currentSubModule === '') {
                  navHistory.push({ type: 'module', name: currentModule, color: document.getElementById('detailTitle').style.color });
             }
+            
             currentModule = name;
             currentSubModule = '';
             document.getElementById('mainMenu').classList.remove('active');
             const detailView = document.getElementById('detailView');
             detailView.classList.add('active');
             const title = document.getElementById('detailTitle');
-            title.innerText = name; 
-            title.style.color = color;
+            title.innerText = name; title.style.color = color;
             const container = document.getElementById('moduleContent');
             container.innerHTML = '';
             
@@ -1780,6 +1139,7 @@
                     renderSubModuleGrid(subModules[name], name, color);
                 }
             }
+            
             currentLetterEditIndex = -1;
             scrollToTop();
         }
@@ -1788,6 +1148,7 @@
             const container = document.getElementById('moduleContent');
             const grid = document.createElement('div');
             grid.className = 'nav-grid';
+            
             items.forEach(sub => {
                 grid.innerHTML += `
                     <div class="nav-card" onclick="handleSubModuleClick('${sub.name}', '${sub.storage || ''}', '${sub.color || color}', '${sub.type || ''}')">
@@ -1840,6 +1201,7 @@
             scrollToTop();
         }
         
+        // INVENTORY FUNCTIONS
         async function renderInventory(color) {
             await renderInventoryView(color);
         }
@@ -1849,6 +1211,7 @@
             const categories = await Storage.get('product_categories') || [];
             let inventoryData = [];
             
+            // Fetch all products from all categories
             for (const category of categories) {
                 const products = await Storage.get(category) || [];
                 products.forEach(product => {
@@ -1918,6 +1281,7 @@
             }
         }
         
+        // LETTER FUNCTIONS
         async function renderLetterCreator(color, editIndex = -1, editData = null) {
             const container = document.getElementById('moduleContent');
             const isDraft = editIndex === -1 && !editData;
@@ -1943,9 +1307,9 @@
                         <input type="text" id="ltr_title" class="form-input" placeholder="Enter letter title" value="${editData ? editData.title : ''}">
                     </div>
                     <div class="form-group">
-                        <label>Letter Content</label>
+                        <label>Letter Content (Supports HTML formatting)</label>
                         <textarea id="ltr_content" class="config-area" rows="10" placeholder="Type your letter content here...">${editData ? editData.content : ''}</textarea>
-                        <small style="color:var(--text-muted); font-size:0.7rem;">Use &lt;br&gt; for line breaks</small>
+                        <small style="color:var(--text-muted); font-size:0.7rem;">Use &lt;br&gt; for line breaks, &lt;strong&gt; for bold text</small>
                     </div>
                     <button class="save-all-btn" onclick="saveLetter(${editIndex})" style="margin-top:20px;">
                         ${editIndex !== -1 ? 'Update Letter' : 'Save Letter to System'}
@@ -2003,17 +1367,8 @@
             const docSignature = await Storage.get('doc_sig') || '';
             const companySeal = await Storage.get('co_seal') || '';
             
-            const formatDateForPDF = (dateStr) => {
-                if (!dateStr) return '';
-                const date = new Date(dateStr);
-                if (isNaN(date.getTime())) return dateStr;
-                const d = String(date.getDate()).padStart(2, '0');
-                const m = String(date.getMonth() + 1).padStart(2, '0');
-                const y = date.getFullYear();
-                return `${d}.${m}.${y}`;
-            };
-            
-            const htmlContent = `
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
                 <html>
                 <head>
                     <title>LETTER - ${data.id}</title>
@@ -2071,7 +1426,8 @@
                                     <tr>
                                         <td style="width:60%"></td>
                                         <td style="width:40%; text-align:right">
-                                            <strong>Date:</strong> ${formatDateForPDF(data.date)}
+                                            <strong>No:</strong> ${data.id}<br>
+                                            <strong>Date:</strong> ${formatDate(data.date)}
                                         </td>
                                     </tr>
                                 </table>
@@ -2097,22 +1453,13 @@
                         </tbody>
                     </table>
                     <div class="footer-wrapper">"${config.slogan || ''}"</div>
+                    <script>window.onload = function() { window.print(); setTimeout(function() { window.close(); }, 500); }<\/script>
                 </body>
                 </html>
-            `;
-            
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(htmlContent);
+            `);
             printWindow.document.close();
-            
-            setTimeout(() => {
-                printWindow.print();
-                setTimeout(() => {
-                    printWindow.close();
-                }, 500);
-            }, 500);
         }
-        
+
         async function renderDocCategories(color) {
             const container = document.getElementById('moduleContent');
             const categories = await Storage.get('doc_categories') || [];
@@ -2229,6 +1576,7 @@
             currentDraftId = isDraft ? dcID : '';
             if (editIndex !== -1 && editData) deliveryItems = editData.items || [];
             else deliveryItems = [];
+            
             container.innerHTML = `
                 <div class="settings-card" style="border-top: 4px solid ${color}">
                     <h3 style="color:${color}; margin-top:0;">${editIndex !== -1 ? 'Edit' : 'Create New'} Delivery Challan ${isDraft ? '<span style="color:var(--accent); font-size:0.7rem;">(DRAFT)</span>' : ''}</h3>
@@ -2316,7 +1664,7 @@
             title.innerText = itemIndex !== -1 ? "Edit Delivery Item" : "Add Item to Delivery Challan";
             form.innerHTML = `
                 <div class="form-group" style="position:relative">
-                    <label>Item Name</label>
+                    <label>Item Name (Search or Manual)</label>
                     <input type="text" id="di_name" class="form-input" value="${itemData.name || ''}" oninput="searchProductsForDelivery(this.value)">
                     <div id="delivery_product_results" class="search-results" style="display:none"></div>
                 </div>
@@ -2441,6 +1789,7 @@
             currentDraftId = isDraft ? poID : '';
             if (editIndex !== -1 && editData) purchaseItems = editData.items || [];
             else purchaseItems = [];
+            
             container.innerHTML = `
                 <div class="settings-card" style="border-top: 4px solid ${color}">
                     <h3 style="color:${color}; margin-top:0;">${editIndex !== -1 ? 'Edit' : 'Create New'} Purchase Order ${isDraft ? '<span style="color:var(--accent); font-size:0.7rem;">(DRAFT)</span>' : ''}</h3>
@@ -2619,6 +1968,7 @@
             const mrID = isDraft ? await generateDraftID('MR') : (editData ? editData.id : await generateSavedID('MR'));
             const today = new Date().toISOString().split('T')[0];
             currentDraftId = isDraft ? mrID : '';
+            
             container.innerHTML = `
                 <div class="settings-card" style="border-top: 4px solid ${color}">
                     <h3 style="color:${color}; margin-top:0;">${editIndex !== -1 ? 'Edit' : 'Create New'} Money Receipt ${isDraft ? '<span style="color:var(--accent); font-size:0.7rem;">(DRAFT)</span>' : ''}</h3>
@@ -2748,6 +2098,7 @@
             currentDraftId = isDraft ? invID : '';
             if (editIndex !== -1 && editData) invoiceItems = editData.items || [];
             else invoiceItems = [];
+            
             container.innerHTML = `
                 <div class="settings-card" style="border-top: 4px solid ${color}">
                     <h3 style="color:${color}; margin-top:0;">${editIndex !== -1 ? 'Edit' : 'Create New'} Invoice ${isDraft ? '<span style="color:var(--accent); font-size:0.7rem;">(DRAFT)</span>' : ''}</h3>
@@ -2830,7 +2181,7 @@
             title.innerText = itemIndex !== -1 ? "Edit Invoice Item" : "Add Item to Invoice";
             form.innerHTML = `
                 <div class="form-group" style="position:relative">
-                    <label>Item Name</label>
+                    <label>Item Name (Search from Products)</label>
                     <input type="text" id="inv_item_name" class="form-input" value="${itemData.name || ''}" oninput="searchProductsForInvoice(this.value)">
                     <div id="inv_product_results" class="search-results" style="display:none"></div>
                 </div>
@@ -2965,6 +2316,7 @@
             currentDraftId = isDraft ? qid : '';
             if (editIndex !== -1 && editData) quoteItems = editData.items || [];
             else quoteItems = [];
+            
             container.innerHTML = `
                 <div class="settings-card" style="border-top: 4px solid ${color}">
                     <h3 style="color:${color}; margin-top:0;">${editIndex !== -1 ? 'Edit' : 'Create New'} Quotation ${isDraft ? '<span style="color:var(--accent); font-size:0.7rem;">(DRAFT)</span>' : ''}</h3>
@@ -3047,7 +2399,7 @@
             title.innerText = itemIndex !== -1 ? "Edit Quotation Item" : "Add Item to Quotation";
             form.innerHTML = `
                 <div class="form-group" style="position:relative">
-                    <label>Item Name</label>
+                    <label>Item Name (Search or Manual)</label>
                     <input type="text" id="qi_name" class="form-input" value="${itemData.name || ''}" oninput="searchProducts(this.value)">
                     <div id="product_results" class="search-results" style="display:none"></div>
                 </div>
@@ -3219,6 +2571,7 @@
             const companySeal = await Storage.get('co_seal') || '';
             const receivedBySeal = await Storage.get('received_seal') || '';
             
+            // For Letter, use different PDF generation
             if (isLetter) {
                 await downloadLetterPDF(data, fileName);
                 return;
@@ -3351,8 +2704,8 @@
 
                     summaryHTML += `
                         <tr class="final-total-row" style="font-size: 11px;">
-                            <td colspan="${isQuotation ? '6' : '5'}" style="text-align:right; background: transparent !important; color:#000; font-weight:bold; border: 1px solid #000;">GRAND TOTAL</td>
-                            <td style="text-align:center; background: transparent !important; color:#000; font-weight:bold; border: 1px solid #000;">${cur} ${runningGrandTotal.toLocaleString()}</td>
+                            <td colspan="${isQuotation ? '6' : '5'}" style="text-align:right; background: #10b981 !important; color:#fff; font-weight:bold; border: 1px solid #000;">GRAND TOTAL</td>
+                            <td style="text-align:center; background: #10b981 !important; color:#fff; font-weight:bold; border: 1px solid #000;">${cur} ${runningGrandTotal.toLocaleString()}</td>
                         </tr>
                     `;
 
@@ -3381,11 +2734,10 @@
                 termsContent = `<div class="terms-section"><strong>Terms & Conditions:</strong><br>${config[tcKey].replace(/\n/g, '<br>')}</div>`;
             }
 
-            const amountInWords = isInvoice ? numberToWords(dueAmountForWords) : 
-                    isQuotation ? numberToWords(grandTotalForWords || totalAmount) : 
-                    numberToWords(grandTotalForWords || totalAmount);
+            const amountInWords = isInvoice ? numberToWords(dueAmountForWords) : numberToWords(grandTotalForWords || totalAmount);
 
-            const htmlContent = `
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
                 <html>
                 <head>
                     <title>${docType} - ${data.id}</title>
@@ -3409,13 +2761,7 @@
                         
                         .main-data-table { width: 100%; border-collapse: collapse; margin: 6px 0; border: 1px solid #000; table-layout: fixed; }
                         .main-data-table th, .main-data-table td { border: 1px solid #000; padding: 4px 6px; word-wrap: break-word; font-size: 10px; }
-                        .main-data-table th { 
-    background: transparent; /* Changed from #f59e0b to transparent */
-    color: #000; 
-    font-weight: bold; 
-    text-align: center; 
-    text-transform: uppercase; 
-}
+                        .main-data-table th { background: #f59e0b; color: #000; font-weight: bold; text-align: center; text-transform: uppercase; }
                         .main-data-table tr { page-break-inside: avoid; }
                         
                         @media print {
@@ -3463,7 +2809,7 @@
                                 </table>
                                 ` : ''}
 
-                               ${(data.subject && (isQuotation || docType === 'QUOTATION')) ? `<div class="subject-line">Subject: ${data.subject}</div>` : ''}
+                                ${data.subject ? `<div class="subject-line">Subject: ${data.subject}</div>` : ''}
 
                                 ${isReceipt ? `
                                     <div style="float: right; text-align: right; margin-bottom: 10px; font-size: 11px;">
@@ -3522,35 +2868,49 @@
                         </tbody>
                     </table>
                     <div class="footer-wrapper">"${config.slogan || ''}"</div>
+                    <script>window.onload = function() { window.print(); setTimeout(function() { window.close(); }, 500); }<\/script>
                 </body>
                 </html>
-            `;
-            
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(htmlContent);
+            `);
             printWindow.document.close();
-            
-            setTimeout(() => {
-                printWindow.print();
-                setTimeout(() => {
-                    printWindow.close();
-                }, 500);
-            }, 500);
         }
         
+        // Optimized file upload function with lazy loading support
         async function uploadFile(storageKey, title, color) {
             const input = document.createElement('input');
             input.type = 'file';
             input.hidden = true;
-            input.multiple = true;
+            input.multiple = true; // Enabled Multiple selection
             input.accept = '.pdf,.jpg,.jpeg,.png,.gif,.doc,.docx,.xls,.xlsx,.txt,.xml,.csv';
+            
             input.onchange = async function() {
                 if (this.files.length === 0) return;
                 
+                // Show loading indicator
+                const container = document.getElementById('moduleContent');
+                const originalContent = container.innerHTML;
+                container.innerHTML = `
+                    <div style="text-align:center; padding:50px;">
+                        <div class="skeleton" style="width:60px; height:60px; border-radius:50%; margin:0 auto 20px;"></div>
+                        <div class="skeleton" style="width:200px; height:20px; border-radius:10px; margin:0 auto 10px;"></div>
+                        <div class="skeleton" style="width:150px; height:15px; border-radius:8px; margin:0 auto;"></div>
+                        <p style="color:var(--accent); margin-top:20px;">Uploading ${this.files.length} file(s)...</p>
+                    </div>
+                `;
+                
+                // Process each selected file
                 for(let i = 0; i < this.files.length; i++){
                     await handleFileUpload(this.files[i], storageKey, title, color, (i === this.files.length - 1));
                 }
+                
+                // Restore original content after upload
+                if (storageKey.includes('_saved')) {
+                    await renderSavedFilesManager(title, storageKey, color);
+                } else {
+                    await renderFileManager(title, storageKey, color);
+                }
             };
+            
             document.body.appendChild(input);
             input.click();
             setTimeout(() => document.body.removeChild(input), 100);
@@ -3575,12 +2935,6 @@
                         };
                         files.push(newFile);
                         await Storage.save(storageKey, files);
-                        
-                        if (isLast) {
-                            if (storageKey.includes('_saved')) await renderSavedFilesManager(title, storageKey, color);
-                            else await renderFileManager(title, storageKey, color);
-                            alert('File(s) uploaded successfully!');
-                        }
                         resolve();
                     } catch (error) {
                         console.error('Error uploading file:', error);
@@ -3591,61 +2945,52 @@
             });
         }
         
+        // Fast file download function
+        function downloadFile(data, name) {
+            if(!data) { alert('No data available to download.'); return; }
+            
+            // Create a hidden anchor element
+            const link = document.createElement('a');
+            link.href = data;
+            link.download = name;
+            link.style.display = 'none';
+            
+            // Add to document, click, and remove
+            document.body.appendChild(link);
+            link.click();
+            
+            // Clean up after a short delay
+            setTimeout(() => {
+                document.body.removeChild(link);
+                // Revoke object URL to free memory
+                if (link.href.startsWith('blob:')) {
+                    URL.revokeObjectURL(link.href);
+                }
+            }, 100);
+        }
+        
         async function renderTransactions(color) {
             const container = document.getElementById('moduleContent');
-            const incomeData = await Storage.get('income') || [];
-            const expenseData = await Storage.get('expense') || [];
-            const config = await Storage.get('config') || {};
-            const cur = config.currency || '৳';
-            let allTransactions = [];
-            incomeData.forEach((item, idx) => {
-                allTransactions.push({
-                    ...item,
-                    type: 'Income',
-                    originalIndex: idx,
-                    date: item.Date,
-                    amount: parseFloat(item.Amount) || 0
-                });
-            });
-            expenseData.forEach((item, idx) => {
-                allTransactions.push({
-                    ...item,
-                    type: 'Expense',
-                    originalIndex: idx,
-                    date: item.Date,
-                    amount: parseFloat(item.Amount) || 0
-                });
-            });
-            allTransactions.sort((a, b) => new Date(b.date) - new Date(a.date));
-            let balanceMap = new Map();
-            let runningBal = 0;
-            const chronological = [...allTransactions].sort((a, b) => new Date(a.date) - new Date(b.date));
-            chronological.forEach(t => {
-                if (t.type === 'Income') runningBal += t.amount;
-                else runningBal -= t.amount;
-                balanceMap.set(t.type + t.originalIndex + t.date, runningBal);
-            });
-            const totalIncome = incomeData.reduce((sum, item) => sum + (parseFloat(item.Amount) || 0), 0);
-            const totalExpense = expenseData.reduce((sum, item) => sum + (parseFloat(item.Amount) || 0), 0);
-            const netBalance = totalIncome - totalExpense;
+            
+            // Show skeleton loading
             container.innerHTML = `
                 <div class="data-header">
                     <h3 style="margin:0; font-size:1rem; color:${color}">All Transactions</h3>
                 </div>
                 <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--glass-border);">
-                    <h4 style="margin:0 0 10px 0; color:var(--accent); font-size:0.9rem;">Transaction Summary:</h4>
+                    <div class="skeleton" style="width:120px; height:20px; border-radius:8px; margin-bottom:10px;"></div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px;">
-                        <div style="text-align: center; padding: 10px; background: rgba(74, 222, 128, 0.1); border-radius: 10px; border: 1px solid rgba(74, 222, 128, 0.2);">
-                            <div style="font-size: 0.7rem; color: var(--text-muted);">Total Income</div>
-                            <div style="font-size: 1.2rem; font-weight: 800; color: var(--success);">${cur} ${totalIncome.toLocaleString()}</div>
+                        <div style="text-align: center; padding: 10px;">
+                            <div class="skeleton" style="width:80px; height:12px; border-radius:6px; margin:0 auto 8px;"></div>
+                            <div class="skeleton" style="width:100px; height:24px; border-radius:10px; margin:0 auto;"></div>
                         </div>
-                        <div style="text-align: center; padding: 10px; background: rgba(239, 68, 68, 0.1); border-radius: 10px; border: 1px solid rgba(239, 68, 68, 0.2);">
-                            <div style="font-size: 0.7rem; color: var(--text-muted);">Total Expense</div>
-                            <div style="font-size: 1.2rem; font-weight: 800; color: var(--danger);">${cur} ${totalExpense.toLocaleString()}</div>
+                        <div style="text-align: center; padding: 10px;">
+                            <div class="skeleton" style="width:80px; height:12px; border-radius:6px; margin:0 auto 8px;"></div>
+                            <div class="skeleton" style="width:100px; height:24px; border-radius:10px; margin:0 auto;"></div>
                         </div>
-                        <div style="text-align: center; padding: 10px; background: rgba(56, 189, 248, 0.1); border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.2);">
-                            <div style="font-size: 0.7rem; color: var(--text-muted);">Net Balance</div>
-                            <div style="font-size: 1.2rem; font-weight: 800; color: ${netBalance >= 0 ? 'var(--success)' : 'var(--danger)'};">${cur} ${netBalance.toLocaleString()}</div>
+                        <div style="text-align: center; padding: 10px;">
+                            <div class="skeleton" style="width:80px; height:12px; border-radius:6px; margin:0 auto 8px;"></div>
+                            <div class="skeleton" style="width:100px; height:24px; border-radius:10px; margin:0 auto;"></div>
                         </div>
                     </div>
                 </div>
@@ -3663,27 +3008,127 @@
                             </tr>
                         </thead>
                         <tbody id="tbody_transactions">
-                            ${allTransactions.length === 0 ? `<tr><td colspan="7" style="text-align:center; opacity:0.5">No transactions found</td></tr>` : allTransactions.map((trans, idx) => {
-                                const currentBal = balanceMap.get(trans.type + trans.originalIndex + trans.date);
-                                return `
-                                <tr>
-                                    <td class="center">${idx + 1}</td>
-                                    <td>${formatDate(trans.date)}</td>
-                                    <td><span style="display:inline-block; padding:3px 8px; border-radius:6px; font-size:0.7rem; font-weight:700; background:${trans.type === 'Income' ? 'rgba(74, 222, 128, 0.2)' : 'rgba(239, 68, 68, 0.2)'}; color:${trans.type === 'Income' ? 'var(--success)' : 'var(--danger)'};">${trans.type}</span></td>
-                                    <td style="color:${color}; font-weight:600">${trans.Purpose || '-'}</td>
-                                    <td class="center" style="font-weight:800; color:${trans.type === 'Income' ? 'var(--success)' : 'var(--danger)'}">${trans.type === 'Income' ? '+' : '-'}${cur} ${trans.amount.toLocaleString()}</td>
-                                    <td class="center" style="font-weight:900; color:${currentBal >= 0 ? 'var(--success)' : 'var(--danger)'}">${cur} ${currentBal.toLocaleString()}</td>
-                                    <td class="center">
-                                        <div class="action-btns">
-                                            <i class="fas fa-pen edit-btn" onclick="editTransaction('${trans.type}', ${trans.originalIndex})"></i>
-                                            <i class="fas fa-trash del-btn" onclick="deleteTransaction('${trans.type}', ${trans.originalIndex})"></i>
-                                        </div>
-                                    </td>
+                            ${Array.from({length: 5}).map(() => `
+                                <tr class="table-row skeleton lazy-table-row">
+                                    <td class="center"><div class="skeleton" style="width:30px; height:15px; margin:0 auto;"></div></td>
+                                    <td><div class="skeleton" style="width:80px; height:15px;"></div></td>
+                                    <td><div class="skeleton" style="width:60px; height:20px; border-radius:6px;"></div></td>
+                                    <td><div class="skeleton" style="width:120px; height:15px;"></div></td>
+                                    <td class="center"><div class="skeleton" style="width:70px; height:15px; margin:0 auto;"></div></td>
+                                    <td class="center"><div class="skeleton" style="width:80px; height:15px; margin:0 auto;"></div></td>
+                                    <td class="center"><div class="skeleton" style="width:60px; height:20px; margin:0 auto; border-radius:6px;"></div></td>
                                 </tr>
-                            `;}).join('')}
+                            `).join('')}
                         </tbody>
                     </table>
-                </div>`;
+                </div>
+            `;
+            
+            // Load data in background
+            setTimeout(async () => {
+                const incomeData = await Storage.get('income') || [];
+                const expenseData = await Storage.get('expense') || [];
+                const config = await Storage.get('config') || {};
+                const cur = config.currency || '৳';
+                let allTransactions = [];
+                
+                incomeData.forEach((item, idx) => {
+                    allTransactions.push({
+                        ...item,
+                        type: 'Income',
+                        originalIndex: idx,
+                        date: item.Date,
+                        amount: parseFloat(item.Amount) || 0
+                    });
+                });
+                
+                expenseData.forEach((item, idx) => {
+                    allTransactions.push({
+                        ...item,
+                        type: 'Expense',
+                        originalIndex: idx,
+                        date: item.Date,
+                        amount: parseFloat(item.Amount) || 0
+                    });
+                });
+                
+                allTransactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+                let balanceMap = new Map();
+                let runningBal = 0;
+                const chronological = [...allTransactions].sort((a, b) => new Date(a.date) - new Date(b.date));
+                chronological.forEach(t => {
+                    if (t.type === 'Income') runningBal += t.amount;
+                    else runningBal -= t.amount;
+                    balanceMap.set(t.type + t.originalIndex + t.date, runningBal);
+                });
+                
+                const totalIncome = incomeData.reduce((sum, item) => sum + (parseFloat(item.Amount) || 0), 0);
+                const totalExpense = expenseData.reduce((sum, item) => sum + (parseFloat(item.Amount) || 0), 0);
+                const netBalance = totalIncome - totalExpense;
+                
+                container.innerHTML = `
+                    <div class="data-header">
+                        <h3 style="margin:0; font-size:1rem; color:${color}">All Transactions</h3>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--glass-border);">
+                        <h4 style="margin:0 0 10px 0; color:var(--accent); font-size:0.9rem;">Transaction Summary:</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px;">
+                            <div style="text-align: center; padding: 10px; background: rgba(74, 222, 128, 0.1); border-radius: 10px; border: 1px solid rgba(74, 222, 128, 0.2);">
+                                <div style="font-size: 0.7rem; color: var(--text-muted);">Total Income</div>
+                                <div style="font-size: 1.2rem; font-weight: 800; color: var(--success);">${cur} ${totalIncome.toLocaleString()}</div>
+                            </div>
+                            <div style="text-align: center; padding: 10px; background: rgba(239, 68, 68, 0.1); border-radius: 10px; border: 1px solid rgba(239, 68, 68, 0.2);">
+                                <div style="font-size: 0.7rem; color: var(--text-muted);">Total Expense</div>
+                                <div style="font-size: 1.2rem; font-weight: 800; color: var(--danger);">${cur} ${totalExpense.toLocaleString()}</div>
+                            </div>
+                            <div style="text-align: center; padding: 10px; background: rgba(56, 189, 248, 0.1); border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.2);">
+                                <div style="font-size: 0.7rem; color: var(--text-muted);">Net Balance</div>
+                                <div style="font-size: 1.2rem; font-weight: 800; color: ${netBalance >= 0 ? 'var(--success)' : 'var(--danger)'};">${cur} ${netBalance.toLocaleString()}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="center">SL</th>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Purpose</th>
+                                    <th class="center">Amount</th>
+                                    <th class="center">Balance</th>
+                                    <th class="center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_transactions">
+                                ${allTransactions.length === 0 ? `<tr><td colspan="7" style="text-align:center; opacity:0.5">No transactions found</td></tr>` : allTransactions.map((trans, idx) => {
+                                    const currentBal = balanceMap.get(trans.type + trans.originalIndex + trans.date);
+                                    return `
+                                    <tr class="lazy-table-row" data-index="${idx}">
+                                        <td class="center">${idx + 1}</td>
+                                        <td>${formatDate(trans.date)}</td>
+                                        <td><span style="display:inline-block; padding:3px 8px; border-radius:6px; font-size:0.7rem; font-weight:700; background:${trans.type === 'Income' ? 'rgba(74, 222, 128, 0.2)' : 'rgba(239, 68, 68, 0.2)'}; color:${trans.type === 'Income' ? 'var(--success)' : 'var(--danger)'};">${trans.type}</span></td>
+                                        <td style="color:${color}; font-weight:600">${trans.Purpose || '-'}</td>
+                                        <td class="center" style="font-weight:800; color:${trans.type === 'Income' ? 'var(--success)' : 'var(--danger)'}">${trans.type === 'Income' ? '+' : '-'}${cur} ${trans.amount.toLocaleString()}</td>
+                                        <td class="center" style="font-weight:900; color:${currentBal >= 0 ? 'var(--success)' : 'var(--danger)'}">${cur} ${currentBal.toLocaleString()}</td>
+                                        <td class="center">
+                                            <div class="action-btns">
+                                                <i class="fas fa-pen edit-btn" onclick="editTransaction('${trans.type}', ${trans.originalIndex})"></i>
+                                                <i class="fas fa-trash del-btn" onclick="deleteTransaction('${trans.type}', ${trans.originalIndex})"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                `;}).join('')}
+                            </tbody>
+                        </table>
+                    </div>`;
+                
+                // Initialize lazy loading for table rows
+                initLazyLoadObserver();
+                const lazyRows = container.querySelectorAll('.lazy-table-row');
+                lazyRows.forEach(row => lazyLoadObserver.observe(row));
+                
+            }, 100);
         }
         
         function editTransaction(type, index) {
@@ -3701,71 +3146,116 @@
             }
         }
         
+        // Optimized file manager with lazy loading
         async function renderSavedFilesManager(title, storageKey, color) {
             const container = document.getElementById('moduleContent');
-            const files = await Storage.get(storageKey) || [];
-            const sortedFiles = files.sort((a, b) => {
-                const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
-                const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
-                return dateB - dateA;
-            });
             
-            const isDocumentType = ['quotation_saved', 'invoice_saved', 'delivery_saved', 'purchase_saved', 'receipt_saved', 'letter_saved'].includes(storageKey);
-            
+            // Show skeleton loading first
             container.innerHTML = `
                 <div class="file-controls">
                     <h3 style="margin:0; font-size:1rem; color:${color}">${title}</h3>
                     <button class="add-btn" onclick="uploadFile('${storageKey}', '${title}', '${color}')"><i class="fas fa-cloud-arrow-up"></i> Upload File</button>
                 </div>
                 <div class="file-grid" id="fileDisplayGrid">
-                    ${sortedFiles.length === 0 ? '<p style="grid-column: 1/-1; text-align:center; opacity:0.5; padding:40px;">No saved files found.</p>' : ''}
-                    ${sortedFiles.map((file, idx) => {
-                        const originalIndex = files.findIndex(f => f.id === file.id);
-                        const displayName = file.name || file.id || `Document ${idx + 1}`;
-                        const displayDate = file.createdAt ? new Date(file.createdAt).toLocaleDateString() : 'N/A';
-                        const isQuotation = storageKey === 'quotation_saved';
-                        const isLetter = storageKey === 'letter_saved';
-                        
-                        const fileActionsHTML = isDocumentType ? `
-                            <button class="file-btn btn-download" onclick='downloadPDF(${JSON.stringify(file)}, "${displayName}")' title="Download PDF"><i class="fas fa-file-pdf"></i></button>
-                            <button class="file-btn btn-print" onclick='downloadPDF(${JSON.stringify(file)}, "${displayName}")' title="Print A4"><i class="fas fa-print"></i></button>
-                            <button class="file-btn btn-edit" onclick="editSavedFile(${originalIndex}, '${storageKey}', '${color}')" title="Edit"><i class="fas fa-pen"></i></button>
-                            ${isQuotation ? `
-                                <button class="file-btn btn-convert" onclick="convertQuotationToInvoice(${originalIndex})" title="Convert to Invoice"><i class="fas fa-file-invoice"></i></button>
-                                <button class="file-btn btn-convert" onclick="convertQuotationToDelivery(${originalIndex})" title="Convert to Delivery"><i class="fas fa-truck"></i></button>
-                            ` : ''}
-                            ${isLetter ? `
-                                <button class="file-btn btn-download" onclick='downloadLetterPDF(${JSON.stringify(file)}, "${displayName}")' title="Download PDF"><i class="fas fa-file-pdf"></i></button>
-                                <button class="file-btn btn-print" onclick='downloadLetterPDF(${JSON.stringify(file)}, "${displayName}")' title="Print Letter"><i class="fas fa-print"></i></button>
-                            ` : ''}
-                            <button class="file-btn btn-delete" onclick="deleteSavedFile(${originalIndex}, '${storageKey}', '${title}', '${color}')" title="Delete"><i class="fas fa-trash-can"></i></button>
-                        ` : `
-                            <button class="file-btn btn-download" onclick='downloadPDF(${JSON.stringify(file)}, "${displayName}")' title="Download PDF"><i class="fas fa-file-pdf"></i></button>
-                            <button class="file-btn btn-print" onclick='downloadPDF(${JSON.stringify(file)}, "${displayName}")' title="Print A4"><i class="fas fa-print"></i></button>
-                            <button class="file-btn btn-edit" onclick="editSavedFile(${originalIndex}, '${storageKey}', '${color}')" title="Edit"><i class="fas fa-pen"></i></button>
-                            ${isQuotation ? `
-                                <button class="file-btn btn-convert" onclick="convertQuotationToInvoice(${originalIndex})" title="Convert to Invoice"><i class="fas fa-file-invoice"></i></button>
-                                <button class="file-btn btn-convert" onclick="convertQuotationToDelivery(${originalIndex})" title="Convert to Delivery"><i class="fas fa-truck"></i></button>
-                            ` : ''}
-                            <button class="file-btn btn-delete" onclick="deleteSavedFile(${originalIndex}, '${storageKey}', '${title}', '${color}')" title="Delete"><i class="fas fa-trash-can"></i></button>
-                        `;
-                        
-                        return `
-                        <div class="file-card">
-                            <div class="file-preview">
-                                ${getFilePreview(file)}
+                    ${Array.from({length: 6}).map(() => `
+                        <div class="file-card skeleton">
+                            <div class="file-preview lazy-load">
+                                <div class="skeleton" style="width:100%; height:100%;"></div>
                             </div>
                             <div class="file-info">
-                                <div class="file-name" title="${displayName}">${displayName}</div>
-                                <div style="font-size:0.6rem; color:var(--text-muted); margin-bottom:8px;">Created: ${displayDate}</div>
+                                <div class="file-name skeleton"></div>
+                                <div style="font-size:0.6rem; color:var(--text-muted); margin-bottom:8px;" class="skeleton"></div>
                                 <div class="file-actions">
-                                    ${fileActionsHTML}
+                                    <div class="skeleton" style="width:100%; height:24px; border-radius:6px;"></div>
                                 </div>
                             </div>
                         </div>
-                    `}).join('')}
+                    `).join('')}
                 </div>
             `;
+            
+            // Load files in background
+            setTimeout(async () => {
+                const files = await Storage.get(storageKey) || [];
+                const sortedFiles = files.sort((a, b) => {
+                    const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+                    const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+                    return dateB - dateA;
+                });
+                
+                // Determine if this is a document type that should hide download button
+                const isDocumentType = ['quotation_saved', 'invoice_saved', 'delivery_saved', 'purchase_saved', 'receipt_saved', 'letter_saved'].includes(storageKey);
+                
+                container.innerHTML = `
+                    <div class="file-controls">
+                        <h3 style="margin:0; font-size:1rem; color:${color}">${title}</h3>
+                        <button class="add-btn" onclick="uploadFile('${storageKey}', '${title}', '${color}')"><i class="fas fa-cloud-arrow-up"></i> Upload File</button>
+                    </div>
+                    <div class="file-grid" id="fileDisplayGrid">
+                        ${sortedFiles.length === 0 ? '<p style="grid-column: 1/-1; text-align:center; opacity:0.5; padding:40px;">No saved files found.</p>' : ''}
+                        ${sortedFiles.map((file, idx) => {
+                            const originalIndex = files.findIndex(f => f.id === file.id);
+                            const displayName = file.name || file.id || `Document ${idx + 1}`;
+                            const displayDate = file.createdAt ? new Date(file.createdAt).toLocaleDateString() : 'N/A';
+                            const isQuotation = storageKey === 'quotation_saved';
+                            const isLetter = storageKey === 'letter_saved';
+                            
+                            // Determine file type for icon
+                            const isImage = file.type && file.type.startsWith('image/');
+                            const isPDF = file.type && file.type.includes('pdf');
+                            const isExcel = file.type && (file.type.includes('excel') || file.type.includes('spreadsheet') || (file.name && (file.name.endsWith('.xls') || file.name.endsWith('.xlsx') || file.name.endsWith('.csv'))));
+                            const isWord = file.type && (file.type.includes('document') || file.type.includes('msword') || (file.name && (file.name.endsWith('.doc') || file.name.endsWith('.docx'))));
+                            const fileType = isImage ? 'image' : isPDF ? 'pdf' : isExcel ? 'excel' : isWord ? 'word' : 'note';
+                            
+                            // For document types, don't show download PDF button
+                            const fileActionsHTML = isDocumentType ? `
+                                <button class="file-btn btn-print" onclick='downloadPDF(${JSON.stringify(file)}, "${displayName}")' title="Print A4"><i class="fas fa-print"></i></button>
+                                <button class="file-btn btn-edit" onclick="editSavedFile(${originalIndex}, '${storageKey}', '${color}')" title="Edit"><i class="fas fa-pen"></i></button>
+                                ${isQuotation ? `
+                                    <button class="file-btn btn-convert" onclick="convertQuotationToInvoice(${originalIndex})" title="Convert to Invoice"><i class="fas fa-file-invoice"></i></button>
+                                    <button class="file-btn btn-convert" onclick="convertQuotationToDelivery(${originalIndex})" title="Convert to Delivery"><i class="fas fa-truck"></i></button>
+                                ` : ''}
+                                ${isLetter ? `
+                                    <button class="file-btn btn-print" onclick='downloadLetterPDF(${JSON.stringify(file)}, "${displayName}")' title="Print Letter"><i class="fas fa-print"></i></button>
+                                ` : ''}
+                                <button class="file-btn btn-delete" onclick="deleteSavedFile(${originalIndex}, '${storageKey}', '${title}', '${color}')" title="Delete"><i class="fas fa-trash-can"></i></button>
+                            ` : `
+                                <button class="file-btn btn-download" onclick='downloadPDF(${JSON.stringify(file)}, "${displayName}")' title="Download PDF"><i class="fas fa-file-pdf"></i></button>
+                                <button class="file-btn btn-print" onclick='downloadPDF(${JSON.stringify(file)}, "${displayName}")' title="Print A4"><i class="fas fa-print"></i></button>
+                                <button class="file-btn btn-edit" onclick="editSavedFile(${originalIndex}, '${storageKey}', '${color}')" title="Edit"><i class="fas fa-pen"></i></button>
+                                ${isQuotation ? `
+                                    <button class="file-btn btn-convert" onclick="convertQuotationToInvoice(${originalIndex})" title="Convert to Invoice"><i class="fas fa-file-invoice"></i></button>
+                                    <button class="file-btn btn-convert" onclick="convertQuotationToDelivery(${originalIndex})" title="Convert to Delivery"><i class="fas fa-truck"></i></button>
+                                ` : ''}
+                                <button class="file-btn btn-delete" onclick="deleteSavedFile(${originalIndex}, '${storageKey}', '${title}', '${color}')" title="Delete"><i class="fas fa-trash-can"></i></button>
+                            `;
+                            
+                            return `
+                            <div class="file-card">
+                                <div class="file-preview lazy-load lazy-file" 
+                                     data-file-data="${isImage ? file.data : ''}"
+                                     data-is-image="${isImage}"
+                                     data-file-type="${fileType}">
+                                    ${isImage ? '' : `<i class="fas fa-file-${fileType} file-type-icon ${fileType}-icon"></i>`}
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name" title="${displayName}">${displayName}</div>
+                                    <div style="font-size:0.6rem; color:var(--text-muted); margin-bottom:8px;">Created: ${displayDate}</div>
+                                    <div class="file-actions">
+                                        ${fileActionsHTML}
+                                    </div>
+                                </div>
+                            </div>
+                        `}).join('')}
+                    </div>
+                `;
+                
+                // Initialize lazy loading for file previews
+                initLazyLoadObserver();
+                const lazyFiles = container.querySelectorAll('.lazy-file');
+                lazyFiles.forEach(file => lazyLoadObserver.observe(file));
+                
+            }, 100);
         }
         
         async function convertQuotationToInvoice(quoteIndex) {
@@ -3773,10 +3263,12 @@
             const quote = files[quoteIndex];
             if (!quote) return;
             
+            // Confirm conversion
             if (!confirm(`Convert quotation ${quote.id} to invoice? This will create a new invoice with the same items.`)) {
                 return;
             }
             
+            // Calculate total amount from quote items
             let totalAmount = 0;
             if (quote.items && quote.items.length > 0) {
                 totalAmount = quote.items.reduce((sum, item) => {
@@ -3784,6 +3276,7 @@
                 }, 0);
             }
             
+            // Create invoice data from quote
             const invoiceData = {
                 id: await generateSavedID('INV'),
                 client: quote.client || '',
@@ -3803,12 +3296,14 @@
                 terms: quote.terms || ''
             };
             
+            // Save to invoice_saved
             const savedInvoices = await Storage.get('invoice_saved') || [];
             savedInvoices.push(invoiceData);
             await Storage.save('invoice_saved', savedInvoices);
             
             alert(`Quotation converted to invoice successfully! New Invoice ID: ${invoiceData.id}`);
             
+            // Optionally navigate to invoices
             handleSubModuleClick('Saved Files', 'invoice_saved', '#34d399');
         }
         
@@ -3817,10 +3312,12 @@
             const quote = files[quoteIndex];
             if (!quote) return;
             
+            // Confirm conversion
             if (!confirm(`Convert quotation ${quote.id} to delivery challan? This will create a new delivery challan with the same items.`)) {
                 return;
             }
             
+            // Create delivery data from quote
             const deliveryData = {
                 id: await generateSavedID('DC'),
                 client: quote.client || '',
@@ -3844,27 +3341,15 @@
                 terms: quote.terms || ''
             };
             
+            // Save to delivery_saved
             const savedDeliveries = await Storage.get('delivery_saved') || [];
             savedDeliveries.push(deliveryData);
             await Storage.save('delivery_saved', savedDeliveries);
             
             alert(`Quotation converted to delivery challan successfully! New Delivery ID: ${deliveryData.id}`);
             
+            // Optionally navigate to deliveries
             handleSubModuleClick('Saved Files', 'delivery_saved', '#60a5fa');
-        }
-        
-        function getFilePreview(file) {
-            const isImage = file.type && file.type.startsWith('image/');
-            const isPDF = file.type && file.type.includes('pdf');
-            const isExcel = file.type && (file.type.includes('excel') || file.type.includes('spreadsheet') || (file.name && (file.name.endsWith('.xls') || file.name.endsWith('.xlsx') || file.name.endsWith('.csv'))));
-            const isWord = file.type && (file.type.includes('document') || file.type.includes('msword') || (file.name && (file.name.endsWith('.doc') || file.name.endsWith('.docx'))));
-            const isText = file.type && (file.type.includes('text') || (file.name && (file.name.endsWith('.txt') || file.name.endsWith('.rtf'))));
-            if (isImage) return `<img src="${file.data}" alt="${file.name}" style="width:100%; height:100%; object-fit:contain;">`;
-            if (isPDF) return `<i class="fas fa-file-pdf file-type-icon pdf-icon"></i>`;
-            if (isExcel) return `<i class="fas fa-file-excel file-type-icon excel-icon"></i>`;
-            if (isWord) return `<i class="fas fa-file-word file-type-icon word-icon"></i>`;
-            if (isText) return `<i class="fas fa-file-alt file-type-icon text-icon"></i>`;
-            return `<i class="fas fa-file file-type-icon note-icon"></i>`;
         }
         
         async function editSavedFile(index, storageKey, color) {
@@ -3889,43 +3374,80 @@
             }
         }
         
+        // Updated renderFileManager with lazy loading
         async function renderFileManager(title, storageKey, color) {
             const container = document.getElementById('moduleContent');
-            const files = await Storage.get(storageKey) || [];
             
+            // Check if this is a product category (starts with a lowercase letter and doesn't contain underscores)
             const isProductCategory = /^[a-z]/.test(storageKey) && !storageKey.includes('_') && !storageKey.includes('uploaded');
             
+            // Show skeleton loading first
             container.innerHTML = `
                 <div class="file-controls">
                     <h3 style="margin:0; font-size:1rem; color:${color}">${title}</h3>
                     ${!isProductCategory ? `<button class="add-btn" onclick="uploadFile('${storageKey}', '${title}', '${color}')"><i class="fas fa-cloud-arrow-up"></i> Upload File</button>` : ''}
                 </div>
                 <div class="file-grid" id="fileDisplayGrid">
-                    ${files.length === 0 ? '<p style="grid-column: 1/-1; text-align:center; opacity:0.5; padding:40px;">No files found.</p>' : ''}
-                    ${files.map((file, idx) => `
-                        <div class="file-card">
-                            <div class="file-preview">
-                                ${getFilePreview(file)}
+                    ${Array.from({length: 6}).map(() => `
+                        <div class="file-card skeleton">
+                            <div class="file-preview lazy-load">
+                                <div class="skeleton" style="width:100%; height:100%;"></div>
                             </div>
                             <div class="file-info">
-                                <div class="file-name" title="${file.name || file.id}">${file.name || file.id}</div>
+                                <div class="file-name skeleton"></div>
                                 <div class="file-actions">
-                                    <button class="file-btn btn-download" onclick="downloadFile('${file.data || ''}', '${file.name || 'file'}')" title="Download"><i class="fas fa-download"></i></button>
-                                    <button class="file-btn btn-delete" onclick="deleteFile('${storageKey}', ${idx}, '${title}', '${color}')" title="Delete"><i class="fas fa-trash-can"></i></button>
+                                    <div class="skeleton" style="width:100%; height:24px; border-radius:6px;"></div>
                                 </div>
                             </div>
                         </div>
                     `).join('')}
                 </div>
             `;
-        }
-        
-        function downloadFile(data, name) {
-            if(!data) { alert('No data available to download.'); return; }
-            const link = document.createElement('a');
-            link.href = data;
-            link.download = name;
-            link.click();
+            
+            // Load files in background
+            setTimeout(async () => {
+                const files = await Storage.get(storageKey) || [];
+                
+                container.innerHTML = `
+                    <div class="file-controls">
+                        <h3 style="margin:0; font-size:1rem; color:${color}">${title}</h3>
+                        ${!isProductCategory ? `<button class="add-btn" onclick="uploadFile('${storageKey}', '${title}', '${color}')"><i class="fas fa-cloud-arrow-up"></i> Upload File</button>` : ''}
+                    </div>
+                    <div class="file-grid" id="fileDisplayGrid">
+                        ${files.length === 0 ? '<p style="grid-column: 1/-1; text-align:center; opacity:0.5; padding:40px;">No files found.</p>' : ''}
+                        ${files.map((file, idx) => {
+                            const isImage = file.type && file.type.startsWith('image/');
+                            const isPDF = file.type && file.type.includes('pdf');
+                            const isExcel = file.type && (file.type.includes('excel') || file.type.includes('spreadsheet') || (file.name && (file.name.endsWith('.xls') || file.name.endsWith('.xlsx') || file.name.endsWith('.csv'))));
+                            const isWord = file.type && (file.type.includes('document') || file.type.includes('msword') || (file.name && (file.name.endsWith('.doc') || file.name.endsWith('.docx'))));
+                            const fileType = isImage ? 'image' : isPDF ? 'pdf' : isExcel ? 'excel' : isWord ? 'word' : 'note';
+                            
+                            return `
+                            <div class="file-card">
+                                <div class="file-preview lazy-load lazy-file" 
+                                     data-file-data="${isImage ? file.data : ''}"
+                                     data-is-image="${isImage}"
+                                     data-file-type="${fileType}">
+                                    ${isImage ? '' : `<i class="fas fa-file-${fileType} file-type-icon ${fileType}-icon"></i>`}
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name" title="${file.name || file.id}">${file.name || file.id}</div>
+                                    <div class="file-actions">
+                                        <button class="file-btn btn-download" onclick="downloadFile('${file.data || ''}', '${file.name || 'file'}')" title="Download"><i class="fas fa-download"></i></button>
+                                        <button class="file-btn btn-delete" onclick="deleteFile('${storageKey}', ${idx}, '${title}', '${color}')" title="Delete"><i class="fas fa-trash-can"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        `}).join('')}
+                    </div>
+                `;
+                
+                // Initialize lazy loading for file previews
+                initLazyLoadObserver();
+                const lazyFiles = container.querySelectorAll('.lazy-file');
+                lazyFiles.forEach(file => lazyLoadObserver.observe(file));
+                
+            }, 100);
         }
         
         async function deleteFile(storageKey, idx, title, color) {
@@ -3937,10 +3459,11 @@
             }
         }
         
+        // PRODUCT CATEGORY DATA MANAGEMENT with lazy loading
         async function renderProductCategoryData(subName, storageKey, color) {
             const container = document.getElementById('moduleContent');
-            const data = await Storage.get(storageKey) || [];
             
+            // Show skeleton loading
             container.innerHTML = `
                 <div class="data-header">
                     <h3 style="margin:0; font-size:1rem; color:${color}">${subName}</h3>
@@ -3964,27 +3487,77 @@
                             </tr>
                         </thead>
                         <tbody id="tbody_${storageKey}">
-                            ${data.length === 0 ? `<tr><td colspan="7" style="text-align:center; opacity:0.5">No products found in ${subName}</td></tr>` : 
-                            data.map((row, idx) => `
-                                <tr data-index="${idx}">
-                                    <td class="center">${idx + 1}</td>
-                                    <td style="color:${color}; font-weight:600">${row.Items || '-'}</td>
-                                    <td style="font-size:0.75rem">${row.Description || '-'}</td>
-                                    <td class="center">${row.Unit || '-'}</td>
-                                    <td class="center" style="font-weight:800">${row['Unit Price'] || '0'}</td>
-                                    <td class="center" style="font-weight:800; color:${(row.Quantity || 0) > 0 ? 'var(--success)' : 'var(--danger)'}">${row.Quantity || 0}</td>
-                                    <td class="center">
-                                        <div class="action-btns">
-                                            <i class="fas fa-pen edit-btn" onclick="openProductCategoryModal('${storageKey}', '${subName}', ${idx})"></i>
-                                            <i class="fas fa-trash del-btn" onclick="deleteProductCategoryItem('${storageKey}', ${idx}, '${subName}')"></i>
-                                        </div>
-                                    </td>
+                            ${Array.from({length: 5}).map(() => `
+                                <tr class="table-row skeleton lazy-table-row">
+                                    <td class="center"><div class="skeleton" style="width:30px; height:15px; margin:0 auto;"></div></td>
+                                    <td><div class="skeleton" style="width:120px; height:15px;"></div></td>
+                                    <td><div class="skeleton" style="width:150px; height:15px;"></div></td>
+                                    <td class="center"><div class="skeleton" style="width:40px; height:15px; margin:0 auto;"></div></td>
+                                    <td class="center"><div class="skeleton" style="width:60px; height:15px; margin:0 auto;"></div></td>
+                                    <td class="center"><div class="skeleton" style="width:50px; height:15px; margin:0 auto;"></div></td>
+                                    <td class="center"><div class="skeleton" style="width:60px; height:20px; margin:0 auto; border-radius:6px;"></div></td>
                                 </tr>
                             `).join('')}
                         </tbody>
                     </table>
                 </div>
             `;
+            
+            // Load data in background
+            setTimeout(async () => {
+                const data = await Storage.get(storageKey) || [];
+                
+                container.innerHTML = `
+                    <div class="data-header">
+                        <h3 style="margin:0; font-size:1rem; color:${color}">${subName}</h3>
+                        <button class="add-btn" onclick="openProductCategoryModal('${storageKey}', '${subName}', ${-1})"><i class="fas fa-plus"></i> Add Product</button>
+                    </div>
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="search_${storageKey}" placeholder="Search ${subName}..." oninput="filterProductCategory('${storageKey}')">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <div class="table-container">
+                        <table id="table_${storageKey}">
+                            <thead>
+                                <tr>
+                                    <th class="center">SL</th>
+                                    <th>Items</th>
+                                    <th>Description</th>
+                                    <th class="center">Unit</th>
+                                    <th class="center">Unit Price</th>
+                                    <th class="center">Available Quantity</th>
+                                    <th class="center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_${storageKey}">
+                                ${data.length === 0 ? `<tr><td colspan="7" style="text-align:center; opacity:0.5">No products found in ${subName}</td></tr>` : 
+                                data.map((row, idx) => `
+                                    <tr class="lazy-table-row" data-index="${idx}">
+                                        <td class="center">${idx + 1}</td>
+                                        <td style="color:${color}; font-weight:600">${row.Items || '-'}</td>
+                                        <td style="font-size:0.75rem">${row.Description || '-'}</td>
+                                        <td class="center">${row.Unit || '-'}</td>
+                                        <td class="center" style="font-weight:800">${row['Unit Price'] || '0'}</td>
+                                        <td class="center" style="font-weight:800; color:${(row.Quantity || 0) > 0 ? 'var(--success)' : 'var(--danger)'}">${row.Quantity || 0}</td>
+                                        <td class="center">
+                                            <div class="action-btns">
+                                                <i class="fas fa-pen edit-btn" onclick="openProductCategoryModal('${storageKey}', '${subName}', ${idx})"></i>
+                                                <i class="fas fa-trash del-btn" onclick="deleteProductCategoryItem('${storageKey}', ${idx}, '${subName}')"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+                
+                // Initialize lazy loading for table rows
+                initLazyLoadObserver();
+                const lazyRows = container.querySelectorAll('.lazy-table-row');
+                lazyRows.forEach(row => lazyLoadObserver.observe(row));
+                
+            }, 100);
         }
 
         function filterProductCategory(storageKey) {
@@ -4185,44 +3758,22 @@
         
         async function renderWODataTable(title, storageKey, color) {
             const container = document.getElementById('moduleContent');
-            const rawData = await Storage.get(storageKey) || [];
-            const data = [...rawData].sort((a, b) => new Date(b.Date) - new Date(a.Date));
-            const config = await Storage.get('config') || {};
-            const cur = config.currency || '৳';
             
-            const totalOrder = data.length;
-            const totalValue = data.reduce((sum, item) => sum + (parseFloat(item.Amount) || 0), 0);
-            const totalCost = data.reduce((sum, item) => sum + (parseFloat(item.Cost) || 0), 0);
-            const totalProfit = data.reduce((sum, item) => sum + (parseFloat(item.Profit) || 0), 0);
-            const profitPercentage = totalValue > 0 ? ((totalProfit / totalValue) * 100).toFixed(1) : 0;
-            
+            // Show skeleton loading first
             container.innerHTML = `
                 <div class="data-header">
                     <h3 style="margin:0; font-size:1rem; color:${color}">${title}</h3>
                     <button class="add-btn" onclick="openWOCalculationModal()"><i class="fas fa-plus"></i> Add Calculation</button>
                 </div>
                 <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--glass-border);">
-                    <h4 style="margin:0 0 10px 0; color:var(--accent); font-size:0.9rem;">Work Order Summary:</h4>
+                    <div class="skeleton" style="width:120px; height:20px; border-radius:8px; margin-bottom:10px;"></div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-top: 10px;">
-                        <div style="text-align: center; padding: 10px; background: rgba(56, 189, 248, 0.1); border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.2);">
-                            <div style="font-size: 0.7rem; color: var(--text-muted);">Total Orders</div>
-                            <div style="font-size: 1.2rem; font-weight: 800; color: var(--accent);">${totalOrder}</div>
-                        </div>
-                        <div style="text-align: center; padding: 10px; background: rgba(74, 222, 128, 0.1); border-radius: 10px; border: 1px solid rgba(74, 222, 128, 0.2);">
-                            <div style="font-size: 0.7rem; color: var(--text-muted);">Total Value</div>
-                            <div style="font-size: 1.2rem; font-weight: 800; color: var(--success);">${cur} ${totalValue.toLocaleString()}</div>
-                        </div>
-                        <div style="text-align: center; padding: 10px; background: rgba(251, 191, 36, 0.1); border-radius: 10px; border: 1px solid rgba(251, 191, 36, 0.2);">
-                            <div style="font-size: 0.7rem; color: var(--text-muted);">Total Cost</div>
-                            <div style="font-size: 1.2rem; font-weight: 800; color: var(--primary);">${cur} ${totalCost.toLocaleString()}</div>
-                        </div>
-                        <div style="text-align: center; padding: 10px; background: rgba(34, 197, 94, 0.1); border-radius: 10px; border: 1px solid rgba(34, 197, 94, 0.2);">
-                            <div style="font-size: 0.7rem; color: var(--text-muted);">Total Profit</div>
-                            <div style="font-size: 1.2rem; font-weight: 800; color: #22c55e;">${cur} ${totalProfit.toLocaleString()}</div>
-                            <div style="font-size: 0.65rem; color: ${totalProfit >= 0 ? '#22c55e' : '#ef4444'}; font-weight: 700; margin-top: 3px;">
-                                ${profitPercentage}%
+                        ${Array.from({length: 4}).map(() => `
+                            <div style="text-align: center; padding: 10px;">
+                                <div class="skeleton" style="width:80px; height:12px; border-radius:6px; margin:0 auto 8px;"></div>
+                                <div class="skeleton" style="width:100px; height:24px; border-radius:10px; margin:0 auto;"></div>
                             </div>
-                        </div>
+                        `).join('')}
                     </div>
                 </div>
                 <div class="table-container">
@@ -4241,48 +3792,127 @@
                             </tr>
                         </thead>
                         <tbody id="tbody_${storageKey}">
-                            ${data.length === 0 ? `<tr><td colspan="9" style="text-align:center; opacity:0.5">No records found</td></tr>` : ''}
-                            ${data.map((row, idx) => {
-                                const amount = parseFloat(row.Amount) || 0;
-                                const cost = parseFloat(row.Cost) || 0;
-                                const profit = parseFloat(row.Profit) || 0;
-                                const profitPercentage = amount > 0 ? ((profit / amount) * 100).toFixed(1) : 0;
-                                return `
-                                    <tr>
-                                        <td class="center">${idx + 1}</td>
-                                        <td>${formatDate(row.Date)}</td>
-                                        <td style="color:${color}; font-weight:600">${row.Project || '-'}</td>
-                                        <td>${row['Order ID'] || '-'}</td>
-                                        <td style="font-size:0.7rem">${row['Scope Type'] || '-'}</td>
-                                        <td class="center" style="font-weight:800; color:white">${cur} ${amount.toLocaleString()}</td>
-                                        <td class="center" style="font-weight:800; color:var(--primary)">${cur} ${cost.toLocaleString()}</td>
-                                        <td class="center" style="font-weight:800; color:${profit >= 0 ? '#22c55e' : '#ef4444'}">
-                                            ${cur} ${profit.toLocaleString()}<br>
-                                            <small style="font-size:0.6rem; color:${profit >= 0 ? '#22c55e' : '#ef4444'}">
-                                                ${profitPercentage}%
-                                            </small>
-                                        </td>
-                                        <td class="center">
-                                            <div class="action-btns">
-                                                <i class="fas fa-pen edit-btn" onclick="editWOCalculation(${idx}, '${storageKey}')"></i>
-                                                <i class="fas fa-trash del-btn" onclick="deleteWOCalculation(${idx}, '${storageKey}')"></i>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                `;
-                            }).join('')}
+                            ${Array.from({length: 5}).map(() => `
+                                <tr class="table-row skeleton lazy-table-row">
+                                    ${Array.from({length: 9}).map(() => `
+                                        <td class="center"><div class="skeleton" style="width:80%; height:15px; margin:0 auto;"></div></td>
+                                    `).join('')}
+                                </tr>
+                            `).join('')}
                         </tbody>
-                        <tfoot class="total-row-fixed">
-                            <tr>
-                                <td colspan="5" style="text-align:right; text-transform:uppercase; letter-spacing:1px; padding:15px;">COMBINED TOTALS</td>
-                                <td class="center" style="font-size:1.1rem; border-left: 1px solid var(--glass-border); color:white">${cur} ${totalValue.toLocaleString()}</td>
-                                <td class="center" style="font-size:1.1rem; border-left: 1px solid var(--glass-border); color:var(--primary)">${cur} ${totalCost.toLocaleString()}</td>
-                                <td class="center" style="font-size:1.1rem; border-left: 1px solid var(--glass-border); color:#22c55e">${cur} ${totalProfit.toLocaleString()}</td>
-                                <td></td>
-                            </tr>
-                        </tfoot>
                     </table>
-                </div>`;
+                </div>
+            `;
+            
+            // Load data in background
+            setTimeout(async () => {
+                const rawData = await Storage.get(storageKey) || [];
+                const data = [...rawData].sort((a, b) => new Date(b.Date) - new Date(a.Date));
+                const config = await Storage.get('config') || {};
+                const cur = config.currency || '৳';
+                
+                // Calculate summary metrics
+                const totalOrder = data.length;
+                const totalValue = data.reduce((sum, item) => sum + (parseFloat(item.Amount) || 0), 0);
+                const totalCost = data.reduce((sum, item) => sum + (parseFloat(item.Cost) || 0), 0);
+                const totalProfit = data.reduce((sum, item) => sum + (parseFloat(item.Profit) || 0), 0);
+                const profitPercentage = totalValue > 0 ? ((totalProfit / totalValue) * 100).toFixed(1) : 0;
+                
+                container.innerHTML = `
+                    <div class="data-header">
+                        <h3 style="margin:0; font-size:1rem; color:${color}">${title}</h3>
+                        <button class="add-btn" onclick="openWOCalculationModal()"><i class="fas fa-plus"></i> Add Calculation</button>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--glass-border);">
+                        <h4 style="margin:0 0 10px 0; color:var(--accent); font-size:0.9rem;">Work Order Summary:</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-top: 10px;">
+                            <div style="text-align: center; padding: 10px; background: rgba(56, 189, 248, 0.1); border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.2);">
+                                <div style="font-size: 0.7rem; color: var(--text-muted);">Total Orders</div>
+                                <div style="font-size: 1.2rem; font-weight: 800; color: var(--accent);">${totalOrder}</div>
+                            </div>
+                            <div style="text-align: center; padding: 10px; background: rgba(74, 222, 128, 0.1); border-radius: 10px; border: 1px solid rgba(74, 222, 128, 0.2);">
+                                <div style="font-size: 0.7rem; color: var(--text-muted);">Total Value</div>
+                                <div style="font-size: 1.2rem; font-weight: 800; color: var(--success);">${cur} ${totalValue.toLocaleString()}</div>
+                            </div>
+                            <div style="text-align: center; padding: 10px; background: rgba(251, 191, 36, 0.1); border-radius: 10px; border: 1px solid rgba(251, 191, 36, 0.2);">
+                                <div style="font-size: 0.7rem; color: var(--text-muted);">Total Cost</div>
+                                <div style="font-size: 1.2rem; font-weight: 800; color: var(--primary);">${cur} ${totalCost.toLocaleString()}</div>
+                            </div>
+                            <div style="text-align: center; padding: 10px; background: rgba(34, 197, 94, 0.1); border-radius: 10px; border: 1px solid rgba(34, 197, 94, 0.2);">
+                                <div style="font-size: 0.7rem; color: var(--text-muted);">Total Profit</div>
+                                <div style="font-size: 1.2rem; font-weight: 800; color: #22c55e;">${cur} ${totalProfit.toLocaleString()}</div>
+                                <div style="font-size: 0.65rem; color: ${totalProfit >= 0 ? '#22c55e' : '#ef4444'}; font-weight: 700; margin-top: 3px;">
+                                    ${profitPercentage}%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="center">SL</th>
+                                    <th>Date</th>
+                                    <th>Project</th>
+                                    <th>Order ID</th>
+                                    <th>Scope</th>
+                                    <th class="center">Amount</th>
+                                    <th class="center">Cost</th>
+                                    <th class="center">Profit</th>
+                                    <th class="center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_${storageKey}">
+                                ${data.length === 0 ? `<tr><td colspan="9" style="text-align:center; opacity:0.5">No records found</td></tr>` : ''}
+                                ${data.map((row, idx) => {
+                                    const amount = parseFloat(row.Amount) || 0;
+                                    const cost = parseFloat(row.Cost) || 0;
+                                    const profit = parseFloat(row.Profit) || 0;
+                                    const profitPercentage = amount > 0 ? ((profit / amount) * 100).toFixed(1) : 0;
+                                    return `
+                                        <tr class="lazy-table-row" data-index="${idx}">
+                                            <td class="center">${idx + 1}</td>
+                                            <td>${formatDate(row.Date)}</td>
+                                            <td style="color:${color}; font-weight:600">${row.Project || '-'}</td>
+                                            <td>${row['Order ID'] || '-'}</td>
+                                            <td style="font-size:0.7rem">${row['Scope Type'] || '-'}</td>
+                                            <td class="center" style="font-weight:800; color:white">${cur} ${amount.toLocaleString()}</td>
+                                            <td class="center" style="font-weight:800; color:var(--primary)">${cur} ${cost.toLocaleString()}</td>
+                                            <td class="center" style="font-weight:800; color:${profit >= 0 ? '#22c55e' : '#ef4444'}">
+                                                ${cur} ${profit.toLocaleString()}<br>
+                                                <small style="font-size:0.6rem; color:${profit >= 0 ? '#22c55e' : '#ef4444'}">
+                                                    ${profitPercentage}%
+                                                </small>
+                                            </td>
+                                            <td class="center">
+                                                <div class="action-btns">
+                                                    <i class="fas fa-pen edit-btn" onclick="editWOCalculation(${idx}, '${storageKey}')"></i>
+                                                    <i class="fas fa-trash del-btn" onclick="deleteWOCalculation(${idx}, '${storageKey}')"></i>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    `;
+                                }).join('')}
+                            </tbody>
+                            <tfoot class="total-row-fixed">
+                                <tr>
+                                    <td colspan="5" style="text-align:right; text-transform:uppercase; letter-spacing:1px; padding:15px;">COMBINED TOTALS</td>
+                                    <td class="center" style="font-size:1.1rem; border-left: 1px solid var(--glass-border); color:white">${cur} ${totalValue.toLocaleString()}</td>
+                                    <td class="center" style="font-size:1.1rem; border-left: 1px solid var(--glass-border); color:var(--primary)">${cur} ${totalCost.toLocaleString()}</td>
+                                    <td class="center" style="font-size:1.1rem; border-left: 1px solid var(--glass-border); color:#22c55e">${cur} ${totalProfit.toLocaleString()}</td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                `;
+                
+                // Initialize lazy loading for table rows
+                initLazyLoadObserver();
+                const lazyRows = container.querySelectorAll('.lazy-table-row');
+                lazyRows.forEach(row => lazyLoadObserver.observe(row));
+                
+            }, 100);
         }
         
         async function openWOCalculationModal(editIndex = -1, storageKey = 'wo_calc') {
@@ -4331,6 +3961,7 @@
             };
             modal.style.display = 'flex';
             
+            // Calculate initial profit if editing
             if (editData) {
                 calculateWOProfit();
             }
@@ -4361,57 +3992,22 @@
         
         async function renderAccountsTable(title, storageKey, color) {
             const container = document.getElementById('moduleContent');
-            const rawData = await Storage.get(storageKey) || [];
-            const data = [...rawData].sort((a, b) => new Date(b.Date) - new Date(a.Date));
-            const config = await Storage.get('config') || {};
-            const cur = config.currency || '৳';
             
-            const total = data.reduce((sum, item) => sum + (parseFloat(item.Amount) || 0), 0);
-            
-            const now = new Date();
-            const currentMonth = now.getMonth();
-            const currentYear = now.getFullYear();
-            const thisMonthTotal = data.reduce((sum, item) => {
-                const itemDate = new Date(item.Date);
-                if (itemDate.getMonth() === currentMonth && itemDate.getFullYear() === currentYear) {
-                    return sum + (parseFloat(item.Amount) || 0);
-                }
-                return sum;
-            }, 0);
-            
-            const thisYearTotal = data.reduce((sum, item) => {
-                const itemDate = new Date(item.Date);
-                if (itemDate.getFullYear() === currentYear) {
-                    return sum + (parseFloat(item.Amount) || 0);
-                }
-                return sum;
-            }, 0);
-            
-            const summaryTitle = title === 'Income' ? 'Income Summary' : 'Expense Summary';
-            const totalLabel = title === 'Income' ? 'Total Income' : 'Total Expense';
-            const thisMonthLabel = title === 'Income' ? 'This Month' : 'This Month';
-            const thisYearLabel = title === 'Income' ? 'This Year' : 'This Year';
-            
+            // Show skeleton loading first
             container.innerHTML = `
                 <div class="data-header">
                     <h3 style="margin:0; font-size:1rem; color:${color}">${title}</h3>
                     <button class="add-btn" onclick="openAccountsModal('${title}', '${storageKey}', ${-1})"><i class="fas fa-plus"></i> Add Entry</button>
                 </div>
                 <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--glass-border);">
-                    <h4 style="margin:0 0 10px 0; color:var(--accent); font-size:0.9rem;">${summaryTitle}</h4>
+                    <div class="skeleton" style="width:120px; height:20px; border-radius:8px; margin-bottom:10px;"></div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px;">
-                        <div style="text-align: center; padding: 10px; background: rgba(56, 189, 248, 0.1); border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.2);">
-                            <div style="font-size: 0.7rem; color: var(--text-muted);">${totalLabel}</div>
-                            <div style="font-size: 1.2rem; font-weight: 800; color: ${title === 'Income' ? 'var(--success)' : 'var(--danger)'};">${cur} ${total.toLocaleString()}</div>
-                        </div>
-                        <div style="text-align: center; padding: 10px; background: rgba(251, 191, 36, 0.1); border-radius: 10px; border: 1px solid rgba(251, 191, 36, 0.2);">
-                            <div style="font-size: 0.7rem; color: var(--text-muted);">${thisMonthLabel}</div>
-                            <div style="font-size: 1.2rem; font-weight: 800; color: var(--primary);">${cur} ${thisMonthTotal.toLocaleString()}</div>
-                        </div>
-                        <div style="text-align: center; padding: 10px; background: rgba(74, 222, 128, 0.1); border-radius: 10px; border: 1px solid rgba(74, 222, 128, 0.2);">
-                            <div style="font-size: 0.7rem; color: var(--text-muted);">${thisYearLabel}</div>
-                            <div style="font-size: 1.2rem; font-weight: 800; color: ${title === 'Income' ? '#22c55e' : '#ef4444'};">${cur} ${thisYearTotal.toLocaleString()}</div>
-                        </div>
+                        ${Array.from({length: 3}).map(() => `
+                            <div style="text-align: center; padding: 10px;">
+                                <div class="skeleton" style="width:80px; height:12px; border-radius:6px; margin:0 auto 8px;"></div>
+                                <div class="skeleton" style="width:100px; height:24px; border-radius:10px; margin:0 auto;"></div>
+                            </div>
+                        `).join('')}
                     </div>
                 </div>
                 <div class="table-container">
@@ -4426,32 +4022,122 @@
                             </tr>
                         </thead>
                         <tbody id="tbody_${storageKey}">
-                            ${data.length === 0 ? `<tr><td colspan="5" style="text-align:center; opacity:0.5">No records found</td></tr>` : ''}
-                            ${data.map((row, idx) => `
-                                <tr>
-                                    <td class="center">${idx + 1}</td>
-                                    <td>${formatDate(row.Date)}</td>
-                                    <td style="color:${color}; font-weight:600">${row.Purpose || '-'}</td>
-                                    <td class="center" style="font-weight:800; color:${title === 'Income' ? 'var(--success)' : 'var(--danger)'}">${cur} ${parseFloat(row.Amount || 0).toLocaleString()}</td>
-                                    <td class="center">
-                                        <div class="action-btns">
-                                            <i class="fas fa-pen edit-btn" onclick="openAccountsModal('${title}', '${storageKey}', ${idx})"></i>
-                                            <i class="fas fa-trash del-btn" onclick="deleteAccountRecord(${idx}, '${storageKey}', '${title}')"></i>
-                                        </div>
-                                    </td>
+                            ${Array.from({length: 5}).map(() => `
+                                <tr class="table-row skeleton lazy-table-row">
+                                    ${Array.from({length: 5}).map(() => `
+                                        <td class="center"><div class="skeleton" style="width:80%; height:15px; margin:0 auto;"></div></td>
+                                    `).join('')}
                                 </tr>
                             `).join('')}
                         </tbody>
-                        <tfoot class="total-row-fixed">
-                            <tr>
-                                <td colspan="3" style="text-align:right; text-transform:uppercase; letter-spacing:1px; padding:15px;">Grand Total</td>
-                                <td class="center" style="font-size:1.1rem; border-left: 1px solid var(--glass-border); color:${title === 'Income' ? 'var(--success)' : 'var(--danger)'}">${cur} ${total.toLocaleString()}</td>
-                                <td></td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             `;
+            
+            // Load data in background
+            setTimeout(async () => {
+                const rawData = await Storage.get(storageKey) || [];
+                const data = [...rawData].sort((a, b) => new Date(b.Date) - new Date(a.Date));
+                const config = await Storage.get('config') || {};
+                const cur = config.currency || '৳';
+                
+                // Calculate summary metrics
+                const total = data.reduce((sum, item) => sum + (parseFloat(item.Amount) || 0), 0);
+                
+                // Calculate This Month (current month)
+                const now = new Date();
+                const currentMonth = now.getMonth();
+                const currentYear = now.getFullYear();
+                const thisMonthTotal = data.reduce((sum, item) => {
+                    const itemDate = new Date(item.Date);
+                    if (itemDate.getMonth() === currentMonth && itemDate.getFullYear() === currentYear) {
+                        return sum + (parseFloat(item.Amount) || 0);
+                    }
+                    return sum;
+                }, 0);
+                
+                // Calculate This Year (current year)
+                const thisYearTotal = data.reduce((sum, item) => {
+                    const itemDate = new Date(item.Date);
+                    if (itemDate.getFullYear() === currentYear) {
+                        return sum + (parseFloat(item.Amount) || 0);
+                    }
+                    return sum;
+                }, 0);
+                
+                // Determine summary titles based on whether it's Income or Expense
+                const summaryTitle = title === 'Income' ? 'Income Summary' : 'Expense Summary';
+                const totalLabel = title === 'Income' ? 'Total Income' : 'Total Expense';
+                const thisMonthLabel = title === 'Income' ? 'This Month' : 'This Month';
+                const thisYearLabel = title === 'Income' ? 'This Year' : 'This Year';
+                
+                container.innerHTML = `
+                    <div class="data-header">
+                        <h3 style="margin:0; font-size:1rem; color:${color}">${title}</h3>
+                        <button class="add-btn" onclick="openAccountsModal('${title}', '${storageKey}', ${-1})"><i class="fas fa-plus"></i> Add Entry</button>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--glass-border);">
+                        <h4 style="margin:0 0 10px 0; color:var(--accent); font-size:0.9rem;">${summaryTitle}</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px;">
+                            <div style="text-align: center; padding: 10px; background: rgba(56, 189, 248, 0.1); border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.2);">
+                                <div style="font-size: 0.7rem; color: var(--text-muted);">${totalLabel}</div>
+                                <div style="font-size: 1.2rem; font-weight: 800; color: ${title === 'Income' ? 'var(--success)' : 'var(--danger)'};">${cur} ${total.toLocaleString()}</div>
+                            </div>
+                            <div style="text-align: center; padding: 10px; background: rgba(251, 191, 36, 0.1); border-radius: 10px; border: 1px solid rgba(251, 191, 36, 0.2);">
+                                <div style="font-size: 0.7rem; color: var(--text-muted);">${thisMonthLabel}</div>
+                                <div style="font-size: 1.2rem; font-weight: 800; color: var(--primary);">${cur} ${thisMonthTotal.toLocaleString()}</div>
+                            </div>
+                            <div style="text-align: center; padding: 10px; background: rgba(74, 222, 128, 0.1); border-radius: 10px; border: 1px solid rgba(74, 222, 128, 0.2);">
+                                <div style="font-size: 0.7rem; color: var(--text-muted);">${thisYearLabel}</div>
+                                <div style="font-size: 1.2rem; font-weight: 800; color: ${title === 'Income' ? '#22c55e' : '#ef4444'};">${cur} ${thisYearTotal.toLocaleString()}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="center">SL</th>
+                                    <th>Date</th>
+                                    <th>Purpose</th>
+                                    <th class="center">Amount</th>
+                                    <th class="center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_${storageKey}">
+                                ${data.length === 0 ? `<tr><td colspan="5" style="text-align:center; opacity:0.5">No records found</td></tr>` : ''}
+                                ${data.map((row, idx) => `
+                                    <tr class="lazy-table-row" data-index="${idx}">
+                                        <td class="center">${idx + 1}</td>
+                                        <td>${formatDate(row.Date)}</td>
+                                        <td style="color:${color}; font-weight:600">${row.Purpose || '-'}</td>
+                                        <td class="center" style="font-weight:800; color:${title === 'Income' ? 'var(--success)' : 'var(--danger)'}">${cur} ${parseFloat(row.Amount || 0).toLocaleString()}</td>
+                                        <td class="center">
+                                            <div class="action-btns">
+                                                <i class="fas fa-pen edit-btn" onclick="openAccountsModal('${title}', '${storageKey}', ${idx})"></i>
+                                                <i class="fas fa-trash del-btn" onclick="deleteAccountRecord(${idx}, '${storageKey}', '${title}')"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                            <tfoot class="total-row-fixed">
+                                <tr>
+                                    <td colspan="3" style="text-align:right; text-transform:uppercase; letter-spacing:1px; padding:15px;">Grand Total</td>
+                                    <td class="center" style="font-size:1.1rem; border-left: 1px solid var(--glass-border); color:${title === 'Income' ? 'var(--success)' : 'var(--danger)'}">${cur} ${total.toLocaleString()}</td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                `;
+                
+                // Initialize lazy loading for table rows
+                initLazyLoadObserver();
+                const lazyRows = container.querySelectorAll('.lazy-table-row');
+                lazyRows.forEach(row => lazyLoadObserver.observe(row));
+                
+            }, 100);
         }
         
         async function openAccountsModal(title, storageKey, editIndex = -1) {
@@ -4503,9 +4189,9 @@
         
         async function renderDataTable(title, storageKey, color, formType) {
             const container = document.getElementById('moduleContent');
-            const data = await Storage.get(storageKey) || [];
-            const fields = formConfigs[formType || title];
-            let tableHTML = `
+            
+            // Show skeleton loading first
+            container.innerHTML = `
                 <div class="data-header">
                     <h3 style="margin:0; font-size:1rem; color:${color}">${title}</h3>
                     <button class="add-btn" onclick="openAddModal('${title}', '${storageKey}', '${formType || title}')"><i class="fas fa-plus"></i> Add New</button>
@@ -4518,32 +4204,75 @@
                     <table id="table_${storageKey}">
                         <thead>
                             <tr>
-                                ${fields.map(f => `<th class="${['SL', 'Unit', 'Unit Price', 'Available Quantity'].includes(f) ? 'center' : ''}">${f}</th>`).join('')}
-                                <th class="center">Actions</th>
+                                ${Array.from({length: 5}).map(() => `
+                                    <th><div class="skeleton" style="width:80px; height:20px; border-radius:6px;"></div></th>
+                                `).join('')}
+                                <th class="center"><div class="skeleton" style="width:60px; height:20px; border-radius:6px; margin:0 auto;"></div></th>
                             </tr>
                         </thead>
                         <tbody id="tbody_${storageKey}">
-                            ${data.map((row, idx) => `
-                                <tr data-index="${idx}">
-                                    ${fields.map(f => {
-                                        const isCenter = ['SL', 'Unit', 'Unit Price', 'Available Quantity'].includes(f);
-                                        let val = (f === 'SL') ? (idx + 1) : (row[f] || '-');
-                                        if (f === 'Date') val = formatDate(val);
-                                        return `<td class="${isCenter ? 'center' : ''}">${val}</td>`;
-                                    }).join('')}
-                                    <td class="center">
-                                        <div class="action-btns">
-                                            <i class="fas fa-pen edit-btn" onclick="openEditModal(${idx}, '${title}', '${storageKey}', '${formType || title}')"></i>
-                                            <i class="fas fa-trash del-btn" onclick="deleteRecord(${idx}, '${storageKey}', '${title}', '${formType || title}')"></i>
-                                        </div>
-                                    </td>
+                            ${Array.from({length: 5}).map(() => `
+                                <tr class="table-row skeleton lazy-table-row">
+                                    ${Array.from({length: 6}).map(() => `
+                                        <td><div class="skeleton" style="width:90%; height:15px;"></div></td>
+                                    `).join('')}
                                 </tr>
                             `).join('')}
                         </tbody>
                     </table>
                 </div>
             `;
-            container.innerHTML = tableHTML;
+            
+            // Load data in background
+            setTimeout(async () => {
+                const data = await Storage.get(storageKey) || [];
+                const fields = formConfigs[formType || title];
+                
+                container.innerHTML = `
+                    <div class="data-header">
+                        <h3 style="margin:0; font-size:1rem; color:${color}">${title}</h3>
+                        <button class="add-btn" onclick="openAddModal('${title}', '${storageKey}', '${formType || title}')"><i class="fas fa-plus"></i> Add New</button>
+                    </div>
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="searchInput_${storageKey}" placeholder="Search ${title}..." oninput="filterTable('${storageKey}')">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <div class="table-container">
+                        <table id="table_${storageKey}">
+                            <thead>
+                                <tr>
+                                    ${fields.map(f => `<th class="${['SL', 'Unit', 'Unit Price', 'Available Quantity'].includes(f) ? 'center' : ''}">${f}</th>`).join('')}
+                                    <th class="center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_${storageKey}">
+                                ${data.map((row, idx) => `
+                                    <tr class="lazy-table-row" data-index="${idx}">
+                                        ${fields.map(f => {
+                                            const isCenter = ['SL', 'Unit', 'Unit Price', 'Available Quantity'].includes(f);
+                                            let val = (f === 'SL') ? (idx + 1) : (row[f] || '-');
+                                            if (f === 'Date') val = formatDate(val);
+                                            return `<td class="${isCenter ? 'center' : ''}">${val}</td>`;
+                                        }).join('')}
+                                        <td class="center">
+                                            <div class="action-btns">
+                                                <i class="fas fa-pen edit-btn" onclick="openEditModal(${idx}, '${title}', '${storageKey}', '${formType || title}')"></i>
+                                                <i class="fas fa-trash del-btn" onclick="deleteRecord(${idx}, '${storageKey}', '${title}', '${formType || title}')"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+                
+                // Initialize lazy loading for table rows
+                initLazyLoadObserver();
+                const lazyRows = container.querySelectorAll('.lazy-table-row');
+                lazyRows.forEach(row => lazyLoadObserver.observe(row));
+                
+            }, 100);
         }
         
         function filterTable(storageKey) {
@@ -4566,20 +4295,9 @@
         
         async function renderMasterList(color) {
             const container = document.getElementById('moduleContent');
-            const categories = await Storage.get('product_categories') || [];
-            let masterData = [];
-            for (const key of categories) {
-                const categoryData = await Storage.get(key) || [];
-                categoryData.forEach(item => {
-                    masterData.push({ 
-                        ...item, 
-                        Category: key.charAt(0).toUpperCase() + key.slice(1),
-                        Quantity: item.Quantity || 0
-                    });
-                });
-            }
-            const fields = formConfigs['Master List'];
-            let tableHTML = `
+            
+            // Show skeleton loading first
+            container.innerHTML = `
                 <div class="data-header">
                     <h3 style="margin:0; font-size:1rem; color:${color}">Product Master List</h3>
                 </div>
@@ -4590,27 +4308,79 @@
                 <div class="table-container">
                     <table id="masterTable">
                         <thead>
-                            <tr>${fields.map(f => `<th class="${['SL', 'Unit', 'Unit Price', 'Available Quantity'].includes(f) ? 'center' : ''}">${f}</th>`).join('')}</tr>
+                            <tr>
+                                ${Array.from({length: 7}).map(() => `
+                                    <th><div class="skeleton" style="width:80px; height:20px; border-radius:6px; margin:0 auto;"></div></th>
+                                `).join('')}
+                            </tr>
                         </thead>
                         <tbody id="masterTableBody">
-                            ${masterData.length === 0 ? `<tr><td colspan="${fields.length}" style="text-align:center; opacity:0.5">No products found</td></tr>` : masterData.map((row, idx) => `
-                                <tr data-index="${idx}">
-                                    ${fields.map(f => {
-                                        let val = (f === 'SL') ? (idx + 1) : (row[f] || '-');
-                                        if (f === 'Date') val = formatDate(val);
-                                        if (f === 'Available Quantity') {
-                                            val = row.Quantity || 0;
-                                            return `<td class="center" style="font-weight:800; color:${val > 0 ? 'var(--success)' : 'var(--danger)'}">${val}</td>`;
-                                        }
-                                        return `<td class="${['SL', 'Unit', 'Unit Price', 'Available Quantity'].includes(f) ? 'center' : ''}">${val}</td>`;
-                                    }).join('')}
+                            ${Array.from({length: 5}).map(() => `
+                                <tr class="table-row skeleton lazy-table-row">
+                                    ${Array.from({length: 7}).map(() => `
+                                        <td><div class="skeleton" style="width:90%; height:15px;"></div></td>
+                                    `).join('')}
                                 </tr>
                             `).join('')}
                         </tbody>
                     </table>
                 </div>
             `;
-            container.innerHTML = tableHTML;
+            
+            // Load data in background
+            setTimeout(async () => {
+                const categories = await Storage.get('product_categories') || [];
+                let masterData = [];
+                for (const key of categories) {
+                    const categoryData = await Storage.get(key) || [];
+                    categoryData.forEach(item => {
+                        masterData.push({ 
+                            ...item, 
+                            Category: key.charAt(0).toUpperCase() + key.slice(1),
+                            Quantity: item.Quantity || 0
+                        });
+                    });
+                }
+                
+                const fields = formConfigs['Master List'];
+                container.innerHTML = `
+                    <div class="data-header">
+                        <h3 style="margin:0; font-size:1rem; color:${color}">Product Master List</h3>
+                    </div>
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="searchMaster" placeholder="Search Master List..." oninput="filterMasterList()">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <div class="table-container">
+                        <table id="masterTable">
+                            <thead>
+                                <tr>${fields.map(f => `<th class="${['SL', 'Unit', 'Unit Price', 'Available Quantity'].includes(f) ? 'center' : ''}">${f}</th>`).join('')}</tr>
+                            </thead>
+                            <tbody id="masterTableBody">
+                                ${masterData.length === 0 ? `<tr><td colspan="${fields.length}" style="text-align:center; opacity:0.5">No products found</td></tr>` : masterData.map((row, idx) => `
+                                    <tr class="lazy-table-row" data-index="${idx}">
+                                        ${fields.map(f => {
+                                            let val = (f === 'SL') ? (idx + 1) : (row[f] || '-');
+                                            if (f === 'Date') val = formatDate(val);
+                                            if (f === 'Available Quantity') {
+                                                val = row.Quantity || 0;
+                                                return `<td class="center" style="font-weight:800; color:${val > 0 ? 'var(--success)' : 'var(--danger)'}">${val}</td>`;
+                                            }
+                                            return `<td class="${['SL', 'Unit', 'Unit Price', 'Available Quantity'].includes(f) ? 'center' : ''}">${val}</td>`;
+                                        }).join('')}
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+                
+                // Initialize lazy loading for table rows
+                initLazyLoadObserver();
+                const lazyRows = container.querySelectorAll('.lazy-table-row');
+                lazyRows.forEach(row => lazyLoadObserver.observe(row));
+                
+            }, 100);
         }
         
         function filterMasterList() {
@@ -4653,6 +4423,7 @@
                 if(f === 'Date') type = "date";
                 if(['Amount', 'Unit Price', 'WO Amount', 'WO Cost', 'BD Cost', 'Partner Cost', 'Total Profit', 'Qty', 'Cost Price', 'Sale Price', 'Profit', 'Cost', 'Available Quantity'].includes(f)) type = "number";
                 
+                // Add unique ID for search functionality if it's the "Items" field in Product Form
                 const fieldId = (formType === 'Products' && f === 'Items') ? 'item_search_input' : '';
                 const searchContainer = fieldId ? `<div style="position:relative"><div id="item_search_results" class="search-results" style="display:none"></div>` : '';
                 const searchContainerClose = fieldId ? `</div>` : '';
@@ -4687,6 +4458,7 @@
             
             const filtered = allProducts.filter(p => p.Items.toLowerCase().includes(val.toLowerCase()));
             if(filtered.length > 0) {
+                // Show first 5 suggestions
                 results.innerHTML = filtered.slice(0,5).map(p => `
                     <div class="search-item" onclick="autoFillProductForm('${p.Items.replace(/'/g, "\\'")}', '${p.Description.replace(/'/g, "\\'")}', '${p['Unit Price']}', '${p.Quantity || 0}')">
                         ${p.Items} <small style="opacity:0.6;">(${p['Unit Price']})</small>
@@ -4704,6 +4476,7 @@
             
             if(nameField) nameField.value = name;
             
+            // Look for Description, Unit Price, and Available Quantity fields by name attribute
             const descField = form.querySelector('[name="Description"]');
             const priceField = form.querySelector('[name="Unit Price"]');
             const quantityField = form.querySelector('[name="Available Quantity"]');
@@ -4764,13 +4537,14 @@
             const mdPhoto = await Storage.get('md_photo');
             const chairmanPhoto = await Storage.get('chairman_photo');
             const directorPhoto = await Storage.get('director_photo');
+            
             container.innerHTML = `
                 <div class="mgmt-section">
                     <div class="mgmt-title">Leadership Profile</div>
                     <div class="mgmt-card" style="border-top: 4px solid var(--primary);">
                         <div class="md-profile-container">
                             <div class="md-photo-frame" style="border-radius: 50%; width: 160px; height: 160px;">
-                                ${chairmanPhoto ? `<img src="${chairmanPhoto}" alt="Chairman">` : `<i class="fas fa-user-tie md-photo-placeholder"></i>`}
+                                ${chairmanPhoto ? `<img src="${chairmanPhoto}" alt="Chairman" class="lazy-image" data-src="${chairmanPhoto}">` : `<i class="fas fa-user-tie md-photo-placeholder"></i>`}
                             </div>
                             <div class="md-info-block">
                                 <p class="md-name" style="color:var(--primary)">${config.chairmanName || 'Md. Abul Khair'}</p>
@@ -4784,7 +4558,7 @@
                     <div class="mgmt-card" style="border-top: 4px solid var(--primary); margin-top:20px;">
                         <div class="md-profile-container">
                             <div class="md-photo-frame">
-                                ${mdPhoto ? `<img src="${mdPhoto}" alt="MD">` : `<i class="fas fa-user-tie md-photo-placeholder"></i>`}
+                                ${mdPhoto ? `<img src="${mdPhoto}" alt="MD" class="lazy-image" data-src="${mdPhoto}">` : `<i class="fas fa-user-tie md-photo-placeholder"></i>`}
                             </div>
                             <div class="md-info-block">
                                 <p class="md-name">${config.mdName || 'Engr. Md. Jakaria Ahmed'}</p>
@@ -4799,7 +4573,7 @@
                     <div class="mgmt-card" style="border-top: 4px solid var(--accent); margin-top:20px;">
                         <div class="md-profile-container">
                             <div class="md-photo-frame" style="border-color: var(--accent);">
-                                ${directorPhoto ? `<img src="${directorPhoto}" alt="Director">` : `<i class="fas fa-user-tie md-photo-placeholder"></i>`}
+                                ${directorPhoto ? `<img src="${directorPhoto}" alt="Director" class="lazy-image" data-src="${directorPhoto}">` : `<i class="fas fa-user-tie md-photo-placeholder"></i>`}
                             </div>
                             <div class="md-info-block">
                                 <p class="md-name">${config.directorName || 'Management Director'}</p>
@@ -4837,6 +4611,11 @@
                     </div>
                 </div>
             `;
+            
+            // Initialize lazy loading for images
+            initLazyLoadObserver();
+            const lazyImages = container.querySelectorAll('.lazy-image');
+            lazyImages.forEach(img => lazyLoadObserver.observe(img));
         }
         
         async function renderSettings(container) {
@@ -4844,7 +4623,13 @@
             const assets = ['chairman_photo', 'md_photo', 'director_photo', 'co_logo', 'md_sig', 'doc_sig', 'co_seal', 'received_seal'];
             const assetLabels = ["Chairman's Photo", "MD's Photo", "Director's Photo", "Company Logo", "MD's Signature", "Doc Signature", "Company Seal", "Received By Seal"];
             const assetPreviews = {};
-            for (const key of assets) assetPreviews[key] = await Storage.get(key);
+            
+            // Load asset previews in parallel
+            const previewPromises = assets.map(async (key) => {
+                assetPreviews[key] = await Storage.get(key);
+            });
+            await Promise.all(previewPromises);
+            
             container.innerHTML = `
                 <div class="settings-section">
                     <div class="settings-title">Company Information</div>
@@ -4914,7 +4699,7 @@
                                 <div class="upload-zone" onclick="document.getElementById('${key}Input').click()">
                                     <i class="fas fa-camera"></i>
                                     <span class="upload-label">${assetLabels[i]}</span>
-                                    ${assetPreviews[key] ? `<img src="${assetPreviews[key]}" id="${key}Prev" class="upload-preview" style="display:block;">` : `<img id="${key}Prev" class="upload-preview" style="display:none;">`}
+                                    ${assetPreviews[key] ? `<img src="${assetPreviews[key]}" id="${key}Prev" class="upload-preview lazy-image" data-src="${assetPreviews[key]}" style="display:block;">` : `<img id="${key}Prev" class="upload-preview" style="display:none;">`}
                                     <input type="file" id="${key}Input" hidden accept="image/*" onchange="handleAssetUpload('${key}', this)">
                                 </div>
                             `).join('')}
@@ -4940,6 +4725,11 @@
                     </div>
                 </div>
             `;
+            
+            // Initialize lazy loading for images
+            initLazyLoadObserver();
+            const lazyImages = container.querySelectorAll('.lazy-image');
+            lazyImages.forEach(img => lazyLoadObserver.observe(img));
         }
         
         async function handleAssetUpload(key, input) {
@@ -5127,6 +4917,11 @@
             const disp = document.getElementById('date-display');
             if(disp) disp.innerText = `${getOrdinal(dayNum)} ${month} ${year}, ${weekday}`;
         }
+        
+        // Initialize lazy loading observer on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initLazyLoadObserver();
+        });
         
         if(localStorage.getItem('fe_session')) document.getElementById('loginOverlay').style.display = 'none';
         updateDateTime();
