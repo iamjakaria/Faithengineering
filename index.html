@@ -668,21 +668,24 @@
 
     <div id="main-menu" class="view-container active">
         <div class="bento-grid">
-            <a onclick="openView('clients-view')" class="nav-card"><div class="icon-bg" style="background:#4ade80"></div><i class="fas fa-handshake" style="color:#4ade80"></i><span>Clients</span></a>
+            <!-- UPDATED: Adjusted icons and colors for all tabs -->
+            <a onclick="openView('clients-view')" class="nav-card"><div class="icon-bg" style="background:#60a5fa"></div><i class="fas fa-users" style="color:#60a5fa"></i><span>Clients</span></a>
             <a onclick="openView('supplier-view')" class="nav-card"><div class="icon-bg" style="background:#2dd4bf"></div><i class="fas fa-truck-ramp-box" style="color:#2dd4bf"></i><span>Supplier</span></a>
-            <a onclick="openView('products-menu')" class="nav-card"><div class="icon-bg" style="background:#fbbf24"></div><i class="fas fa-microchip" style="color:#fbbf24"></i><span>Products</span></a>
-            <a onclick="openView('inventory-view')" class="nav-card"><div class="icon-bg" style="background:#60a5fa"></div><i class="fas fa-warehouse" style="color:#60a5fa"></i><span>Inventory</span></a>
+            <a onclick="openView('products-menu')" class="nav-card"><div class="icon-bg" style="background:#fbbf24"></div><i class="fas fa-boxes-stacked" style="color:#fbbf24"></i><span>Products</span></a>
+            <a onclick="openView('inventory-view')" class="nav-card"><div class="icon-bg" style="background:#38bdf8"></div><i class="fas fa-warehouse" style="color:#38bdf8"></i><span>Inventory</span></a>
             <!-- REMOVED: Commercial tab -->
-            <a onclick="openView('accounts-menu')" class="nav-card"><div class="icon-bg" style="background:#34d399"></div><i class="fas fa-vault" style="color:#34d399"></i><span>Accounts</span></a>
-            <a onclick="openView('workorder-menu')" class="nav-card"><div class="icon-bg" style="background:#f97316"></div><i class="fas fa-screwdriver-wrench" style="color:#f97316"></i><span>Work Order</span></a>
-            <!-- ADDED: New main tabs for document types -->
-            <a onclick="openView('folder-quotation')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-file-lines" style="color:#c084fc"></i><span>Quotation</span></a>
-            <a onclick="openView('folder-invoice')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-file-invoice" style="color:#c084fc"></i><span>Invoice</span></a>
-            <a onclick="openView('folder-challan')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-truck-fast" style="color:#c084fc"></i><span>Delivery Challan</span></a>
-            <a onclick="openView('folder-po')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-cart-shopping" style="color:#c084fc"></i><span>Purchase Order</span></a>
-            <a onclick="openView('folder-receipt')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-receipt" style="color:#c084fc"></i><span>Money Receipt</span></a>
-            <a onclick="openView('folder-letter')" class="nav-card"><div class="icon-bg" style="background:#a855f7"></div><i class="fas fa-envelope" style="color:#a855f7"></i><span>Letter</span></a>
-            <a onclick="openView('settings-view')" class="nav-card"><div class="icon-bg" style="background:#fb923c"></div><i class="fas fa-gears" style="color:#fb923c"></i><span>Settings</span></a>
+            <a onclick="openView('accounts-menu')" class="nav-card"><div class="icon-bg" style="background:#10b981"></div><i class="fas fa-chart-line" style="color:#10b981"></i><span>Accounts</span></a>
+            <a onclick="openView('workorder-menu')" class="nav-card"><div class="icon-bg" style="background:#f97316"></div><i class="fas fa-tools" style="color:#f97316"></i><span>Work Order</span></a>
+            <!-- ADDED: New Admin tab -->
+            <a onclick="openView('admin-menu')" class="nav-card"><div class="icon-bg" style="background:#8b5cf6"></div><i class="fas fa-user-shield" style="color:#8b5cf6"></i><span>Admin</span></a>
+            <!-- ADDED: New main tabs for document types with updated icons and colors -->
+            <a onclick="openView('folder-quotation')" class="nav-card"><div class="icon-bg" style="background:#ef4444"></div><i class="fas fa-file-signature" style="color:#ef4444"></i><span>Quotation</span></a>
+            <a onclick="openView('folder-invoice')" class="nav-card"><div class="icon-bg" style="background:#3b82f6"></div><i class="fas fa-file-invoice-dollar" style="color:#3b82f6"></i><span>Invoice</span></a>
+            <a onclick="openView('folder-challan')" class="nav-card"><div class="icon-bg" style="background:#10b981"></div><i class="fas fa-truck-ramp-box" style="color:#10b981"></i><span>Delivery Challan</span></a>
+            <a onclick="openView('folder-po')" class="nav-card"><div class="icon-bg" style="background:#f59e0b"></div><i class="fas fa-clipboard-list" style="color:#f59e0b"></i><span>Purchase Order</span></a>
+            <a onclick="openView('folder-receipt')" class="nav-card"><div class="icon-bg" style="background:#84cc16"></div><i class="fas fa-receipt" style="color:#84cc16"></i><span>Money Receipt</span></a>
+            <a onclick="openView('folder-letter')" class="nav-card"><div class="icon-bg" style="background:#a855f7"></div><i class="fas fa-envelope-open-text" style="color:#a855f7"></i><span>Letter</span></a>
+            <a onclick="openView('settings-view')" class="nav-card"><div class="icon-bg" style="background:#64748b"></div><i class="fas fa-cog" style="color:#64748b"></i><span>Settings</span></a>
         </div>
     </div>
 
@@ -690,7 +693,7 @@
         <div class="nav-header">
             <div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div>
         </div>
-        <h3 style="text-align:center; color: #60a5fa; margin-top: 0;">Stock Inventory</h3>
+        <h3 style="text-align:center; color: #38bdf8; margin-top: 0;">Stock Inventory</h3>
         
         <div class="search-container">
             <i class="fas fa-search"></i>
@@ -886,9 +889,9 @@
     <div id="accounts-menu" class="view-container">
         <div class="bento-grid">
             <div class="nav-header"><div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div></div>
-            <a onclick="openView('folder-income')" class="nav-card"><div class="icon-bg" style="background:#4ade80"></div><i class="fas fa-money-bill-trend-up" style="color:#4ade80"></i><span>Income</span></a>
-            <a onclick="openView('folder-expense')" class="nav-card"><div class="icon-bg" style="background:#f87171"></div><i class="fas fa-money-bill-transfer" style="color:#f87171"></i><span>Expense</span></a>
-            <a onclick="openView('folder-transactions')" class="nav-card"><div class="icon-bg" style="background:#60a5fa"></div><i class="fas fa-building-columns" style="color:#60a5fa"></i><span>Transactions</span></a>
+            <a onclick="openView('folder-income')" class="nav-card"><div class="icon-bg" style="background:#10b981"></div><i class="fas fa-money-bill-trend-up" style="color:#10b981"></i><span>Income</span></a>
+            <a onclick="openView('folder-expense')" class="nav-card"><div class="icon-bg" style="background:#ef4444"></div><i class="fas fa-money-bill-transfer" style="color:#ef4444"></i><span>Expense</span></a>
+            <a onclick="openView('folder-transactions')" class="nav-card"><div class="icon-bg" style="background:#38bdf8"></div><i class="fas fa-exchange-alt" style="color:#38bdf8"></i><span>Transactions</span></a>
         </div>
     </div>
 
@@ -1049,7 +1052,7 @@
         
         <div class="tab-management-header">
             <h3 class="tab-management-title">
-                <i class="fas fa-screwdriver-wrench"></i> Work Order Folders
+                <i class="fas fa-tools"></i> Work Order Folders
             </h3>
         </div>
         
@@ -1114,7 +1117,7 @@
             <div class="back-btn" onclick="openView('workorder-menu')"><i class="fas fa-arrow-left"></i> Back</div>
             <div class="add-folder-btn" onclick="openWorkOrderModal()"><i class="fas fa-plus"></i> Add Order</div>
         </div>
-        <h3 style="text-align:center; color:#f59e0b; margin-top: 0;">Work Order Summary</h3>
+        <h3 style="text-align:center; color:#f97316; margin-top: 0;">Work Order Summary</h3>
         
         <div class="summary-cards">
             <div class="summary-card order">
@@ -1167,6 +1170,83 @@
                 </tfoot>
             </table>
         </div>
+    </div>
+
+    <!-- ADDED: New Admin tab views -->
+    <div id="admin-menu" class="view-container">
+        <div class="nav-header">
+            <div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div>
+            <div class="add-folder-btn" onclick="openView('admin-category-management')"><i class="fas fa-folder-plus"></i> Manage Folders</div>
+        </div>
+        <div class="bento-grid" id="admin-menu-folder-grid"></div>
+    </div>
+
+    <div id="admin-category-management" class="view-container">
+        <div class="nav-header">
+            <div class="back-btn" onclick="openView('admin-menu')"><i class="fas fa-arrow-left"></i> Back</div>
+            <div class="add-folder-btn" onclick="openTabCategoryModal('admin')"><i class="fas fa-plus"></i> New Folder</div>
+        </div>
+        
+        <div class="tab-management-header">
+            <h3 class="tab-management-title">
+                <i class="fas fa-user-shield"></i> Admin Folders
+            </h3>
+        </div>
+        
+        <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin: 10px 0 20px 0;">
+            Manage all admin folders from here
+        </p>
+        
+        <div class="category-management">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" class="quick-search" placeholder="Search admin folders..." onkeyup="filterTabCategories(this.value, 'admin')">
+            </div>
+            
+            <div class="category-list" id="admin-categories-list"></div>
+        </div>
+    </div>
+
+    <div id="admin-folder-files-view" class="view-container">
+        <div class="nav-header">
+            <div class="back-btn" id="admin-folder-back-btn"><i class="fas fa-arrow-left"></i> Back</div>
+            <div class="add-folder-btn" onclick="triggerFileUpload('admin')"><i class="fas fa-upload"></i> Upload File</div>
+        </div>
+        
+        <h3 id="admin-folder-title" style="text-align:center; color: var(--accent-blue); margin-top: 0; display: flex; align-items: center; justify-content: center; gap: 10px;">
+            <i class="fas fa-folder"></i> Folder
+        </h3>
+        
+        <div class="file-upload-container" id="admin-file-upload-container">
+            <div class="file-upload-area" onclick="triggerFileUpload('admin')">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Click to upload or drag & drop files here</p>
+                <p style="font-size: 0.7rem; margin-top: 5px;">Supports: JPG, PNG, PDF, Excel, Word, Text, XML, HSE files</p>
+                <input type="file" id="admin-file-input" multiple onchange="handleFileSelection(this.files, 'admin')">
+            </div>
+            
+            <div class="file-upload-form" id="admin-file-upload-form">
+                <div class="form-group">
+                    <label>File Name</label>
+                    <input type="text" id="admin-file-name" placeholder="Enter file name (optional)">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="admin-file-description" rows="2" placeholder="File description (optional)"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-cancel" onclick="cancelFileUpload('admin')">Cancel</button>
+                    <button class="btn-create" onclick="uploadFile('admin')">Upload File</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" class="quick-search" placeholder="Search files..." onkeyup="filterFiles(this.value, 'admin')">
+        </div>
+        
+        <div class="files-grid" id="admin-files-grid"></div>
     </div>
 
     <div id="file-preview-modal" class="modal-overlay file-preview-modal">
@@ -2175,7 +2255,7 @@
 
         const MASTER_LIST_FOLDER_ID = 'master-list-products';
 
-        // UPDATED VIEW NAME MAP
+        // UPDATED VIEW NAME MAP - Added Admin tab views
         const viewNameMap = {
             'main-menu': 'Dashboard',
             'inventory-view': 'Stock Inventory',
@@ -2198,7 +2278,10 @@
             'workorder-menu': 'Work Orders',
             'workorder-category-management': 'Work Order Folder Management',
             'workorder-folder-files-view': 'Work Order Folder',
-            'folder-workorder-summary': 'Work Order Summary'
+            'folder-workorder-summary': 'Work Order Summary',
+            'admin-menu': 'Admin Documents',
+            'admin-category-management': 'Admin Folder Management',
+            'admin-folder-files-view': 'Admin Folder'
         };
 
         // ==================== UTILITY FUNCTIONS ====================
@@ -2236,6 +2319,9 @@
                 'workorder-menu': () => renderTabFolders('workorder-menu'),
                 'workorder-category-management': () => renderTabCategories('workorder'),
                 'workorder-folder-files-view': () => renderFolderFiles('workorder'),
+                'admin-menu': () => renderTabFolders('admin-menu'),
+                'admin-category-management': () => renderTabCategories('admin'),
+                'admin-folder-files-view': () => renderFolderFiles('admin'),
                 'folder-letter': renderLetterFolder,
                 'folder-quotation': () => renderCommercialFolder('QUOTATION'),
                 'folder-invoice': () => renderCommercialFolder('INVOICE'),
@@ -2441,7 +2527,7 @@
             } else {
                 letters.push(letterData);
                 await Storage.save('last_id_LETTER', letterData.id.split('-').pop());
-                renderCard('grid-letter', letterData.id, '#a855f7', 'fa-envelope');
+                renderCard('grid-letter', letterData.id, '#a855f7', 'fa-envelope-open-text');
             }
             
             await saveLetterDocuments(letters);
@@ -2457,7 +2543,7 @@
             
             const letters = await getLetterDocuments();
             letters.forEach(letter => {
-                renderCard('grid-letter', letter.id, '#a855f7', 'fa-envelope');
+                renderCard('grid-letter', letter.id, '#a855f7', 'fa-envelope-open-text');
             });
         }
 
@@ -2919,6 +3005,11 @@
                     viewId: 'workorder-folder-files-view',
                     backBtnId: 'workorder-folder-back-btn',
                     titleId: 'workorder-folder-title'
+                },
+                'admin': {
+                    viewId: 'admin-folder-files-view',
+                    backBtnId: 'admin-folder-back-btn',
+                    titleId: 'admin-folder-title'
                 }
             };
             
@@ -2926,7 +3017,8 @@
             if (!config) return;
             
             document.getElementById(config.backBtnId).onclick = () => {
-                openView('workorder-menu');
+                if (context === 'workorder') openView('workorder-menu');
+                else if (context === 'admin') openView('admin-menu');
             };
             
             document.getElementById(config.titleId).innerHTML = `<i class="fas fa-folder" style="color:${folder.color}"></i> ${folder.name}`;
@@ -3238,6 +3330,8 @@
                 summaryCard.innerHTML = `<div class="icon-bg" style="background:#f59e0b"></div><i class="fas fa-chart-line" style="color:#f59e0b"></i><span>Summary</span>`;
                 grid.prepend(summaryCard);
             }
+            
+            // Note: Admin tab doesn't have a summary card
         }
 
         // ==================== PRODUCTS MANAGEMENT ====================
@@ -3570,7 +3664,7 @@
             };
 
             if(editIdx > -1) {
-                suppliers[editId] = supData;
+                suppliers[editIdx] = supData;
             } else {
                 suppliers.push(supData);
             }
@@ -3639,12 +3733,12 @@
                 document.getElementById('set-m-left').value = s.mLeft || '0.5';
                 document.getElementById('set-m-right').value = s.mRight || '0.5';
 
-                // Load toggle states
-                const showLogo = await Storage.get('showLogoPDF');
-                const showSeal = await Storage.get('showSealPDF');
+                // Load toggle states - FIXED: Properly load from localStorage first, then Storage
+                const showLogo = localStorage.getItem('showLogoPDF') === 'true' || (await Storage.get('showLogoPDF')) === 'true';
+                const showSeal = localStorage.getItem('showSealPDF') === 'true' || (await Storage.get('showSealPDF')) === 'true';
                 
-                document.getElementById('toggle-logo').checked = showLogo === 'true';
-                document.getElementById('toggle-seal').checked = showSeal === 'true';
+                document.getElementById('toggle-logo').checked = showLogo;
+                document.getElementById('toggle-seal').checked = showSeal;
                 
                 // Load images from localStorage
                 const imageKeys = ['logo', 'seal', 'auth-sig', 'gen-sig'];
@@ -3690,9 +3784,14 @@
                 const saveResult = await Storage.save('faith_settings', settings);
                 console.log('Settings save result:', saveResult);
                 
-                // Save toggle states
-                await Storage.save('showLogoPDF', document.getElementById('toggle-logo').checked);
-                await Storage.save('showSealPDF', document.getElementById('toggle-seal').checked);
+                // Save toggle states - FIXED: Save to both localStorage and Storage
+                const showLogo = document.getElementById('toggle-logo').checked;
+                const showSeal = document.getElementById('toggle-seal').checked;
+                
+                localStorage.setItem('showLogoPDF', showLogo);
+                localStorage.setItem('showSealPDF', showSeal);
+                await Storage.save('showLogoPDF', showLogo);
+                await Storage.save('showSealPDF', showSeal);
                 
                 // Update UI
                 document.getElementById('brand-header').innerText = settings.compName || "FAITH ENGINEERING";
@@ -4288,13 +4387,22 @@
             const filteredDocs = docs.filter(d => d.type === type);
             
             filteredDocs.forEach(d => {
-                let icon = 'fa-file-contract';
-                let color = '#c084fc';
+                let icon = 'fa-file-signature';
+                let color = '#ef4444';
                 if (type === 'RECEIPT') {
                     icon = 'fa-receipt';
-                    color = '#34d399';
+                    color = '#84cc16';
+                } else if (type === 'INVOICE') {
+                    icon = 'fa-file-invoice-dollar';
+                    color = '#3b82f6';
+                } else if (type === 'CHALLAN') {
+                    icon = 'fa-truck-ramp-box';
+                    color = '#10b981';
+                } else if (type === 'PO') {
+                    icon = 'fa-clipboard-list';
+                    color = '#f59e0b';
                 } else if (type === 'LETTER') {
-                    icon = 'fa-envelope';
+                    icon = 'fa-envelope-open-text';
                     color = '#a855f7';
                 }
                 renderCard(gridMap[type], d.id, color, icon);
@@ -4572,31 +4680,42 @@
             document.getElementById('pdf-comp-contact-line').innerText = `Mobile: ${s.mobile || ''} | Email: ${s.email || ''} | Website: ${s.web || ''}`;
             document.getElementById('pdf-footer-slogan').innerText = s.compSlogan || "";
             
-            const showLogo = await Storage.get('showLogoPDF') === 'true';
-            const showSeal = await Storage.get('showSealPDF') === 'true';
+            // FIXED: Properly check logo and seal display settings from localStorage
+            const showLogo = localStorage.getItem('showLogoPDF') === 'true';
+            const showSeal = localStorage.getItem('showSealPDF') === 'true';
             
+            console.log("PDF Settings - Show Logo:", showLogo, "Show Seal:", showSeal);
+            
+            // Handle Logo Display - FIXED: Always check localStorage first
             if (showLogo) {
                 const logo = localStorage.getItem('data-logo');
                 if(logo) { 
                     document.getElementById('pdf-comp-logo').src = logo; 
                     document.getElementById('pdf-logo-container').style.display = 'block'; 
+                    console.log("Logo displayed in PDF");
                 } else {
                     document.getElementById('pdf-logo-container').style.display = 'none';
+                    console.log("No logo found in localStorage");
                 }
             } else {
                 document.getElementById('pdf-logo-container').style.display = 'none';
+                console.log("Logo display is OFF in settings");
             }
             
+            // Handle Seal Display - FIXED: Always check localStorage first
             if (showSeal) {
                 const seal = localStorage.getItem('data-seal');
                 if(seal) { 
                     document.getElementById('pdf-seal').src = seal; 
                     document.getElementById('pdf-seal-container').style.display = 'block'; 
+                    console.log("Seal displayed in PDF");
                 } else {
                     document.getElementById('pdf-seal-container').style.display = 'none';
+                    console.log("No seal found in localStorage");
                 }
             } else {
                 document.getElementById('pdf-seal-container').style.display = 'none';
+                console.log("Seal display is OFF in settings");
             }
             
             // UPDATED: Use proper document titles in PDF
@@ -4807,35 +4926,33 @@
                 document.getElementById('pdf-comp-contact-line').innerText = `Mobile: ${settings.mobile || ''} | Email: ${settings.email || ''} | Website: ${settings.web || ''}`;
                 document.getElementById('pdf-footer-slogan').innerText = settings.compSlogan || "";
                 
-                // Handle logo visibility
-                Storage.get('showLogoPDF').then(showLogo => {
-                    if (showLogo === 'true') {
-                        const logo = localStorage.getItem('data-logo');
-                        if(logo) { 
-                            document.getElementById('pdf-comp-logo').src = logo; 
-                            document.getElementById('pdf-logo-container').style.display = 'block'; 
-                        } else {
-                            document.getElementById('pdf-logo-container').style.display = 'none';
-                        }
+                // FIXED: Handle logo visibility - Check localStorage first
+                const showLogo = localStorage.getItem('showLogoPDF') === 'true';
+                if (showLogo) {
+                    const logo = localStorage.getItem('data-logo');
+                    if(logo) { 
+                        document.getElementById('pdf-comp-logo').src = logo; 
+                        document.getElementById('pdf-logo-container').style.display = 'block'; 
                     } else {
                         document.getElementById('pdf-logo-container').style.display = 'none';
                     }
-                });
+                } else {
+                    document.getElementById('pdf-logo-container').style.display = 'none';
+                }
                 
-                // Handle seal visibility
-                Storage.get('showSealPDF').then(showSeal => {
-                    if (showSeal === 'true') {
-                        const seal = localStorage.getItem('data-seal');
-                        if(seal) { 
-                            document.getElementById('pdf-seal').src = seal; 
-                            document.getElementById('pdf-seal-container').style.display = 'block'; 
-                        } else {
-                            document.getElementById('pdf-seal-container').style.display = 'none';
-                        }
+                // FIXED: Handle seal visibility - Check localStorage first
+                const showSeal = localStorage.getItem('showSealPDF') === 'true';
+                if (showSeal) {
+                    const seal = localStorage.getItem('data-seal');
+                    if(seal) { 
+                        document.getElementById('pdf-seal').src = seal; 
+                        document.getElementById('pdf-seal-container').style.display = 'block'; 
                     } else {
                         document.getElementById('pdf-seal-container').style.display = 'none';
                     }
-                });
+                } else {
+                    document.getElementById('pdf-seal-container').style.display = 'none';
+                }
                 
                 // UPDATED: Check all possible signature storage keys
                 const authSigKeys = ['data-auth-sig', 'data-gen-sig'];
@@ -5115,7 +5232,7 @@
             else {
                 docs.push(newDoc);
                 await Storage.save(`last_id_${newDoc.type}`, newDoc.id.split('-').pop());
-                renderCard(newDoc.grid, newDoc.id, (newDoc.type === 'RECEIPT' ? '#34d399' : '#c084fc'), (newDoc.type === 'RECEIPT' ? 'fa-receipt' : 'fa-file-contract'));
+                renderCard(newDoc.grid, newDoc.id, (newDoc.type === 'RECEIPT' ? '#84cc16' : '#ef4444'), (newDoc.type === 'RECEIPT' ? 'fa-receipt' : 'fa-file-signature'));
             }
             await saveDocs(docs);
         }
@@ -5187,13 +5304,19 @@
                         if(gid === 'grid-letter') {
                             const letters = await getLetterDocuments();
                             letters.forEach(d => {
-                                renderCard(gid, d.id, '#a855f7', 'fa-envelope');
+                                renderCard(gid, d.id, '#a855f7', 'fa-envelope-open-text');
                             });
                         } else {
                             const docs = await getDocs();
                             docs.filter(d => d.grid === gid).forEach(d => {
-                                let icon = d.type === 'RECEIPT' ? 'fa-receipt' : 'fa-file-contract';
-                                let col = d.type === 'RECEIPT' ? '#34d399' : '#c084fc';
+                                let icon = d.type === 'RECEIPT' ? 'fa-receipt' : 
+                                         d.type === 'INVOICE' ? 'fa-file-invoice-dollar' :
+                                         d.type === 'CHALLAN' ? 'fa-truck-ramp-box' :
+                                         d.type === 'PO' ? 'fa-clipboard-list' : 'fa-file-signature';
+                                let col = d.type === 'RECEIPT' ? '#84cc16' : 
+                                         d.type === 'INVOICE' ? '#3b82f6' :
+                                         d.type === 'CHALLAN' ? '#10b981' :
+                                         d.type === 'PO' ? '#f59e0b' : '#ef4444';
                                 renderCard(gid, d.id, col, icon);
                             });
                         }
