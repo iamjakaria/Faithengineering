@@ -1658,7 +1658,7 @@
     </div>
 
     <div id="pdf-template">
-        <!-- FIXED: Red square boxes are now in the fixed footer wrapper -->
+        <!-- UPDATED: Improved PDF layout with signature immediately after terms -->
         <div id="pdf-inner-content" style="position: relative; min-height: 10.5in; font-family: Arial, sans-serif; color: #333; background: #fff; box-sizing: border-box; overflow: hidden; page-break-inside: avoid; padding-right: 15px; padding-bottom: 60px;">
             
             <!-- FIXED FOOTER STRUCTURE -->
@@ -1785,31 +1785,34 @@
                     <strong>Amount in words:</strong> <span id="pdf-grand-words" style="font-style: normal;"></span>
                 </div>
 
-                <!-- UPDATED: Reduced margin for terms section -->
+                <!-- UPDATED: Terms section with reduced spacing -->
                 <div id="pdf-terms-section" style="margin-top: 10px; font-size: 11px; width: 98%;">
                     <strong>Terms & Conditions:</strong>
-                    <div id="pdf-terms" style="white-space: pre-wrap; margin-top: 5px; line-height: 1.4; color: #555; font-size: 11px;"></div>
+                    <div id="pdf-terms" style="white-space: pre-wrap; margin-top: 3px; line-height: 1.3; color: #555; font-size: 11px; margin-bottom: 8px;"></div>
                 </div>
                 
-                <div id="pdf-seal-container" style="margin-top: 10px; text-align: center; display: none;">
-                    <img id="pdf-seal" style="max-height: 85px; max-width: 85px;">
-                </div>
-                
-                <!-- UPDATED: Reduced margin for signature section -->
-                <div style="margin-top: 15px; display: flex; justify-content: space-between; align-items: flex-end; font-size: 11px; width: 98%;">
-                    <div id="pdf-receiver-section" style="text-align: center; visibility: hidden;">
-                        <div style="height: 50px; display: flex; align-items: center; justify-content: center;"></div>
-                        <div style="border-top: 1px solid #999; width: 140px; padding-top: 5px; font-size: 11px;">Receiver Signature</div>
+                <!-- UPDATED: Signature section immediately after terms with minimal spacing -->
+                <div id="pdf-signature-section" style="margin-top: 5px; width: 98%;">
+                    <div id="pdf-seal-container" style="text-align: center; margin-bottom: 8px; display: none;">
+                        <img id="pdf-seal" style="max-height: 75px; max-width: 75px;">
                     </div>
-                    <div style="text-align: center;">
-                        <div style="min-height: 45px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 5px;">
-                            <img id="pdf-auth-sig" style="max-height: 45px; max-width: 120px; display:none;">
+                    
+                    <!-- UPDATED: Reduced spacing in signature section -->
+                    <div style="margin-top: 5px; display: flex; justify-content: space-between; align-items: flex-end; font-size: 11px;">
+                        <div id="pdf-receiver-section" style="text-align: center; visibility: hidden;">
+                            <div style="height: 40px; display: flex; align-items: center; justify-content: center;"></div>
+                            <div style="border-top: 1px solid #999; width: 120px; padding-top: 3px; font-size: 11px;">Receiver Signature</div>
                         </div>
-                        <div style="border-top: 1px solid #999; width: 160px; margin: 0 auto; padding-top: 5px;">
-                            <div style="text-align: center; font-size: 11px; white-space: nowrap;">
-                                <p style="margin:0; font-weight:bold; line-height: 1.3;">For <span id="pdf-for-comp">FAITH ENGINEERING</span></p>
-                                <p id="pdf-sig-name" style="margin:0; font-weight: bold; line-height: 1.3; color: #000;"></p>
-                                <p id="pdf-sig-desig" style="margin:0; line-height: 1.3; color: #555; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></p>
+                        <div style="text-align: center; margin-right: 10px;">
+                            <div style="min-height: 35px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 2px;">
+                                <img id="pdf-auth-sig" style="max-height: 35px; max-width: 100px; display:none;">
+                            </div>
+                            <div style="border-top: 1px solid #999; width: 140px; margin: 0 auto; padding-top: 3px;">
+                                <div style="text-align: center; font-size: 11px; white-space: nowrap;">
+                                    <p style="margin:0; font-weight:bold; line-height: 1.2;">For <span id="pdf-for-comp">FAITH ENGINEERING</span></p>
+                                    <p id="pdf-sig-name" style="margin:0; font-weight: bold; line-height: 1.2; color: #000;"></p>
+                                    <p id="pdf-sig-desig" style="margin:0; line-height: 1.2; color: #555; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1817,7 +1820,6 @@
             </div>
             
             <!-- FIXED FOOTER - Always at bottom, won't be pushed by content -->
-            <!-- FIXED: Red square boxes moved to footer wrapper -->
             <div id="pdf-footer-wrapper" style="position: absolute; bottom: 0; left: 0; right: 0; height: 60px; padding-right: 15px;">
                 <div id="pdf-footer-bottom-box" style="position: absolute; bottom: 10px; right: 20px; width: 40px; height: 40px; background: #FF0000; z-index: 10;"></div>
                 <div id="pdf-footer-bottom-box-2" style="position: absolute; bottom: 30px; right: 0; width: 40px; height: 40px; background: #FF0000; z-index: 11;"></div>
@@ -1869,7 +1871,7 @@
             }
         })();
 
-        // ==================== FIREBASE CONFIGURATION ====================
+        // ==================== IMPROVED FIREBASE CONFIGURATION ====================
         const firebaseConfig = {
             apiKey: "AIzaSyBV_Ph0Xx1f8C7vNbv-q5mErDhDkxncnkE",
             authDomain: "faithengineering-7f75b.firebaseapp.com",
@@ -1881,7 +1883,7 @@
             measurementId: "G-98RSMZ9H22"
         };
 
-        // Initialize Firebase
+        // Initialize Firebase with improved error handling
         let app;
         let database;
         
@@ -1889,12 +1891,24 @@
             app = firebase.initializeApp(firebaseConfig);
             database = firebase.database();
             console.log("Firebase initialized successfully");
+            
+            // Test connection
+            database.ref('.info/connected').on('value', (snap) => {
+                if (snap.val() === true) {
+                    console.log("Firebase connected");
+                } else {
+                    console.log("Firebase disconnected");
+                }
+            });
         } catch (error) {
             console.error("Firebase initialization error:", error);
-            // Create a mock database object if Firebase fails
+            // Fallback to localStorage only
             database = {
                 ref: (path) => ({
-                    set: () => Promise.resolve(),
+                    set: (data) => {
+                        console.log("Firebase fallback - set:", path, data);
+                        return Promise.resolve();
+                    },
                     get: () => Promise.resolve({ val: () => null }),
                     once: () => Promise.resolve({ val: () => null }),
                     push: () => ({ key: Date.now().toString(), set: () => Promise.resolve() }),
@@ -1903,6 +1917,11 @@
                     on: (event, callback) => {
                         // Mock listener
                         setTimeout(() => callback({ val: () => null }), 100);
+                        return () => {};
+                    },
+                    child: function(childPath) {
+                        const fullPath = path + '/' + childPath;
+                        return this.ref(fullPath);
                     }
                 })
             };
@@ -1913,19 +1932,23 @@
                 this.db = database;
                 this.userId = 'default_user';
                 this.rootPath = 'faithengineering';
-                this.initialized = false;
-                this.testConnection();
+                this.initialized = true; // Assume initialized, we'll fallback gracefully
+                this.connectionTested = false;
+                this.retryCount = 0;
+                this.maxRetries = 3;
             }
             
             async testConnection() {
                 try {
                     const testRef = this.db.ref(this.getPath('test'));
                     await testRef.set({ test: Date.now() });
-                    this.initialized = true;
+                    this.connectionTested = true;
                     console.log("Firebase connection test successful");
+                    return true;
                 } catch (error) {
-                    console.warn("Firebase connection failed, using localStorage only");
-                    this.initialized = false;
+                    console.warn("Firebase connection test failed:", error);
+                    this.connectionTested = false;
+                    return false;
                 }
             }
             
@@ -1938,19 +1961,39 @@
                     const path = this.getPath(key);
                     console.log("Saving to Firebase:", key, value);
                     
-                    // Always save to localStorage first
+                    // Always save to localStorage first for immediate access
                     localStorage.setItem(`fe_${key}`, JSON.stringify(value));
                     
-                    // Try to save to Firebase if initialized
-                    if (this.initialized) {
-                        await this.db.ref(path).set(value);
-                        console.log('Data saved to Firebase successfully');
+                    // Try to save to Firebase with retry logic
+                    if (this.connectionTested || await this.testConnection()) {
+                        try {
+                            await this.db.ref(path).set(value);
+                            console.log('Data saved to Firebase successfully');
+                            this.retryCount = 0; // Reset retry count on success
+                            return { success: true, source: 'firebase' };
+                        } catch (firebaseError) {
+                            console.error('Firebase save error:', firebaseError);
+                            // Try once more with exponential backoff
+                            if (this.retryCount < this.maxRetries) {
+                                this.retryCount++;
+                                await new Promise(resolve => setTimeout(resolve, 1000 * this.retryCount));
+                                try {
+                                    await this.db.ref(path).set(value);
+                                    console.log('Data saved to Firebase on retry');
+                                    return { success: true, source: 'firebase-retry' };
+                                } catch (retryError) {
+                                    console.error('Firebase retry save error:', retryError);
+                                }
+                            }
+                        }
                     }
-                    return true;
+                    
+                    // If Firebase fails, at least we have localStorage
+                    return { success: true, source: 'localstorage' };
                 } catch (error) {
-                    console.error('Firebase save error, using localStorage only:', error);
+                    console.error('Save error, using localStorage only:', error);
                     localStorage.setItem(`fe_${key}`, JSON.stringify(value));
-                    return false;
+                    return { success: true, source: 'localstorage-fallback' };
                 }
             }
             
@@ -1960,33 +2003,42 @@
                     const localData = localStorage.getItem(`fe_${key}`);
                     let data = localData ? JSON.parse(localData) : null;
                     
-                    // Try to get from Firebase if initialized
-                    if (this.initialized) {
-                        const path = this.getPath(key);
-                        const snapshot = await this.db.ref(path).once('value');
-                        const firebaseData = snapshot.val();
-                        
-                        if (firebaseData !== null) {
-                            // Update localStorage with Firebase data
-                            localStorage.setItem(`fe_${key}`, JSON.stringify(firebaseData));
-                            return firebaseData;
-                        } else if (data === null) {
-                            // Check if data exists in old path (for backward compatibility)
-                            const oldPath = `${this.rootPath}/${key}`;
-                            const oldSnapshot = await this.db.ref(oldPath).once('value');
-                            const oldData = oldSnapshot.val();
+                    // If we have data in localStorage and Firebase isn't tested, return it
+                    if (!this.connectionTested && data !== null) {
+                        return data;
+                    }
+                    
+                    // Try to get from Firebase if connection is tested
+                    if (this.connectionTested || await this.testConnection()) {
+                        try {
+                            const path = this.getPath(key);
+                            const snapshot = await this.db.ref(path).once('value');
+                            const firebaseData = snapshot.val();
                             
-                            if (oldData !== null) {
-                                // Migrate to new path
-                                await this.save(key, oldData);
-                                return oldData;
+                            if (firebaseData !== null) {
+                                // Update localStorage with Firebase data
+                                localStorage.setItem(`fe_${key}`, JSON.stringify(firebaseData));
+                                return firebaseData;
+                            } else if (data === null) {
+                                // Check if data exists in old path (for backward compatibility)
+                                const oldPath = `${this.rootPath}/${key}`;
+                                const oldSnapshot = await this.db.ref(oldPath).once('value');
+                                const oldData = oldSnapshot.val();
+                                
+                                if (oldData !== null) {
+                                    // Migrate to new path
+                                    await this.save(key, oldData);
+                                    return oldData;
+                                }
                             }
+                        } catch (firebaseError) {
+                            console.warn('Firebase get error, using localStorage:', firebaseError);
                         }
                     }
                     
                     return data;
                 } catch (error) {
-                    console.error('Firebase get error, using localStorage:', error);
+                    console.error('Get error, using localStorage:', error);
                     const localData = localStorage.getItem(`fe_${key}`);
                     return localData ? JSON.parse(localData) : null;
                 }
@@ -1996,15 +2048,21 @@
                 try {
                     localStorage.removeItem(`fe_${key}`);
                     
-                    if (this.initialized) {
-                        const path = this.getPath(key);
-                        await this.db.ref(path).remove();
+                    if (this.connectionTested || await this.testConnection()) {
+                        try {
+                            const path = this.getPath(key);
+                            await this.db.ref(path).remove();
+                            return { success: true, source: 'firebase' };
+                        } catch (firebaseError) {
+                            console.error('Firebase remove error:', firebaseError);
+                        }
                     }
-                    return true;
+                    
+                    return { success: true, source: 'localstorage' };
                 } catch (error) {
-                    console.error('Firebase remove error:', error);
+                    console.error('Remove error:', error);
                     localStorage.removeItem(`fe_${key}`);
-                    return false;
+                    return { success: false, source: 'error' };
                 }
             }
             
@@ -2019,8 +2077,8 @@
                     }
                 }
                 
-                // Set up Firebase listener if initialized
-                if (this.initialized) {
+                // Set up Firebase listener if connection is tested
+                if (this.connectionTested) {
                     try {
                         const path = this.getPath(key);
                         this.db.ref(path).on('value', (snapshot) => {
@@ -2037,7 +2095,7 @@
             }
             
             stopListening(key) {
-                if (this.initialized) {
+                if (this.connectionTested) {
                     try {
                         const path = this.getPath(key);
                         this.db.ref(path).off();
@@ -2060,10 +2118,10 @@
                     
                     return currentData.length - 1; // Return index
                 } catch (error) {
-                    console.error('Firebase push error:', error);
+                    console.error('Push error:', error);
                     const data = await this.get(key) || [];
                     data.push(value);
-                    await this.save(key, data);
+                    localStorage.setItem(`fe_${key}`, JSON.stringify(data));
                     return data.length - 1;
                 }
             }
@@ -2078,7 +2136,7 @@
                     }
                     return false;
                 } catch (error) {
-                    console.error('Firebase updateItem error:', error);
+                    console.error('UpdateItem error:', error);
                     return false;
                 }
             }
@@ -2093,7 +2151,7 @@
                     }
                     return false;
                 } catch (error) {
-                    console.error('Firebase removeItem error:', error);
+                    console.error('RemoveItem error:', error);
                     return false;
                 }
             }
@@ -2117,7 +2175,7 @@
 
         const MASTER_LIST_FOLDER_ID = 'master-list-products';
 
-        // UPDATED VIEW NAME MAP - Removed commercial-menu and added direct document tabs
+        // UPDATED VIEW NAME MAP
         const viewNameMap = {
             'main-menu': 'Dashboard',
             'inventory-view': 'Stock Inventory',
@@ -2127,7 +2185,6 @@
             'clients-view': 'Client Database',
             'supplier-view': 'Supplier Records',
             'settings-view': 'System Settings',
-            // REMOVED: 'commercial-menu': 'Commercial Hub',
             'folder-quotation': 'Quotation Records',
             'folder-invoice': 'Invoice Records',
             'folder-challan': 'Delivery Challans',
@@ -2185,7 +2242,6 @@
                 'folder-challan': () => renderCommercialFolder('CHALLAN'),
                 'folder-po': () => renderCommercialFolder('PO'),
                 'folder-receipt': () => renderCommercialFolder('RECEIPT'),
-                // REMOVED: 'commercial-menu': () => {} // No longer needed
             };
 
             if (loaders[id]) loaders[id]();
@@ -3257,7 +3313,6 @@
             }
         }
 
-
         function openProductEntryModal(existingProduct = null, idx = -1) {
             document.getElementById('p-modal-title').innerText = existingProduct ? "Edit Product Info" : "Add Product Info";
             document.getElementById('p-item').value = existingProduct ? existingProduct.item : '';
@@ -3515,7 +3570,7 @@
             };
 
             if(editIdx > -1) {
-                suppliers[editIdx] = supData;
+                suppliers[editId] = supData;
             } else {
                 suppliers.push(supData);
             }
@@ -3564,72 +3619,90 @@
 
         // ==================== SETTINGS ====================
         async function loadSettings() {
-            const s = await Storage.get('faith_settings') || {};
-            document.getElementById('set-comp-name').value = s.compName || '';
-            document.getElementById('set-comp-slogan').value = s.compSlogan || '';
-            document.getElementById('set-comp-addr').value = s.compAddr || '';
-            document.getElementById('set-comp-mobile').value = s.mobile || '';
-            document.getElementById('set-comp-email').value = s.email || '';
-            document.getElementById('set-comp-web').value = s.web || '';
-            document.getElementById('set-currency').value = s.currency || '৳';
-            document.getElementById('set-sig-name').value = s.sigName || '';
-            document.getElementById('set-sig-desig').value = s.sigDesig || '';
-            document.getElementById('set-terms-q').value = s.termsQ || '';
-            document.getElementById('set-terms-inv').value = s.termsInv || '';
-            document.getElementById('set-terms-ch').value = s.termsCh || '';
-            document.getElementById('set-terms-po').value = s.termsPo || '';
-            document.getElementById('set-m-top').value = s.mTop || '0.5';
-            document.getElementById('set-m-bottom').value = s.mBottom || '0.5';
-            document.getElementById('set-m-left').value = s.mLeft || '0.5';
-            document.getElementById('set-m-right').value = s.mRight || '0.5';
+            try {
+                const s = await Storage.get('faith_settings') || {};
+                document.getElementById('set-comp-name').value = s.compName || '';
+                document.getElementById('set-comp-slogan').value = s.compSlogan || '';
+                document.getElementById('set-comp-addr').value = s.compAddr || '';
+                document.getElementById('set-comp-mobile').value = s.mobile || '';
+                document.getElementById('set-comp-email').value = s.email || '';
+                document.getElementById('set-comp-web').value = s.web || '';
+                document.getElementById('set-currency').value = s.currency || '৳';
+                document.getElementById('set-sig-name').value = s.sigName || '';
+                document.getElementById('set-sig-desig').value = s.sigDesig || '';
+                document.getElementById('set-terms-q').value = s.termsQ || '';
+                document.getElementById('set-terms-inv').value = s.termsInv || '';
+                document.getElementById('set-terms-ch').value = s.termsCh || '';
+                document.getElementById('set-terms-po').value = s.termsPo || '';
+                document.getElementById('set-m-top').value = s.mTop || '0.5';
+                document.getElementById('set-m-bottom').value = s.mBottom || '0.5';
+                document.getElementById('set-m-left').value = s.mLeft || '0.5';
+                document.getElementById('set-m-right').value = s.mRight || '0.5';
 
-            const showLogo = await Storage.get('showLogoPDF') === 'true';
-            const showSeal = await Storage.get('showSealPDF') === 'true';
-            document.getElementById('toggle-logo').checked = showLogo;
-            document.getElementById('toggle-seal').checked = showSeal;
-            
-            const imageKeys = ['logo', 'seal', 'auth-sig', 'gen-sig'];
-            for (const key of imageKeys) {
-                const data = localStorage.getItem('data-' + key);
-                if(data) {
-                    const prev = document.getElementById('prev-' + key);
-                    if (prev) {
-                        prev.src = data; 
-                        prev.style.display = 'block';
+                // Load toggle states
+                const showLogo = await Storage.get('showLogoPDF');
+                const showSeal = await Storage.get('showSealPDF');
+                
+                document.getElementById('toggle-logo').checked = showLogo === 'true';
+                document.getElementById('toggle-seal').checked = showSeal === 'true';
+                
+                // Load images from localStorage
+                const imageKeys = ['logo', 'seal', 'auth-sig', 'gen-sig'];
+                for (const key of imageKeys) {
+                    const data = localStorage.getItem('data-' + key);
+                    if(data) {
+                        const prev = document.getElementById('prev-' + key);
+                        if (prev) {
+                            prev.src = data; 
+                            prev.style.display = 'block';
+                        }
                     }
                 }
+            } catch (error) {
+                console.error('Error loading settings:', error);
+                alert('Error loading settings. Using default values.');
             }
         }
 
         async function saveSettings() {
-            const settings = {
-                compName: document.getElementById('set-comp-name').value,
-                compSlogan: document.getElementById('set-comp-slogan').value,
-                compAddr: document.getElementById('set-comp-addr').value,
-                mobile: document.getElementById('set-comp-mobile').value,
-                email: document.getElementById('set-comp-email').value,
-                web: document.getElementById('set-comp-web').value,
-                currency: document.getElementById('set-currency').value,
-                sigName: document.getElementById('set-sig-name').value,
-                sigDesig: document.getElementById('set-sig-desig').value,
-                termsQ: document.getElementById('set-terms-q').value,
-                termsInv: document.getElementById('set-terms-inv').value,
-                termsCh: document.getElementById('set-terms-ch').value,
-                termsPo: document.getElementById('set-terms-po').value,
-                mTop: document.getElementById('set-m-top').value,
-                mBottom: document.getElementById('set-m-bottom').value,
-                mLeft: document.getElementById('set-m-left').value,
-                mRight: document.getElementById('set-m-right').value
-            };
+            try {
+                const settings = {
+                    compName: document.getElementById('set-comp-name').value,
+                    compSlogan: document.getElementById('set-comp-slogan').value,
+                    compAddr: document.getElementById('set-comp-addr').value,
+                    mobile: document.getElementById('set-comp-mobile').value,
+                    email: document.getElementById('set-comp-email').value,
+                    web: document.getElementById('set-comp-web').value,
+                    currency: document.getElementById('set-currency').value,
+                    sigName: document.getElementById('set-sig-name').value,
+                    sigDesig: document.getElementById('set-sig-desig').value,
+                    termsQ: document.getElementById('set-terms-q').value,
+                    termsInv: document.getElementById('set-terms-inv').value,
+                    termsCh: document.getElementById('set-terms-ch').value,
+                    termsPo: document.getElementById('set-terms-po').value,
+                    mTop: document.getElementById('set-m-top').value,
+                    mBottom: document.getElementById('set-m-bottom').value,
+                    mLeft: document.getElementById('set-m-left').value,
+                    mRight: document.getElementById('set-m-right').value
+                };
 
-            await Storage.save('faith_settings', settings);
-            
-            await Storage.save('showLogoPDF', document.getElementById('toggle-logo').checked);
-            await Storage.save('showSealPDF', document.getElementById('toggle-seal').checked);
-            
-            document.getElementById('brand-header').innerText = settings.compName || "FAITH ENGINEERING";
-            document.getElementById('brand-slogan').innerText = settings.compSlogan || "ENTERPRISE RESOURCE PLANNING";
-            alert("Settings Updated!");
+                // Save settings with improved error handling
+                const saveResult = await Storage.save('faith_settings', settings);
+                console.log('Settings save result:', saveResult);
+                
+                // Save toggle states
+                await Storage.save('showLogoPDF', document.getElementById('toggle-logo').checked);
+                await Storage.save('showSealPDF', document.getElementById('toggle-seal').checked);
+                
+                // Update UI
+                document.getElementById('brand-header').innerText = settings.compName || "FAITH ENGINEERING";
+                document.getElementById('brand-slogan').innerText = settings.compSlogan || "ENTERPRISE RESOURCE PLANNING";
+                
+                alert("Settings Updated Successfully!");
+            } catch (error) {
+                console.error('Error saving settings:', error);
+                alert('Error saving settings. Data saved to local storage only.');
+            }
         }
 
         // ==================== ACCOUNTS FUNCTIONS ====================
@@ -4648,7 +4721,7 @@
             const terms = await getTermsForDocument(doc.type);
             document.getElementById('pdf-terms').innerText = terms || "No terms and conditions set. Please update in Settings.";
             
-            // FIXED: Check all possible signature storage keys
+            // UPDATED: Check all possible signature storage keys with improved fallback
             const authSigKeys = ['data-auth-sig', 'data-gen-sig'];
             let authSigFound = false;
             
@@ -4666,7 +4739,7 @@
                 document.getElementById('pdf-auth-sig').style.display = 'none';
             }
             
-            // FIXED: Display signature name and designation on separate lines with no line break
+            // UPDATED: Display signature name and designation with reduced line spacing
             const sigName = s.sigName || "";
             const sigDesig = s.sigDesig || "";
             document.getElementById('pdf-sig-name').innerText = sigName;
@@ -4764,7 +4837,7 @@
                     }
                 });
                 
-                // FIXED: Check all possible signature storage keys
+                // UPDATED: Check all possible signature storage keys
                 const authSigKeys = ['data-auth-sig', 'data-gen-sig'];
                 let authSigFound = false;
                 
@@ -4782,7 +4855,7 @@
                     document.getElementById('pdf-auth-sig').style.display = 'none';
                 }
                 
-                // FIXED: Display signature name and designation on separate lines with no line break
+                // UPDATED: Display signature name and designation with reduced line spacing
                 const sigName = settings.sigName || "";
                 const sigDesig = settings.sigDesig || "";
                 document.getElementById('pdf-sig-name').innerText = sigName;
@@ -5094,90 +5167,106 @@
 
         // ==================== INITIALIZATION ====================
         async function syncAllData() {
-            const s = await Storage.get('faith_settings') || {};
-            if(s.compName) document.getElementById('brand-header').innerText = s.compName;
-            if(s.compSlogan) document.getElementById('brand-slogan').innerText = s.compSlogan;
-            
-            const activeView = document.querySelector('.view-container.active')?.id;
-            if(activeView) loadViewData(activeView);
+            try {
+                const s = await Storage.get('faith_settings') || {};
+                if(s.compName) document.getElementById('brand-header').innerText = s.compName;
+                if(s.compSlogan) document.getElementById('brand-slogan').innerText = s.compSlogan;
+                
+                const activeView = document.querySelector('.view-container.active')?.id;
+                if(activeView) loadViewData(activeView);
 
-            const gridIds = ['grid-quotation', 'grid-invoice', 'grid-challan', 'grid-po', 'grid-receipt', 'grid-letter'];
-            
-            for (const gid of gridIds) {
-                const grid = document.getElementById(gid);
-                if(grid) {
-                    const header = grid.querySelector('.nav-header');
-                    grid.innerHTML = '';
-                    if(header) grid.appendChild(header);
-                    
-                    if(gid === 'grid-letter') {
-                        const letters = await getLetterDocuments();
-                        letters.forEach(d => {
-                            renderCard(gid, d.id, '#a855f7', 'fa-envelope');
-                        });
-                    } else {
-                        const docs = await getDocs();
-                        docs.filter(d => d.grid === gid).forEach(d => {
-                            let icon = d.type === 'RECEIPT' ? 'fa-receipt' : 'fa-file-contract';
-                            let col = d.type === 'RECEIPT' ? '#34d399' : '#c084fc';
-                            renderCard(gid, d.id, col, icon);
-                        });
+                const gridIds = ['grid-quotation', 'grid-invoice', 'grid-challan', 'grid-po', 'grid-receipt', 'grid-letter'];
+                
+                for (const gid of gridIds) {
+                    const grid = document.getElementById(gid);
+                    if(grid) {
+                        const header = grid.querySelector('.nav-header');
+                        grid.innerHTML = '';
+                        if(header) grid.appendChild(header);
+                        
+                        if(gid === 'grid-letter') {
+                            const letters = await getLetterDocuments();
+                            letters.forEach(d => {
+                                renderCard(gid, d.id, '#a855f7', 'fa-envelope');
+                            });
+                        } else {
+                            const docs = await getDocs();
+                            docs.filter(d => d.grid === gid).forEach(d => {
+                                let icon = d.type === 'RECEIPT' ? 'fa-receipt' : 'fa-file-contract';
+                                let col = d.type === 'RECEIPT' ? '#34d399' : '#c084fc';
+                                renderCard(gid, d.id, col, icon);
+                            });
+                        }
                     }
                 }
+            } catch (error) {
+                console.error('Error syncing data:', error);
             }
         }
 
         window.onload = async () => {
-            await syncAllData();
-            
-            // Listen for real-time updates from Firebase
-            Storage.listen('faith_commercial_docs', (docs) => {
-                if (docs) {
-                    syncAllData();
-                }
-            });
-            
-            Storage.listen('faith_letter_docs', (docs) => {
-                if (docs) {
-                    syncAllData();
-                }
-            });
-            
-            Storage.listen('faith_clients', (clients) => {
-                if (clients) {
-                    renderClients();
-                }
-            });
-            
-            Storage.listen('faith_suppliers', (suppliers) => {
-                if (suppliers) {
-                    renderSuppliers();
-                }
-            });
-            
-            Storage.listen('faith_income_records', (records) => {
-                if (records) {
-                    renderIncome();
-                    renderTransactions();
-                }
-            });
-            
-            Storage.listen('faith_expense_records', (records) => {
-                if (records) {
-                    renderExpense();
-                    renderTransactions();
-                }
-            });
-            
-            Storage.listen('faith_work_orders', (orders) => {
-                if (orders) {
-                    renderWorkOrders();
-                }
-            });
-            
-            window.addEventListener('storage', (e) => {
-                syncAllData();
-            });
+            try {
+                // Test Firebase connection on startup
+                await Storage.testConnection();
+                
+                await syncAllData();
+                
+                // Listen for real-time updates from Firebase
+                Storage.listen('faith_commercial_docs', (docs) => {
+                    if (docs) {
+                        syncAllData();
+                    }
+                });
+                
+                Storage.listen('faith_letter_docs', (docs) => {
+                    if (docs) {
+                        syncAllData();
+                    }
+                });
+                
+                Storage.listen('faith_clients', (clients) => {
+                    if (clients) {
+                        renderClients();
+                    }
+                });
+                
+                Storage.listen('faith_suppliers', (suppliers) => {
+                    if (suppliers) {
+                        renderSuppliers();
+                    }
+                });
+                
+                Storage.listen('faith_income_records', (records) => {
+                    if (records) {
+                        renderIncome();
+                        renderTransactions();
+                    }
+                });
+                
+                Storage.listen('faith_expense_records', (records) => {
+                    if (records) {
+                        renderExpense();
+                        renderTransactions();
+                    }
+                });
+                
+                Storage.listen('faith_work_orders', (orders) => {
+                    if (orders) {
+                        renderWorkOrders();
+                    }
+                });
+                
+                window.addEventListener('storage', (e) => {
+                    if (e.key && e.key.startsWith('fe_')) {
+                        syncAllData();
+                    }
+                });
+                
+                console.log("Application initialized successfully");
+            } catch (error) {
+                console.error("Error during initialization:", error);
+                alert("Application loaded with limited functionality. Some features may not work properly.");
+            }
         };
     </script>
 </body>
