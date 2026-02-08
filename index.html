@@ -672,9 +672,16 @@
             <a onclick="openView('supplier-view')" class="nav-card"><div class="icon-bg" style="background:#2dd4bf"></div><i class="fas fa-truck-ramp-box" style="color:#2dd4bf"></i><span>Supplier</span></a>
             <a onclick="openView('products-menu')" class="nav-card"><div class="icon-bg" style="background:#fbbf24"></div><i class="fas fa-microchip" style="color:#fbbf24"></i><span>Products</span></a>
             <a onclick="openView('inventory-view')" class="nav-card"><div class="icon-bg" style="background:#60a5fa"></div><i class="fas fa-warehouse" style="color:#60a5fa"></i><span>Inventory</span></a>
-            <a onclick="openView('commercial-menu')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-briefcase" style="color:#c084fc"></i><span>Commercial</span></a>
+            <!-- REMOVED: Commercial tab -->
             <a onclick="openView('accounts-menu')" class="nav-card"><div class="icon-bg" style="background:#34d399"></div><i class="fas fa-vault" style="color:#34d399"></i><span>Accounts</span></a>
             <a onclick="openView('workorder-menu')" class="nav-card"><div class="icon-bg" style="background:#f97316"></div><i class="fas fa-screwdriver-wrench" style="color:#f97316"></i><span>Work Order</span></a>
+            <!-- ADDED: New main tabs for document types -->
+            <a onclick="openView('folder-quotation')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-file-lines" style="color:#c084fc"></i><span>Quotation</span></a>
+            <a onclick="openView('folder-invoice')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-file-invoice" style="color:#c084fc"></i><span>Invoice</span></a>
+            <a onclick="openView('folder-challan')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-truck-fast" style="color:#c084fc"></i><span>Delivery Challan</span></a>
+            <a onclick="openView('folder-po')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-cart-shopping" style="color:#c084fc"></i><span>Purchase Order</span></a>
+            <a onclick="openView('folder-receipt')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-receipt" style="color:#c084fc"></i><span>Money Receipt</span></a>
+            <a onclick="openView('folder-letter')" class="nav-card"><div class="icon-bg" style="background:#a855f7"></div><i class="fas fa-envelope" style="color:#a855f7"></i><span>Letter</span></a>
             <a onclick="openView('settings-view')" class="nav-card"><div class="icon-bg" style="background:#fb923c"></div><i class="fas fa-gears" style="color:#fb923c"></i><span>Settings</span></a>
         </div>
     </div>
@@ -820,32 +827,61 @@
         </div>
     </div>
 
-    <div id="commercial-menu" class="view-container">
-        <div class="bento-grid">
-            <div class="nav-header"><div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div></div>
-            <a onclick="openView('folder-quotation')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-file-lines" style="color:#c084fc"></i><span>Quotation</span></a>
-            <a onclick="openView('folder-invoice')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-file-invoice" style="color:#c084fc"></i><span>Invoice</span></a>
-            <a onclick="openView('folder-challan')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-truck-fast" style="color:#c084fc"></i><span>Delivery Challan</span></a>
-            <a onclick="openView('folder-po')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-cart-shopping" style="color:#c084fc"></i><span>Purchase Order</span></a>
-            <a onclick="openView('folder-receipt')" class="nav-card"><div class="icon-bg" style="background:#c084fc"></div><i class="fas fa-receipt" style="color:#c084fc"></i><span>Money Receipt</span></a>
-            <a onclick="openView('folder-letter')" class="nav-card"><div class="icon-bg" style="background:#a855f7"></div><i class="fas fa-envelope" style="color:#a855f7"></i><span>Letter</span></a>
-        </div>
-    </div>
+    <!-- REMOVED: Commercial menu view -->
 
     <div id="folder-letter" class="view-container">
         <div class="bento-grid" id="grid-letter">
             <div class="nav-header">
-                <div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div>
+                <div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div>
                 <div class="add-folder-btn" onclick="openLetterModal()"><i class="fas fa-plus"></i> New Letter</div>
             </div>
         </div>
     </div>
 
-    <div id="folder-quotation" class="view-container"><div class="bento-grid" id="grid-quotation"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openDocModal('QUOTATION')"><i class="fas fa-plus"></i> New</div></div></div></div>
-    <div id="folder-invoice" class="view-container"><div class="bento-grid" id="grid-invoice"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openDocModal('INVOICE')"><i class="fas fa-plus"></i> New</div></div></div></div>
-    <div id="folder-challan" class="view-container"><div class="bento-grid" id="grid-challan"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openDocModal('CHALLAN')"><i class="fas fa-plus"></i> New</div></div></div></div>
-    <div id="folder-po" class="view-container"><div class="bento-grid" id="grid-po"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openDocModal('PO')"><i class="fas fa-plus"></i> New</div></div></div></div>
-    <div id="folder-receipt" class="view-container"><div class="bento-grid" id="grid-receipt"><div class="nav-header"><div class="back-btn" onclick="openView('commercial-menu')"><i class="fas fa-arrow-left"></i> Back</div><div class="add-folder-btn" onclick="openMR()"><i class="fas fa-plus"></i> New</div></div></div></div>
+    <div id="folder-quotation" class="view-container">
+        <div class="bento-grid" id="grid-quotation">
+            <div class="nav-header">
+                <div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div>
+                <div class="add-folder-btn" onclick="openDocModal('QUOTATION')"><i class="fas fa-plus"></i> New</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="folder-invoice" class="view-container">
+        <div class="bento-grid" id="grid-invoice">
+            <div class="nav-header">
+                <div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div>
+                <div class="add-folder-btn" onclick="openDocModal('INVOICE')"><i class="fas fa-plus"></i> New</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="folder-challan" class="view-container">
+        <div class="bento-grid" id="grid-challan">
+            <div class="nav-header">
+                <div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div>
+                <div class="add-folder-btn" onclick="openDocModal('CHALLAN')"><i class="fas fa-plus"></i> New</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="folder-po" class="view-container">
+        <div class="bento-grid" id="grid-po">
+            <div class="nav-header">
+                <div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div>
+                <div class="add-folder-btn" onclick="openDocModal('PO')"><i class="fas fa-plus"></i> New</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="folder-receipt" class="view-container">
+        <div class="bento-grid" id="grid-receipt">
+            <div class="nav-header">
+                <div class="back-btn" onclick="openView('main-menu')"><i class="fas fa-arrow-left"></i> Back</div>
+                <div class="add-folder-btn" onclick="openMR()"><i class="fas fa-plus"></i> New</div>
+            </div>
+        </div>
+    </div>
 
     <div id="accounts-menu" class="view-container">
         <div class="bento-grid">
@@ -2081,7 +2117,7 @@
 
         const MASTER_LIST_FOLDER_ID = 'master-list-products';
 
-        // UPDATED VIEW NAME MAP
+        // UPDATED VIEW NAME MAP - Removed commercial-menu and added direct document tabs
         const viewNameMap = {
             'main-menu': 'Dashboard',
             'inventory-view': 'Stock Inventory',
@@ -2091,7 +2127,7 @@
             'clients-view': 'Client Database',
             'supplier-view': 'Supplier Records',
             'settings-view': 'System Settings',
-            'commercial-menu': 'Commercial Hub',
+            // REMOVED: 'commercial-menu': 'Commercial Hub',
             'folder-quotation': 'Quotation Records',
             'folder-invoice': 'Invoice Records',
             'folder-challan': 'Delivery Challans',
@@ -2149,6 +2185,7 @@
                 'folder-challan': () => renderCommercialFolder('CHALLAN'),
                 'folder-po': () => renderCommercialFolder('PO'),
                 'folder-receipt': () => renderCommercialFolder('RECEIPT'),
+                // REMOVED: 'commercial-menu': () => {} // No longer needed
             };
 
             if (loaders[id]) loaders[id]();
