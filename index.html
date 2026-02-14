@@ -3325,7 +3325,7 @@ function saveItem() {
 }
 function closeItemModal() { document.getElementById('itemModal').style.display='none'; }
 
-// ========== PDF & PRINT HELPERS ==========
+// ========== PDF & PRINT HELPERS with filename based on document ID ==========
 function formatDateToOrdinal(dateStr) {
     if (!dateStr) return '';
     let d = new Date(dateStr + 'T12:00:00');
@@ -3351,6 +3351,13 @@ function numberToWords(amount) {
     if (num > 0) { if (num < 20) words += ones[num]; else { words += tens[Math.floor(num / 10)] + (num % 10 !== 0 ? ' ' + ones[num % 10] : ''); } }
     words += ' Only';
     return words;
+}
+
+// ----- enhanced print functions with filename override -----
+function triggerPrintWithTitle(titleSuffix) {
+    // set the document title for the print dialog / PDF name
+    document.title = titleSuffix;
+    setTimeout(() => window.print(), 300);
 }
 
 function getQuotationHTML(index) { 
@@ -3391,13 +3398,14 @@ function getQuotationHTML(index) {
 
 function printQuotation(index) {
     let s = settings;
+    let q = quotations[index];
     document.getElementById('print-comp-name').innerText = s.name || 'FAITH ENGINEERING';
     document.getElementById('print-comp-address').innerText = s.address || '';
     document.getElementById('print-comp-contact').innerText = `Mobile : ${s.mobile||''} | Email : ${s.email||''} | Website : ${s.website||''}`;
     document.getElementById('pdf-title-val').innerText = 'QUOTATION';
     document.getElementById('pdf-content-val').innerHTML = getQuotationHTML(index);
     document.getElementById('print-footer-slogan').innerText = s.slogan || '';
-    setTimeout(()=>window.print(), 300);
+    triggerPrintWithTitle(q.id); // filename = quotation id
 }
 
 function getInvoiceHTML(index) {
@@ -3414,9 +3422,19 @@ function getInvoiceHTML(index) {
     </tbody></table>
     <div style="margin-top:10px; font-size:11px;"><strong>Words (Due Amount):</strong> ${numberToWords(inv.due)}</div>
     <div style="margin-top:15px; font-size:11px; white-space:pre-wrap;"><strong>Terms & Conditions:</strong><br>${s.termsInv||'Standard Terms'}</div>
-    <div class="signature-wrapper" style="margin-top:30px; text-align:right;">${s.signImg?`<img src="${s.signImg}" style="height:40px; display:inline-block;"><br>`:''}<div style="width:200px; height:1px; background:black; margin:2px 0 0 auto;"></div><span><strong>For ${s.name || 'FAITH ENGINEERING'}</strong><br><strong>${s.signName||''}</strong><br>${s.signDes||''}</span></div>`;
+    <div class="signature-wrapper" style="margin-top:30px; text-align:right;">${s.signImg?`<img src="${s.signImg}" style="height:40px; display:inline-block;"><br>`:''}<div style="width:200px; height:1px; background:black; margin:2px 0 0 auto;"></div><span><strong>For ${s.name || 'FAITH ENGINEERING,'}</strong><br><strong>${s.signName||''}</strong><br>${s.signDes||''}</span></div>`;
 }
-function printInvoice(index){ let s=settings; document.getElementById('print-comp-name').innerText=s.name||'FAITH ENGINEERING'; document.getElementById('print-comp-address').innerText=s.address||''; document.getElementById('print-comp-contact').innerText=`Mobile : ${s.mobile||''} | Email : ${s.email||''} | Website : ${s.website||''}`; document.getElementById('pdf-title-val').innerText='INVOICE'; document.getElementById('pdf-content-val').innerHTML=getInvoiceHTML(index); document.getElementById('print-footer-slogan').innerText=s.slogan||''; setTimeout(()=>window.print(),300); }
+function printInvoice(index){ 
+    let s=settings; 
+    let inv = invoices[index];
+    document.getElementById('print-comp-name').innerText=s.name||'FAITH ENGINEERING'; 
+    document.getElementById('print-comp-address').innerText=s.address||''; 
+    document.getElementById('print-comp-contact').innerText=`Mobile : ${s.mobile||''} | Email : ${s.email||''} | Website : ${s.website||''}`; 
+    document.getElementById('pdf-title-val').innerText='INVOICE'; 
+    document.getElementById('pdf-content-val').innerHTML=getInvoiceHTML(index); 
+    document.getElementById('print-footer-slogan').innerText=s.slogan||''; 
+    triggerPrintWithTitle(inv.invoiceNo); 
+}
 
 function getDeliveryHTML(index){ 
     let dc = deliveries[index]; 
@@ -3436,11 +3454,21 @@ function getDeliveryHTML(index){
         <div style="text-align:right;">
             ${s.signImg?`<img src="${s.signImg}" style="height:40px; display:inline-block;"><br>`:''}
             <div style="width:200px; height:1px; background:black; margin:2px 0 0 auto;"></div>
-            <span><strong>For ${s.name || 'FAITH ENGINEERING'}</strong><br><strong>${s.signName||''}</strong><br>${s.signDes||''}</span>
+            <span><strong>For ${s.name || 'FAITH ENGINEERING,'}</strong><br><strong>${s.signName||''}</strong><br>${s.signDes||''}</span>
         </div>
     </div>`; 
 }
-function printDeliveryChallan(index){ let s=settings; document.getElementById('print-comp-name').innerText=s.name||'FAITH ENGINEERING'; document.getElementById('print-comp-address').innerText=s.address||''; document.getElementById('print-comp-contact').innerText=`Mobile : ${s.mobile||''} | Email : ${s.email||''} | Website : ${s.website||''}`; document.getElementById('pdf-title-val').innerText='DELIVERY CHALLAN'; document.getElementById('pdf-content-val').innerHTML=getDeliveryHTML(index); document.getElementById('print-footer-slogan').innerText=s.slogan||''; setTimeout(()=>window.print(),300); }
+function printDeliveryChallan(index){ 
+    let s=settings; 
+    let dc = deliveries[index];
+    document.getElementById('print-comp-name').innerText=s.name||'FAITH ENGINEERING'; 
+    document.getElementById('print-comp-address').innerText=s.address||''; 
+    document.getElementById('print-comp-contact').innerText=`Mobile : ${s.mobile||''} | Email : ${s.email||''} | Website : ${s.website||''}`; 
+    document.getElementById('pdf-title-val').innerText='DELIVERY CHALLAN'; 
+    document.getElementById('pdf-content-val').innerHTML=getDeliveryHTML(index); 
+    document.getElementById('print-footer-slogan').innerText=s.slogan||''; 
+    triggerPrintWithTitle(dc.deliveryNo); 
+}
 
 function getPurchaseHTML(index){ 
     let po = purchaseOrders[index]; 
@@ -3456,9 +3484,19 @@ function getPurchaseHTML(index){
     <tbody>${rows}<tr><td colspan="6" style="border:1px solid black;padding:5px;text-align:right;font-weight:bold;">Grand Total</td><td style="border:1px solid black;padding:5px;text-align:center;font-weight:bold;">${cur}${po.grandTotal.toFixed(2)}</td></tr></tbody></table>
     <div style="margin-top:10px; font-size:11px;"><strong>Words:</strong> ${numberToWords(po.grandTotal)}</div>
     <div style="margin-top:15px; font-size:11px; white-space:pre-wrap;"><strong>Terms & Conditions:</strong><br>${s.termsPO||po.notes||'Standard PO Terms'}</div>
-    <div class="signature-wrapper" style="margin-top:30px; text-align:right;">${s.signImg?`<img src="${s.signImg}" style="height:40px; display:inline-block;"><br>`:''}<div style="width:200px; height:1px; background:black; margin:2px 0 0 auto;"></div><span><strong>For ${s.name || 'FAITH ENGINEERING'}</strong><br><strong>${s.signName||''}</strong><br>${s.signDes||''}</span></div>`; 
+    <div class="signature-wrapper" style="margin-top:30px; text-align:right;">${s.signImg?`<img src="${s.signImg}" style="height:40px; display:inline-block;"><br>`:''}<div style="width:200px; height:1px; background:black; margin:2px 0 0 auto;"></div><span><strong>For ${s.name || 'FAITH ENGINEERING,'}</strong><br><strong>${s.signName||''}</strong><br>${s.signDes||''}</span></div>`; 
 }
-function printPurchaseOrder(index){ let s=settings; document.getElementById('print-comp-name').innerText=s.name||'FAITH ENGINEERING'; document.getElementById('print-comp-address').innerText=s.address||''; document.getElementById('print-comp-contact').innerText=`Mobile : ${s.mobile||''} | Email : ${s.email||''} | Website : ${s.website||''}`; document.getElementById('pdf-title-val').innerText='PURCHASE ORDER'; document.getElementById('pdf-content-val').innerHTML=getPurchaseHTML(index); document.getElementById('print-footer-slogan').innerText=s.slogan||''; setTimeout(()=>window.print(),300); }
+function printPurchaseOrder(index){ 
+    let s=settings; 
+    let po = purchaseOrders[index];
+    document.getElementById('print-comp-name').innerText=s.name||'FAITH ENGINEERING'; 
+    document.getElementById('print-comp-address').innerText=s.address||''; 
+    document.getElementById('print-comp-contact').innerText=`Mobile : ${s.mobile||''} | Email : ${s.email||''} | Website : ${s.website||''}`; 
+    document.getElementById('pdf-title-val').innerText='PURCHASE ORDER'; 
+    document.getElementById('pdf-content-val').innerHTML=getPurchaseHTML(index); 
+    document.getElementById('print-footer-slogan').innerText=s.slogan||''; 
+    triggerPrintWithTitle(po.poId); 
+}
 
 function getReceiptHTML(index) {
     let r = receipts[index];
@@ -3503,7 +3541,7 @@ function getReceiptHTML(index) {
                 <div style="text-align:right;">
                     ${s.signImg ? `<img src="${s.signImg}" style="height:45px; margin-bottom:5px;"><br>` : ''}
                     <div style="width:200px; height:1px; background:black; margin:2px 0 0 auto;"></div>
-                    <span style="font-size:12px;"><strong>For ${s.name || 'FAITH ENGINEERING'}</strong><br>${s.signName || 'Authorized Signatory'}<br>${s.signDes || ''}</span>
+                    <span style="font-size:12px;"><strong>For ${s.name || 'FAITH ENGINEERING,'}</strong><br>${s.signName || 'Authorized Signatory'}<br>${s.signDes || ''}</span>
                 </div>
             </div>
             <div style="margin-top:20px; text-align:center; color:#666; font-size:11px; border-top:1px solid #eee; padding-top:8px;">
@@ -3515,13 +3553,14 @@ function getReceiptHTML(index) {
 
 function printMoneyReceipt(index) {
     let s = settings;
+    let r = receipts[index];
     document.getElementById('print-comp-name').innerText = s.name || 'FAITH ENGINEERING';
     document.getElementById('print-comp-address').innerText = s.address || '';
     document.getElementById('print-comp-contact').innerText = `Mobile : ${s.mobile || ''} | Email : ${s.email || ''} | Website : ${s.website || ''}`;
     document.getElementById('pdf-title-val').innerText = 'MONEY RECEIPT';
     document.getElementById('pdf-content-val').innerHTML = getReceiptHTML(index);
     document.getElementById('print-footer-slogan').innerText = s.slogan || '';
-    setTimeout(() => window.print(), 300);
+    triggerPrintWithTitle(r.receiptNo);
 }
 
 function getLetterHTML(index){ 
@@ -3538,6 +3577,7 @@ function getLetterHTML(index){
 }
 function printLetter(index){ 
     let s = settings; 
+    let l = letters[index];
     document.getElementById('print-comp-name').innerText=s.name||'FAITH ENGINEERING'; 
     document.getElementById('print-comp-address').innerText=s.address||''; 
     document.getElementById('print-comp-contact').innerText=`Mobile : ${s.mobile||''} | Email : ${s.email||''} | Website : ${s.website||''}`; 
@@ -3545,7 +3585,7 @@ function printLetter(index){
     document.getElementById('pdf-title-val').innerText = letter.title || 'LETTER'; 
     document.getElementById('pdf-content-val').innerHTML = getLetterHTML(index); 
     document.getElementById('print-footer-slogan').innerText=s.slogan||''; 
-    setTimeout(()=>window.print(),300); 
+    triggerPrintWithTitle( (letter.title || 'letter').replace(/[^a-z0-9]/gi,'_') ); 
 }
 
 // ========== SETTINGS & UTILS ==========
