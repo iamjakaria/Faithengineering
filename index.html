@@ -824,14 +824,39 @@ table tr:last-child td {
     .pdf-body-content .quotation-print-table tfoot {
         display: none;
     }
+    
+    /* Updated signature and seal section */
+    .signature-seal-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: 30px;
+        width: 100%;
+    }
+    
+    .seal-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+    }
+    
+    .seal-container img {
+        max-height: 50px;
+        max-width: 150px;
+        object-fit: contain;
+    }
+    
     .signature-wrapper {
         text-align: right;
-        margin-top: 30px;
+        flex: 1;
     }
+    
     .signature-wrapper img {
         max-height: 40px;
         display: inline-block;
     }
+    
     .signature-bar {
         width: 200px;
         height: 1px;
@@ -3396,7 +3421,23 @@ function numberToWords(amount) {
 }
 // ================================================================================
 
-// ----- enhanced print functions with filename override -----
+// ----- enhanced print functions with filename override and seal integration -----
+function getSignatureSealHTML() {
+    let s = settings;
+    return `
+        <div class="signature-seal-wrapper">
+            <div class="seal-container">
+                ${s.sealImg ? `<img src="${s.sealImg}" alt="Company Seal">` : ''}
+            </div>
+            <div class="signature-wrapper">
+                ${s.signImg ? `<img src="${s.signImg}" style="display:inline-block;"><br>` : ''}
+                <div class="signature-bar"></div>
+                <span style="font-size:11px;"><strong>For ${s.name || 'FAITH ENGINEERING,'}</strong><br><strong>${s.signName||''}</strong><br>${s.signDes||''}</span>
+            </div>
+        </div>
+    `;
+}
+
 function triggerPrintWithTitle(titleSuffix) {
     // set the document title for the print dialog / PDF name
     document.title = titleSuffix;
@@ -3432,11 +3473,7 @@ function getQuotationHTML(index) {
         </table>
         <div style="margin-top:10px; font-size:11px;"><strong>Words:</strong> ${numberToWords(grand)}</div>
         <div style="margin-top:15px; font-size:11px; white-space:pre-wrap;"><strong>Terms & Conditions:</strong><br>${s.termsQuo||'Standard Terms Apply'}</div>
-        <div class="signature-wrapper" style="margin-top:30px; text-align:right;">
-            ${s.signImg ? `<img src="${s.signImg}" style="height:40px; display:inline-block;"><br>` : ''}
-            <div style="width:200px; height:1px; background:black; margin:2px 0 0 auto;"></div>
-            <span style="font-size:11px;"><strong>For ${s.name || 'FAITH ENGINEERING,'}</strong><br><strong>${s.signName||''}</strong><br>${s.signDes||''}</span>
-        </div>`;
+        ${getSignatureSealHTML()}`;
 }
 
 function printQuotation(index) {
@@ -3465,7 +3502,7 @@ function getInvoiceHTML(index) {
     </tbody></table>
     <div style="margin-top:10px; font-size:11px;"><strong>Words (Due Amount):</strong> ${numberToWords(inv.due)}</div>
     <div style="margin-top:15px; font-size:11px; white-space:pre-wrap;"><strong>Terms & Conditions:</strong><br>${s.termsInv||'Standard Terms'}</div>
-    <div class="signature-wrapper" style="margin-top:30px; text-align:right;">${s.signImg?`<img src="${s.signImg}" style="height:40px; display:inline-block;"><br>`:''}<div style="width:200px; height:1px; background:black; margin:2px 0 0 auto;"></div><span><strong>For ${s.name || 'FAITH ENGINEERING,'}</strong><br><strong>${s.signName||''}</strong><br>${s.signDes||''}</span></div>`;
+    ${getSignatureSealHTML()}`;
 }
 function printInvoice(index){ 
     let s=settings; 
@@ -3494,11 +3531,7 @@ function getDeliveryHTML(index){
             <span style="display:inline-block; width:200px; border-bottom:1px solid black; margin-top:15px;"></span><br>
             <span style="font-size:11px;">Signature & Date</span>
         </div>
-        <div style="text-align:right;">
-            ${s.signImg?`<img src="${s.signImg}" style="height:40px; display:inline-block;"><br>`:''}
-            <div style="width:200px; height:1px; background:black; margin:2px 0 0 auto;"></div>
-            <span><strong>For ${s.name || 'FAITH ENGINEERING,'}</strong><br><strong>${s.signName||''}</strong><br>${s.signDes||''}</span>
-        </div>
+        ${getSignatureSealHTML()}
     </div>`; 
 }
 function printDeliveryChallan(index){ 
@@ -3527,7 +3560,7 @@ function getPurchaseHTML(index){
     <tbody>${rows}<tr><td colspan="6" style="border:1px solid black;padding:5px;text-align:right;font-weight:bold;">Grand Total</td><td style="border:1px solid black;padding:5px;text-align:center;font-weight:bold;">${cur}${po.grandTotal.toFixed(2)}</td></tr></tbody></table>
     <div style="margin-top:10px; font-size:11px;"><strong>Words:</strong> ${numberToWords(po.grandTotal)}</div>
     <div style="margin-top:15px; font-size:11px; white-space:pre-wrap;"><strong>Terms & Conditions:</strong><br>${s.termsPO||po.notes||'Standard PO Terms'}</div>
-    <div class="signature-wrapper" style="margin-top:30px; text-align:right;">${s.signImg?`<img src="${s.signImg}" style="height:40px; display:inline-block;"><br>`:''}<div style="width:200px; height:1px; background:black; margin:2px 0 0 auto;"></div><span><strong>For ${s.name || 'FAITH ENGINEERING,'}</strong><br><strong>${s.signName||''}</strong><br>${s.signDes||''}</span></div>`; 
+    ${getSignatureSealHTML()}`; 
 }
 function printPurchaseOrder(index){ 
     let s=settings; 
@@ -3581,11 +3614,7 @@ function getReceiptHTML(index) {
                     <div style="margin-bottom:4px;"><strong>Receiver's Signature</strong></div>
                     <div style="border-bottom:1px solid #000; width:200px; margin-top:15px;"></div>
                 </div>
-                <div style="text-align:right;">
-                    ${s.signImg ? `<img src="${s.signImg}" style="height:45px; margin-bottom:5px;"><br>` : ''}
-                    <div style="width:200px; height:1px; background:black; margin:2px 0 0 auto;"></div>
-                    <span style="font-size:12px;"><strong>For ${s.name || 'FAITH ENGINEERING,'}</strong><br>${s.signName || 'Authorized Signatory'}<br>${s.signDes || ''}</span>
-                </div>
+                ${getSignatureSealHTML()}
             </div>
             <div style="margin-top:20px; text-align:center; color:#666; font-size:11px; border-top:1px solid #eee; padding-top:8px;">
                 This is a software generated receipt & valid without signature
@@ -3612,11 +3641,7 @@ function getLetterHTML(index){
     let formattedDate = formatDateToOrdinal(l.date);
     return `<div style="text-align:right;"><strong>Date:</strong> ${formattedDate}<br><strong>Ref:</strong> ${l.ref||''}</div>
     <div style="margin-top:20px; white-space:pre-wrap; text-align:justify;">${l.content}</div>
-    <div class="signature-wrapper" style="margin-top:40px; text-align:right;">
-        ${s.signImg?`<img src="${s.signImg}" style="height:40px; display:inline-block;"><br>`:''}
-        <div style="width:200px; height:1px; background:black; margin:2px 0 0 auto;"></div>
-        <span><strong>For ${s.name || 'FAITH ENGINEERING'}</strong><br><strong>${s.signName||''}</strong><br>${s.signDes||''}</span>
-    </div>`; 
+    ${getSignatureSealHTML()}`; 
 }
 function printLetter(index){ 
     let s = settings; 
@@ -3636,6 +3661,11 @@ function getBase64(file) { return new Promise((resolve, reject) => { const r=new
 function previewFile(id, pid) { let f=document.getElementById(id).files[0]; if(f){ let r=new FileReader(); r.onload=e=>{let m=document.getElementById(pid); m.src=e.target.result; m.style.display='block';}; r.readAsDataURL(f); } }
 
 async function saveSettings() {
+    let sealImg = document.getElementById('sealPreview').src;
+    if (sealImg && sealImg.startsWith('data:')) {
+        // seal image already loaded as base64 from preview
+    }
+    
     let settingsObj = {
         name: document.getElementById('setCompanyName').value,
         slogan: document.getElementById('setSlogan').value,
@@ -3651,6 +3681,7 @@ async function saveSettings() {
         termsChallan: document.getElementById('termsChallan').value,
         termsPO: document.getElementById('termsPO').value,
         logo: document.getElementById('logoPreview').src,
+        sealImg: document.getElementById('sealPreview').src,
         signImg: document.getElementById('signPreview').src
     };
     await database.ref('settings').set(settingsObj)
@@ -3674,6 +3705,7 @@ function loadSettings() {
         document.getElementById('termsChallan').value = s.termsChallan || '';
         document.getElementById('termsPO').value = s.termsPO || '';
         if(s.logo) { document.getElementById('logoPreview').src=s.logo; document.getElementById('logoPreview').style.display='block'; }
+        if(s.sealImg) { document.getElementById('sealPreview').src=s.sealImg; document.getElementById('sealPreview').style.display='block'; }
         if(s.signImg) { document.getElementById('signPreview').src=s.signImg; document.getElementById('signPreview').style.display='block'; }
     } else {
         document.getElementById('setCurrency').value = '₹';
